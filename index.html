@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chartara Labs - AI-Powered Machine Learning for Behavioral Health</title>
+    <meta name="description" content="AI-Powered Machine Learning and Decision Support System for Behavioral Health. Built by therapists, for therapists.">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #ffffff;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #00d4ff;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-cta:hover {
+            background: linear-gradient(135deg, #0099cc 0%, #007399 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.3);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+            padding: 2rem 0;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .brand-logo {
+            max-width: 400px;
+            height: auto;
+            margin: 0 auto 3rem;
+            display: block;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #00d4ff 0%, #ffffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .chart-showcase {
+            max-width: 800px;
+            margin: 3rem auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+        }
+
+        .chart-placeholder {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px dashed #00d4ff;
+            border-radius: 15px;
+            padding: 4rem 2rem;
+            text-align: center;
+            color: #00d4ff;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        /* Core Problems Section */
+        .problems-section {
+            padding: 5rem 0;
+        }
+
+        .problems-section h2 {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            color: #00d4ff;
+        }
+
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .problem-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-10px);
+            border-color: #00d4ff;
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+        }
+
+        .problem-card h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #00d4ff;
+            margin-bottom: 1rem;
+        }
+
+        .problem-card p {
+            color: #e0e0e0;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* EMR Section */
+        .emr-section {
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .emr-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: #ffffff;
+        }
+
+        .emr-image {
+            max-width: 600px;
+            margin: 0 auto;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .emr-placeholder {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px dashed #00d4ff;
+            border-radius: 15px;
+            padding: 3rem 2rem;
+            color: #00d4ff;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        /* Charts Section */
+        .charts-section {
+            padding: 5rem 0;
+        }
+
+        .charts-section h2 {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            color: #00d4ff;
+        }
+
+        .chart-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .chart-category {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .chart-category h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #00d4ff;
+            margin-bottom: 1.5rem;
+        }
+
+        .chart-list {
+            list-style: none;
+        }
+
+        .chart-list li {
+            padding: 0.5rem 0;
+            color: #e0e0e0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .chart-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* What We Are Section */
+        .what-we-are {
+            padding: 5rem 0;
+            background: rgba(0, 212, 255, 0.05);
+        }
+
+        .what-we-are h2 {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            color: #00d4ff;
+        }
+
+        .what-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .what-column h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .what-column.positive h3 {
+            color: #10b981;
+        }
+
+        .what-column.negative h3 {
+            color: #ef4444;
+        }
+
+        .what-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .what-icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            margin-top: 0.2rem;
+        }
+
+        .what-text {
+            color: #e0e0e0;
+            line-height: 1.5;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 5rem 0;
+        }
+
+        .faq-section h2 {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            color: #00d4ff;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .faq-question {
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: #00d4ff;
+        }
+
+        .faq-answer {
+            padding: 0 2rem 1.5rem;
+            color: #e0e0e0;
+            line-height: 1.6;
+            display: none;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            color: #00d4ff;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-toggle.active {
+            transform: rotate(45deg);
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            padding: 5rem 0;
+            background: rgba(0, 212, 255, 0.05);
+        }
+
+        .pricing-section h2 {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            color: #00d4ff;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            border-color: #00d4ff;
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+        }
+
+        .pricing-card h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #00d4ff;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-period {
+            color: #a0a0a0;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: 0.5rem 0;
+            color: #e0e0e0;
+            display: flex;
+            align-items: center;
+        }
+
+        .pricing-features li:before {
+            content: "✓";
+            color: #10b981;
+            font-weight: bold;
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .pricing-cta {
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: inline-block;
+            width: 100%;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .pricing-cta:hover {
+            background: linear-gradient(135deg, #0099cc 0%, #007399 100%);
+            transform: translateY(-2px);
+        }
+
+        .pricing-cta.secondary {
+            background: transparent;
+            border: 2px solid #00d4ff;
+            color: #00d4ff;
+        }
+
+        .pricing-cta.secondary:hover {
+            background: #00d4ff;
+            color: #000000;
+        }
+
+        /* Founder Section */
+        .founder-section {
+            padding: 5rem 0;
+            display: none;
+        }
+
+        .founder-section.active {
+            display: block;
+        }
+
+        .founder-content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .founder-text h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #00d4ff;
+            margin-bottom: 2rem;
+        }
+
+        .founder-text h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 2rem 0 1rem;
+        }
+
+        .founder-text p {
+            color: #e0e0e0;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .founder-image {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px dashed #00d4ff;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            color: #00d4ff;
+            font-weight: 600;
+            position: sticky;
+            top: 120px;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 5rem 0;
+            text-align: center;
+            display: none;
+        }
+
+        .contact-section.active {
+            display: block;
+        }
+
+        .contact-section h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #00d4ff;
+            margin-bottom: 2rem;
+        }
+
+        .contact-section p {
+            font-size: 1.2rem;
+            color: #e0e0e0;
+            margin-bottom: 2rem;
+        }
+
+        .contact-email {
+            font-size: 1.5rem;
+            color: #00d4ff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-email:hover {
+            text-decoration: underline;
+        }
+
+        /* Demo Video Section */
+        .demo-section {
+            padding: 5rem 0;
+            text-align: center;
+            display: none;
+        }
+
+        .demo-section.active {
+            display: block;
+        }
+
+        .demo-section h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #00d4ff;
+            margin-bottom: 2rem;
+        }
+
+        .video-placeholder {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px dashed #00d4ff;
+            border-radius: 15px;
+            padding: 4rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #00d4ff;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.95);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .problems-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .chart-categories {
+                grid-template-columns: 1fr;
+            }
+
+            .what-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .founder-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .founder-image {
+                position: static;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Hide all sections initially except home */
+        .section {
+            display: none;
+        }
+
+        .section.active, .section#home {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="#home" class="logo" onclick="showSection('home')">Chartara Labs</a>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home" onclick="showSection('home')">Home</a></li>
+                    <li><a href="#pricing" onclick="showSection('pricing')">Pricing</a></li>
+                    <li><a href="#founder" onclick="showSection('founder')">Meet the Founder</a></li>
+                    <li><a href="#demo" onclick="showSection('demo')">Demo Video</a></li>
+                    <li><a href="#contact" onclick="showSection('contact')">Contact</a></li>
+                </ul>
+                <button class="nav-cta" onclick="showSection('pricing')">Get Started</button>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Home Section -->
+            <section id="home" class="section active">
+                <!-- Hero Section -->
+                <div class="hero">
+                    <div class="brand-logo chart-placeholder">
+                        INSERT BRAND LOGO HERE<br>
+                        <small>(Upload your logo image file)</small>
+                    </div>
+                    <h1>AI-Powered Machine Learning and Decision Support System for Behavioral Health</h1>
+                    <div class="chart-showcase">
+                        <div class="chart-placeholder">
+                            INSERT CHART IMAGE HERE<br>
+                            <small>(Upload one of your chart visualizations)</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Core Problems Section -->
+                <div class="problems-section">
+                    <h2>Core Problems We Solve</h2>
+                    <div class="problems-grid">
+                        <div class="problem-card">
+                            <h3>Supervision Guesswork</h3>
+                            <p>Generate instant PDF performance reports comparing therapist outcomes, client attendance show rates, and comprehensive caseload analytics. Instant PDF report for evey chart: including the colored data visualization and the analytics section. Evidence-based supervision in seconds, not hours</p>
+                        </div>
+                        <div class="problem-card">
+                            <h3>Data Chaos</h3>
+                            <p>Therapists are in over their heads in data. And it's hard to make sense of it. Stop navigating through different pages of your EMR, trying to make sense of words and numbers on a screen that don't end up helping. Generate instant data visualizations that bring your caseload to life. Make your data ACTIONABLE. </p>
+                        </div>
+                        <div class="problem-card">
+                            <h3>Outcome Blindness</h3>
+                            <p>Machine learning predictions reveal which clients are improving, which need intervention, and what treatment approaches work best for your practice. Each data visualization is combined with a comprehsnsive analytics section- dynamically adapted to your unique caseload. Machine learning algorithms include descriptive, prescriptive, and predictive analytics. </p>
+                        </div>
+                        <div class="problem-card">
+                            <h3>Business Mystery</h3>
+                            <p>Intelligent forecasting and analysis learns your practice patterns and predicts growth opportunities, seasonal trends, and financial optimization strategies. All vertically integrated for Behavioral Health.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EMR Section -->
+                <div class="emr-section">
+                    <h2>Lightweight Add-On to Your Existing EMR</h2>
+                    <div class="emr-image">
+                        <div class="emr-placeholder">
+                            INSERT EMR INTEGRATION IMAGE HERE<br>
+                            <small>(Upload image showing EMR integration)</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="charts-section">
+                    <h2>Comprehensive Chart Library</h2>
+                    <div class="chart-categories">
+                        <div class="chart-category">
+                            <h3>📊 Business Intelligence</h3>
+                            <ul class="chart-list">
+                                <li>Revenue by CPT Code</li>
+                                <li>Income by Month</li>
+                                <li>Caseload Breakdown by Diagnosis</li>
+                                <li>Treatment Months by Insurance Type</li>
+                            </ul>
+                        </div>
+                        <div class="chart-category">
+                            <h3>🧠 Clinical Monitoring</h3>
+                            <ul class="chart-list">
+                                <li>PHQ-9 Scores (Clients with Any Score)</li>
+                                <li>GAD-7 Scores (Clients with Any Score)</li>
+                                <li>Risk Level Distribution</li>
+                                <li>Individual Client PHQ-9 Tracker</li>
+                                <li>Individual Client GAD-7 Tracker</li>
+                                <li>Cultural Adaptation Tracker</li>
+                            </ul>
+                        </div>
+                        <div class="chart-category">
+                            <h3>👥 Demographics & Attendance</h3>
+                            <ul class="chart-list">
+                                <li>Client Distribution by Age, Race, and Sex</li>
+                                <li>Client Attendance by Session Type</li>
+                                <li>Attendance by Age and Sex</li>
+                                <li>No Show Percentage by Client</li>
+                            </ul>
+                        </div>
+                        <div class="chart-category">
+                            <h3>🔬 Evidence Based Practice Support Tools</h3>
+                            <ul class="chart-list">
+                                <li>Behavioral Activation Tracker</li>
+                                <li>Automatic Thought Tracker</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- What We Are Section -->
+                <div class="what-we-are">
+                    <h2>What Sets Us Apart</h2>
+                    <div class="what-grid">
+                        <div class="what-column positive">
+                            <h3>What We Are</h3>
+                            <div class="what-item">
+                                <span class="what-icon">✅</span>
+                                <div class="what-text">Machine learning visual analytics platform - the first of its kind in behavioral health</div>
+                            </div>
+                            <div class="what-item">
+                                <span class="what-icon">✅</span>
+                                <div class="what-text">Expert logic algorithms that adapt and improve with your specific caseload data</div>
+                            </div>
+                            <div class="what-item">
+                                <span class="what-icon">✅</span>
+                                <div class="what-text">Intelligent recommendations based on patterns unique to your practice</div>
+                            </div>
+                            <div class="what-item">
+                                <span class="what-icon">✅</span>
+                                <div class="what-text">Self-improving analytics - the more data you add, the smarter the insights become</div>
+                            </div>
+                            <div class="what-item">
+                                <span class="what-icon">✅</span>
+                                <div class="what-text">Developed by a licensed therapist who pioneered machine learning for therapy workflows</div>
+                            </div>
+                        </div>
+                        <div class="what-column negative">
+                            <h3>What We Are NOT</h3>
+                            <div class="what-item">
+                                <span class="what-icon">❌</span>
+                                <div class="what-text">Not a progress note writer (Chartara Labs doesn't believe in that approach)</div>
+                            </div>
+                            <div class="what-item">
+                                <span class="what-icon">❌</span>
+                                <div class="what-text">Not generative AI (not like ChatGPT)</div>
+                            </div>
+                            <div class="what-item">
+                                <span class="what-icon">❌</span>
+                                <div class="what-text">No deep learning or neural networks - just practical, useful analytics</div>
+                            </div>
+                            <div class="what-item">
+                                <span class="what-icon">❌</span> 
+                                <div class="what-text">Not bloated with hospital-level features therapists don't need</div>
+                            </div>
+                            <div class="what-item">
+                                <span class="what-icon">❌</span>
+                                <div class="what-text">Not meant to replace therapist decision making. Instead, Chartara Labs acts as a decision support system, respecting the autonomy and professional skillset of therapists. Therapists should ultimately make their own determinations and use Chartara Labs as an advanced decision support tool.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Section -->
+                <div class="faq-section">
+                    <h2>Frequently Asked Questions</h2>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>What makes Chartara Labs different from other analytics platforms?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            Chartara Labs is the first machine learning visual analytics platform with expert logic built specifically for behavioral health by a licensed therapist. Its algorithms understand therapy workflows and improve as more data is gathered. At launch, there is no other platform that offers these impactful services specifically for Behavioral Health. Chartara Labs is a true innovation and novel tool in the behavioral health industry.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>What about supervision features?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            Whenever a clinician accesses a chart through the Chartara Labs interface, they have the option to instantly generate a colored PDF of the data visualization and comprehensive analytics section. Supervisors gain the ability to request these PDFs from their clinicians to enhance oversight, provide more targeted support, and conduct supervision through a data-driven approach. Generate comprehensive PDF reports comparing therapist performance, caseload diagnosis breakdowns, client outcomes, attendance reports, treatment plan review tracking and more. In seconds - at the click of a button. Perfect for evidence-based supervision meetings and/or general executive reporting.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Is my client data secure?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            Absolutely. Chartara Labs is HIPAA compliant with enterprise-grade security including end-to-end encryption, secure AWS cloud storage, and regular security audits. Most importantly, the platform is designed so NO client identifying information is ever required - you only upload aggregate data like PHQ-9 scores, session dates, and diagnosis codes. No names, addresses, or personal details. Your data is encrypted both in transit and at rest, with audit trails for all access. Built by a licensed therapist who understands the critical importance of client confidentiality and data protection.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Can Chartara Labs integrate with existing EMRs?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            Chartara Labs is meant to be a lightweight addition to your existing EMR to provide a level of supervision, insight, and practice administration that is not available elsewhere in the market. However, 4 of the charts are compatible with Simple Practice Data Exports. These charts include: Income by Month, Client Distribution by Age, Race, and Sex, Client Attendance by Session Type (Telehealth or In-Person), and No Show Percentage by Client. Chartara Labs plans on providing more EMR compatibilities in the future.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>How do the visual analytics work and how is this platform AI?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            Upload your data and instantly see beautiful charts instead of confusing spreadsheets. Data Visualizations may include line graphs, bar charts, dot plots, and heat maps. The visualizations are combined with Artificial Intelligence (AI) capabilities and algorithms to provide tailored recommendations based on your real and evolving data inputs. Chartara Labs uses descriptive, prescriptive, and predictive analytics to enhance supervision, outcome monitoring, and business intelligence vertically for behavioral health professionals. Artificial Intelligence (AI) is the overarching field that aims to develop machines that can mimic human cognitive abilities. Machine Learning (ML) is a specific method within AI that allows computers to learn from data without being explicitly programmed. Chartara Labs was developed by a licensed therapist who hand-picked the ML algorithms and programmed them with expert level logic in behavioral health practice administration. The user interface was designed to be therapist friendly and with the perspectives of frontline clinicians and clinical supervisors in mind.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pricing Section -->
+            <section id="pricing" class="section pricing-section">
+                <h2>Choose Your Plan</h2>
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <h3>Essential Practice</h3>
+                        <div class="price">$20</div>
+                        <div class="price-period">per month / per therapist</div>
+                        <ul class="pricing-features">
+                            <li>17 AI-powered visualization charts</li>
+                            <li>PHQ-9 & GAD-7 outcome tracking with ML predictions</li>
+                            <li>Revenue forecasting with intelligent algorithms</li>
+                            <li>No-show prediction and risk assessment</li>
+                            <li>Automated PDF report generation</li>
+                            <li>HIPAA-compliant cloud storage</li>
+                            <li>Simple Practice data export compatibility</li>
+                            <li>Evidence-based practice support tools</li>
+                            <li>Unlimited data uploads and chart generation</li>
+                            <li>Email support and documentation</li>
+                        </ul>
+                        <button class="pricing-cta" onclick="handleStripeCheckout()">Get Started Today</button>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Custom Solutions</h3>
+                        <div class="price">Contact</div>
+                        <div class="price-period">for pricing</div>
+                        <ul class="pricing-features">
+                            <li>Everything in Essential Practice</li>
+                            <li>Custom data visualization development</li>
+                            <li>Organization-specific analytics</li>
+                            <li>Advanced team-oriented features</li>
+                            <li>Custom user experience priorities</li>
+                            <li>Direct consultation with clinical technologist</li>
+                            <li>Tailored implementation and training</li>
+                            <li>Priority support and dedicated account management</li>
+                        </ul>
+                        <button class="pricing-cta secondary" onclick="showSection('contact')">Contact for Custom Solution</button>
+                        <div style="margin-top: 1.5rem; font-size: 0.9rem; color: #a0a0a0; line-height: 1.5;">
+                            Consult with a clinician-technologist who will collaborate on advanced visual analytics, team oriented, and user experience priorities as they relate to your organization. Purchase a custom made, data driven solution for your organization's specific needs. Milo LeGendre, LMHC combines clinical expertise, data science, and technology to develop innovative tools for a range of behavioral health settings.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Founder Section -->
+            <section id="founder" class="section founder-section">
+                <div class="founder-content">
+                    <div class="founder-text">
+                        <h2>Meet the Founder: 
+                            Milo LeGendre, LMHC</h2>
+                        <p><strong>Milo LeGendre, LMHC is a thought leader and trailblazer in behavioral healthcare</strong>, pioneering the integration of artificial intelligence and visual analytics to transform clinical practice. As a Licensed Mental Health Counselor and current PhD student at National University studying Psychology, Social Policy, and Behavioral Health Administration, Milo combines hands-on clinical expertise with cutting-edge research to address one of healthcare's most pressing challenges: making data actionable for practicing clinicians.</p>
+                        
+                        <h3>The Research Foundation</h3>
+                        <p>During his doctoral studies, Milo immersed himself in the growing body of evidence highlighting critical gaps in behavioral health practice. His research revealed a troubling disconnect: while systematic reviews by Lloyd et al. (2019) demonstrated that routine outcome monitoring and feedback on client progress are associated with positive treatment outcomes, many therapists struggle to engage meaningfully with client data in ways that inform treatment decisions.</p>
+                        
+                        <p>The problem wasn't lack of data—it was accessibility and interpretation. Milo understands that therapists are often overwhelmed by well-intentioned data sets that are essentially numbers on a computer screen, siloed in different compartments of vast electronic medical records. Research by Azizian Kia et al. (2025) confirmed that therapists are more likely to engage with data presented in clinically meaningful, visually intuitive formats conducive to self-reflection.</p>
+                        
+                        <p>This convergence of evidence pointed to a clear solution need: data visualization that leverages human visual processing capabilities to decrease cognitive load and speed up decision making (Parikh et al., 2021). Inspired by how the scholarly literature was clicking for him, Milo wanted to find a way to combine his clinical expertise, technology, and data science to solve problems he experienced in the field, and learned more about through his doctoral studies.</p>
+                        
+                        <h3>The Clinical Innovation Journey</h3>
+                        <p>Drawing from his on-the-job clinical experience, Milo began experimenting with technology to bridge this research-practice gap. As he piloted visualization tools using de-identified client data from his caseload, he experienced what he describes as "a transformative form of routine outcome monitoring." Visualizing patterns in client PHQ-9 scores and attendance data allowed him to identify when interventions coincided with symptom improvements—and critically, when they did not.</p>
+                        
+                        <h3>The "Internal Call to Action"</h3>
+                        <p>This process created what Milo calls an "internal call to action"—visualized data sparked deeper clinical inquiry about treatment adjustments, therapeutic alliance factors, and evidence-based practice fidelity. Rather than data collection being a procedural task, interacting with visualizations fostered deliberate clinical reflection and adaptation, directly addressing the implementation barriers identified in his research. Milo believes that data-visualization in behavioral health creates a "motivating experience" within clinicians. He feels that if therapists engage with visualized caseload data, it will increase the likelihood of them to make necessary adjustments to their treatment strategies, more effectively engage in routine outcome monitoring, and adhere to evidence based treatments.</p>
+                        
+                        <h3>Innovation Through Research</h3>
+                        <p>Chartara Labs represents a novel approach to clinical decision support that synthesizes Milo's research findings into practical solutions. The platform addresses the core challenge identified by Lloyd et al. (2019): transforming routine outcome monitoring from overwhelming data dumps into accessible clinical insights. As Milo discovered in his research, the integration of clinical decision support with data visualization represents a methodological innovation that transforms complex information into intuitive formats that highlight otherwise hidden patterns (Parikh et al., 2021).</p>
+                        
+                        <h3>Mission: Democratizing Data-Driven Therapy</h3>
+                        <p>Recognizing the transformative impact these tools had on his own practice, Milo founded Chartara Labs to disseminate these innovations to clinicians nationwide. Chartara Labs emerged from Milo's recognition that the future of mental health care lies in minimizing friction and maximizing insight—turning raw data into centralized, easily interpreted visuals that empower therapists and clinical supervisors to make truly data-driven decisions.</p>
+                    </div>
+                    <div class="founder-image">
+                        INSERT FOUNDER PHOTO HERE<br>
+                        <small>(Upload professional photo of Milo LeGendre, LMHC)</small>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Demo Video Section -->
+            <section id="demo" class="section demo-section">
+                <h2>See Chartara Labs in Action</h2>
+                <p style="color: #e0e0e0; font-size: 1.2rem; margin-bottom: 2rem;">Watch how AI-powered analytics transform therapy practice data into actionable insights</p>
+                <div class="video-placeholder">
+                    EMBED DEMO VIDEO HERE<br>
+                    <small>(Upload or embed your demo video)</small>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="section contact-section">
+                <h2>Get in Touch</h2>
+                <p>Have questions about Chartara Labs? Want to discuss custom solutions for your organization?</p>
+                <p>We're here to help you transform your practice with AI-powered analytics.</p>
+                <a href="mailto:ChartaraLabs@gmail.com" class="contact-email">ChartaraLabs@gmail.com</a>
+                <div style="margin-top: 2rem; color: #a0a0a0;">
+                    <p>Reach out to us with any questions about implementation, pricing, or custom development needs.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // Navigation functionality
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show the selected section
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+            
+            // Update URL hash
+            window.location.hash = sectionId;
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // FAQ functionality
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const toggle = element.querySelector('.faq-toggle');
+            
+            if (answer.classList.contains('active')) {
+                answer.classList.remove('active');
+                toggle.classList.remove('active');
+                toggle.textContent = '+';
+            } else {
+                // Close all other FAQs
+                document.querySelectorAll('.faq-answer').forEach(faq => {
+                    faq.classList.remove('active');
+                });
+                document.querySelectorAll('.faq-toggle').forEach(tog => {
+                    tog.classList.remove('active');
+                    tog.textContent = '+';
+                });
+                
+                // Open this FAQ
+                answer.classList.add('active');
+                toggle.classList.add('active');
+                toggle.textContent = '+';
+            }
+        }
+
+        // Mobile menu functionality
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Stripe checkout functionality (placeholder)
+        function handleStripeCheckout() {
+            // This is where you'll integrate with Stripe
+            alert('Stripe integration will be added here. This will redirect to payment processing and then to your Streamlit app.');
+            // Future implementation:
+            // 1. Redirect to Stripe Checkout
+            // 2. After payment, create user in Cognito
+            // 3. Send email verification
+            // 4. Redirect to Streamlit app for login
+        }
+
+        // Handle initial page load with hash
+        window.addEventListener('load', function() {
+            const hash = window.location.hash.substring(1);
+            if (hash && document.getElementById(hash)) {
+                showSection(hash);
+            }
+        });
+
+        // Handle browser back/forward buttons
+        window.addEventListener('hashchange', function() {
+            const hash = window.location.hash.substring(1);
+            if (hash && document.getElementById(hash)) {
+                showSection(hash);
+            } else if (!hash) {
+                showSection('home');
+            }
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('.nav');
+            const navLinks = document.getElementById('navLinks');
+            
+            if (!nav.contains(event.target) && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
