@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Agreements - Chartara Labs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #ffffff;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 800;
+            color: #00d4ff;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            text-align: center;
+            color: #00d4ff;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #e0e0e0;
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+        }
+
+        .document-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+        }
+
+        .document-section h3 {
+            color: #00d4ff;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .document-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .document-link:hover {
+            background: linear-gradient(135deg, #0099cc 0%, #007399 100%);
+            transform: translateY(-2px);
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+        }
+
+        .checkbox-container input[type="checkbox"] {
+            margin-right: 1rem;
+            margin-top: 0.2rem;
+            transform: scale(1.5);
+        }
+
+        .checkbox-container label {
+            color: #e0e0e0;
+            cursor: pointer;
+            line-height: 1.5;
+        }
+
+        .continue-button {
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            border: none;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .continue-button.enabled {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .continue-button.enabled:hover {
+            background: linear-gradient(135deg, #0099cc 0%, #007399 100%);
+            transform: translateY(-2px);
+        }
+
+        .error-message {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fecaca;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">Chartara Labs</div>
+        <h1>Legal Agreements</h1>
+        <p class="subtitle">Please review and agree to the following documents before accessing your account</p>
+
+        <div class="document-section">
+            <h3>📋 Privacy Policy</h3>
+            <p style="color: #e0e0e0; margin-bottom: 1rem;">Our commitment to protecting your personal and health information under HIPAA.</p>
+            <a href="Chartara_Privacy_Policy.pdf" target="_blank" class="document-link">📄 View Privacy Policy</a>
+            <div class="checkbox-container">
+                <input type="checkbox" id="privacy-agree" onchange="checkAllAgreements()">
+                <label for="privacy-agree">I have read and agree to the Privacy Policy</label>
+            </div>
+        </div>
+
+        <div class="document-section">
+            <h3>📜 Terms of Service</h3>
+            <p style="color: #e0e0e0; margin-bottom: 1rem;">Terms and conditions for using the Chartara Labs platform.</p>
+            <a href="Chartara_Terms_of_Service.pdf" target="_blank" class="document-link">📄 View Terms of Service</a>
+            <div class="checkbox-container">
+                <input type="checkbox" id="terms-agree" onchange="checkAllAgreements()">
+                <label for="terms-agree">I have read and agree to the Terms of Service</label>
+            </div>
+        </div>
+
+        <div class="document-section">
+            <h3>🏥 Business Associate Agreement</h3>
+            <p style="color: #e0e0e0; margin-bottom: 1rem;">HIPAA-compliant agreement for handling protected health information.</p>
+            <a href="Chartara_Business_Associate_Agreement.pdf" target="_blank" class="document-link">📄 View Business Associate Agreement</a>
+            <div class="checkbox-container">
+                <input type="checkbox" id="baa-agree" onchange="checkAllAgreements()">
+                <label for="baa-agree">I have read and agree to the Business Associate Agreement</label>
+            </div>
+        </div>
+
+        <div class="error-message" id="error-message">
+            Please review and agree to all documents before continuing.
+        </div>
+
+        <button class="continue-button" id="continue-btn" onclick="proceedToApp()">
+            Continue to Chartara Labs App
+        </button>
+    </div>
+
+    <script>
+        function checkAllAgreements() {
+            const privacyChecked = document.getElementById('privacy-agree').checked;
+            const termsChecked = document.getElementById('terms-agree').checked;
+            const baaChecked = document.getElementById('baa-agree').checked;
+            const continueBtn = document.getElementById('continue-btn');
+            const errorMessage = document.getElementById('error-message');
+
+            if (privacyChecked && termsChecked && baaChecked) {
+                continueBtn.classList.add('enabled');
+                errorMessage.style.display = 'none';
+            } else {
+                continueBtn.classList.remove('enabled');
+            }
+        }
+
+        function proceedToApp() {
+            const privacyChecked = document.getElementById('privacy-agree').checked;
+            const termsChecked = document.getElementById('terms-agree').checked;
+            const baaChecked = document.getElementById('baa-agree').checked;
+            const errorMessage = document.getElementById('error-message');
+
+            if (privacyChecked && termsChecked && baaChecked) {
+                // Record the agreement timestamp
+                const agreementData = {
+                    timestamp: new Date().toISOString(),
+                    privacy_policy: true,
+                    terms_of_service: true,
+                    business_associate_agreement: true,
+                    ip_address: 'recorded'
+                };
+                
+                // Store in localStorage for now (will be replaced with database)
+                localStorage.setItem('hipaa_agreements', JSON.stringify(agreementData));
+                
+                // Redirect to the Chartara Labs app
+                window.location.href = 'https://app.chartaralabs.com';
+            } else {
+                errorMessage.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
