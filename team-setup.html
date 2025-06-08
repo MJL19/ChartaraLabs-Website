@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Setup - Chartara Labs</title>
+    <link rel="stylesheet" href="css/setup-pages.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <img src="https://chartaralabs.io/brand_logo.png" alt="Chartara Labs" class="logo">
+            <h1>Team Setup</h1>
+            <p class="subtitle">Set your password and add your team members</p>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loading" class="loading-container">
+            <div class="spinner"></div>
+            <p>Validating your setup link...</p>
+        </div>
+
+        <!-- Error State -->
+        <div id="error-container" class="error-container" style="display: none;">
+            <div class="error-icon">⚠️</div>
+            <h2>Setup Link Invalid</h2>
+            <p id="error-message">This setup link has expired or is invalid.</p>
+            <div class="help-text">
+                <p>Need help? Contact us at <a href="mailto:support@chartaralabs.com">support@chartaralabs.com</a></p>
+            </div>
+        </div>
+
+        <!-- Step 1: Password Setup -->
+        <div id="step1" class="setup-container" style="display: none;">
+            <div class="step-indicator">
+                <div class="step active">1</div>
+                <div class="step-line"></div>
+                <div class="step">2</div>
+            </div>
+
+            <div class="form-header">
+                <h2>Step 1: Set Your Password</h2>
+                <p>Welcome! First, create a secure password for your admin account.</p>
+                <p class="email-display">Admin Account: <strong id="admin-email"></strong></p>
+            </div>
+
+            <form id="password-form" class="password-form">
+                <div class="form-group">
+                    <label for="password">New Password</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        required 
+                        minlength="8"
+                        placeholder="Enter your new password"
+                    >
+                    <div class="password-requirements">
+                        <p>Password must contain:</p>
+                        <ul>
+                            <li id="req-length">At least 8 characters</li>
+                            <li id="req-uppercase">One uppercase letter</li>
+                            <li id="req-lowercase">One lowercase letter</li>
+                            <li id="req-number">One number</li>
+                            <li id="req-special">One special character (!@#$%^&*)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input 
+                        type="password" 
+                        id="confirm-password" 
+                        name="confirm-password" 
+                        required 
+                        placeholder="Confirm your new password"
+                    >
+                    <div id="password-match" class="password-match"></div>
+                </div>
+
+                <button type="submit" id="password-submit-btn" class="submit-btn" disabled>
+                    Set Password & Continue to Team Setup
+                </button>
+            </form>
+        </div>
+
+        <!-- Step 2: Team Setup -->
+        <div id="step2" class="setup-container" style="display: none;">
+            <div class="step-indicator">
+                <div class="step completed">✓</div>
+                <div class="step-line"></div>
+                <div class="step active">2</div>
+            </div>
+
+            <div class="form-header">
+                <h2>Step 2: Add Your Team Members</h2>
+                <p>Add the email addresses and names of your team members. They'll receive individual setup emails.</p>
+            </div>
+
+            <div class="team-form">
+                <div id="team-members-container">
+                    <!-- Team member inputs will be added here -->
+                </div>
+
+                <button type="button" id="add-member-btn" class="add-member-btn">
+                    + Add Team Member
+                </button>
+
+                <div class="team-actions">
+                    <button type="button" id="team-submit-btn" class="submit-btn">
+                        Send Team Invitations
+                    </button>
+                    <button type="button" id="skip-team-btn" class="skip-btn">
+                        Skip for Now
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Success State -->
+        <div id="success-container" class="success-container" style="display: none;">
+            <div class="success-icon">🎉</div>
+            <h2>Team Setup Complete!</h2>
+            <p>Your account is ready and your team members will receive setup emails shortly.</p>
+            
+            <div id="team-summary" class="team-summary">
+                <!-- Team member summary will be populated here -->
+            </div>
+
+            <div class="next-steps">
+                <h3>Next Steps:</h3>
+                <ol>
+                    <li>Access the app using the button below</li>
+                    <li>Login with your email and password</li>
+                    <li>Your team members will receive setup emails within a few minutes</li>
+                    <li>Start building your practice analytics!</li>
+                </ol>
+            </div>
+
+            <a href="https://app.chartaralabs.io" class="app-btn">
+                Access Chartara Labs App
+            </a>
+
+            <div class="help-text">
+                <p>Questions? Contact us at <a href="mailto:support@chartaralabs.com">support@chartaralabs.com</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script>
+        let adminEmail = '';
+        let setupToken = '';
+
+        // Page initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            setupToken = urlParams.get('token');
+            
+            if (!setupToken) {
+                showError('No setup token provided in the URL.');
+                return;
+            }
+            
+            // Validate token
+            validateToken(setupToken);
+        });
+
+        // Step 1: Password validation (same as set-password.html)
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirm-password');
+        const passwordSubmitBtn = document.getElementById('password-submit-btn');
+
+        passwordInput.addEventListener('input', validatePassword);
+        confirmPasswordInput.addEventListener('input', validatePasswordMatch);
+
+        function validatePassword() {
+            const password = passwordInput.value;
+            const requirements = {
+                length: password.length >= 8,
+                uppercase: /[A-Z]/.test(password),
+                lowercase: /[a-z]/.test(password),
+                number: /\d/.test(password),
+                special: /[!@#$%^&*]/.test(password)
+            };
+
+            // Update requirement indicators
+            document.getElementById('req-length').className = requirements.length ? 'valid' : '';
+            document.getElementById('req-uppercase').className = requirements.uppercase ? 'valid' : '';
+            document.getElementById('req-lowercase').className = requirements.lowercase ? 'valid' : '';
+            document.getElementById('req-number').className = requirements.number ? 'valid' : '';
+            document.getElementById('req-special').className = requirements.special ? 'valid' : '';
+
+            const allValid = Object.values(requirements).every(req => req);
+            passwordInput.classList.toggle('valid', allValid);
+            
+            validatePasswordMatch();
+            updatePasswordSubmitButton();
+        }
+
+        function validatePasswordMatch() {
+            const password = passwordInput.value;
+            const confirmPassword = confirmPasswordInput.value;
+            const matchDiv = document.getElementById('password-match');
+            
+            if (confirmPassword.length === 0) {
+                matchDiv.textContent = '';
+                confirmPasswordInput.classList.remove('valid', 'invalid');
+                return;
+            }
+            
+            if (password === confirmPassword) {
+                matchDiv.textContent = '✓ Passwords match';
+                matchDiv.className = 'password-match valid';
+                confirmPasswordInput.classList.add('valid');
+                confirmPasswordInput.classList.remove('invalid');
+            } else {
+                matchDiv.textContent = '✗ Passwords do not match';
+                matchDiv.className = 'password-match invalid';
+                confirmPasswordInput.classList.add('invalid');
+                confirmPasswordInput.classList.remove('valid');
+            }
+            
+            updatePasswordSubmitButton();
+        }
+
+        function updatePasswordSubmitButton() {
+            const password = passwordInput.value;
+            const confirmPassword = confirmPasswordInput.value;
+            
+            const passwordValid = password.length >= 8 && 
+                                /[A-Z]/.test(password) && 
+                                /[a-z]/.test(password) && 
+                                /\d/.test(password) && 
+                                /[!@#$%^&*]/.test(password);
+            
+            const passwordsMatch = password === confirmPassword && confirmPassword.length > 0;
+            
+            passwordSubmitBtn.disabled = !(passwordValid && passwordsMatch);
+        }
+
+        // Step 1 form submission
+        document.getElementById('password-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const password = passwordInput.value;
+            
+            passwordSubmitBtn.disabled = true;
+            passwordSubmitBtn.textContent = 'Setting Password...';
+            
+            setPasswordAndContinue(setupToken, password);
+        });
+
+        // Step 2: Team member management
+        let memberCount = 0;
+
+        function addTeamMemberInput() {
+            memberCount++;
+            const container = document.getElementById('team-members-container');
+            
+            const memberDiv = document.createElement('div');
+            memberDiv.className = 'team-member-input';
+            memberDiv.innerHTML = `
+                <div class="member-header">
+                    <h4>Team Member ${memberCount}</h4>
+                    <button type="button" class="remove-member-btn" onclick="removeMember(this)">Remove</button>
+                </div>
+                <div class="member-fields">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" class="member-name" placeholder="Enter full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" class="member-email" placeholder="Enter email address" required>
+                    </div>
+                </div>
+            `;
+            
+            container.appendChild(memberDiv);
+        }
+
+        function removeMember(button) {
+            button.closest('.team-member-input').remove();
+        }
+
+        // Add initial team member input
+        document.getElementById('add-member-btn').addEventListener('click', addTeamMemberInput);
+
+        // Team submission
+        document.getElementById('team-submit-btn').addEventListener('click', function() {
+            const memberInputs = document.querySelectorAll('.team-member-input');
+            const teamMembers = [];
+            
+            let allValid = true;
+            
+            memberInputs.forEach(input => {
+                const name = input.querySelector('.member-name').value.trim();
+                const email = input.querySelector('.member-email').value.trim();
+                
+                if (name && email) {
+                    teamMembers.push({ name, email });
+                } else {
+                    allValid = false;
+                }
+            });
+            
+            if (!allValid) {
+                alert('Please fill in all team member fields or remove empty entries.');
+                return;
+            }
+            
+            if (teamMembers.length === 0) {
+                alert('Please add at least one team member or click "Skip for Now".');
+                return;
+            }
+            
+            this.disabled = true;
+            this.textContent = 'Sending Invitations...';
+            
+            createTeamMembers(teamMembers);
+        });
+
+        // Skip team setup
+        document.getElementById('skip-team-btn').addEventListener('click', function() {
+            showSuccess([]);
+        });
+
+        // API functions
+        async function validateToken(token) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/validate-token?token=${token}`);
+                const data = await response.json();
+                
+                if (data.valid) {
+                    adminEmail = data.email;
+                    document.getElementById('admin-email').textContent = adminEmail;
+                    showStep1();
+                } else {
+                    showError(data.error || 'Invalid setup token');
+                }
+            } catch (error) {
+                showError('Failed to validate setup token. Please check your internet connection.');
+            }
+        }
+
+        async function setPasswordAndContinue(token, password) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/set-password`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        token: token,
+                        password: password
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (response.ok) {
+                    showStep2();
+                } else {
+                    showError(data.error || 'Failed to set password');
+                }
+            } catch (error) {
+                showError('Failed to set password. Please check your internet connection.');
+            }
+        }
+
+        async function createTeamMembers(teamMembers) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/team-setup`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        admin_email: adminEmail,
+                        team_members: teamMembers
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (response.ok) {
+                    showSuccess(data.created_users || []);
+                } else {
+                    showError(data.error || 'Failed to create team members');
+                }
+            } catch (error) {
+                showError('Failed to create team members. Please check your internet connection.');
+            }
+        }
+
+        // UI state functions
+        function showStep1() {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('step1').style.display = 'block';
+        }
+
+        function showStep2() {
+            document.getElementById('step1').style.display = 'none';
+            document.getElementById('step2').style.display = 'block';
+            
+            // Add initial team member input
+            addTeamMemberInput();
+        }
+
+        function showError(message) {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('error-message').textContent = message;
+            document.getElementById('error-container').style.display = 'block';
+        }
+
+        function showSuccess(createdUsers) {
+            document.getElementById('step2').style.display = 'none';
+            document.getElementById('success-container').style.display = 'block';
+            
+            // Show team summary
+            const summary = document.getElementById('team-summary');
+            if (createdUsers.length > 0) {
+                summary.innerHTML = `
+                    <h3>Team Members Added:</h3>
+                    <ul>
+                        ${createdUsers.map(user => `<li>${user.name} (${user.email})</li>`).join('')}
+                    </ul>
+                    <p><strong>${createdUsers.length}</strong> team members will receive setup emails shortly.</p>
+                `;
+            } else {
+                summary.innerHTML = '<p>You can add team members later from your account dashboard.</p>';
+            }
+        }
+    </script>
+</body>
+</html>
