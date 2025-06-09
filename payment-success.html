@@ -2,24 +2,217 @@
 <html>
 <head>
     <title>Welcome to Chartara Labs!</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body { font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px 20px; }
-        h1 { color: #1E3A8A; }
-        .success-box { background: #d4edda; border: 1px solid #c3e6cb; padding: 20px; border-radius: 8px; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .logo {
+            margin-bottom: 40px;
+        }
+        
+        .logo img {
+            max-width: 400px;
+            height: auto;
+            filter: brightness(0) invert(1);
+        }
+        
+        .welcome-box {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 50px 40px;
+            margin: 30px 0;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .emoji {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .success-message {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+        
+        .timing-info {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #FFE066;
+            margin-bottom: 40px;
+            background: rgba(255, 224, 102, 0.2);
+            padding: 15px 25px;
+            border-radius: 10px;
+            border: 2px solid #FFE066;
+        }
+        
+        .steps-container {
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .steps-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            text-align: center;
+            color: #FFE066;
+        }
+        
+        .step {
+            background: rgba(255, 255, 255, 0.1);
+            margin-bottom: 15px;
+            padding: 20px 25px;
+            border-radius: 12px;
+            font-size: 1.3rem;
+            line-height: 1.5;
+            border-left: 5px solid #FFE066;
+        }
+        
+        .step-number {
+            font-weight: 800;
+            color: #FFE066;
+            margin-right: 10px;
+        }
+        
+        .login-button {
+            display: inline-block;
+            background: #FFE066;
+            color: #1E3A8A;
+            padding: 18px 40px;
+            font-size: 1.4rem;
+            font-weight: 800;
+            text-decoration: none;
+            border-radius: 50px;
+            margin: 30px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .login-button:hover {
+            background: #FFD700;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .support-info {
+            margin-top: 40px;
+            font-size: 1.2rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+        }
+        
+        .support-email {
+            color: #FFE066;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        
+        .password-info {
+            background: rgba(255, 224, 102, 0.15);
+            border: 2px solid #FFE066;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            font-size: 1.2rem;
+        }
+        
+        .password-title {
+            font-weight: 800;
+            color: #FFE066;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
-    <div class="success-box">
-        <h1>🎉 Welcome to Chartara Labs!</h1>
-        <p><strong>Your subscription is confirmed!</strong></p>
-        <p>You'll receive login credentials via email within <strong>2 hours</strong>.</p>
-        <p><strong>Next Steps:</strong></p>
-        <ol>
-            <li>Check your email for login credentials</li>
-            <li>Login at: <a href="https://app.chartaralabs.io">app.chartaralabs.io</a></li>
-            <li>Start analyzing your practice data!</li>
-        </ol>
-        <p>Questions? Email us at chartaralabs@gmail.com</p>
+    <div class="container">
+        <div class="logo">
+            <img src="brand_logo.png" alt="Chartara Labs" />
+        </div>
+        
+        <div class="welcome-box">
+            <span class="emoji">🎉</span>
+            <h1>Welcome to Chartara Labs!</h1>
+            
+            <div class="success-message">
+                Your subscription is confirmed and your account is being set up!
+            </div>
+            
+            <div class="timing-info">
+                ⏰ You'll receive login credentials via email within 2 hours
+            </div>
+            
+            <div class="steps-container">
+                <div class="steps-title">🚀 Next Steps</div>
+                
+                <div class="step">
+                    <span class="step-number">1.</span>
+                    Check your email for login credentials
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">2.</span>
+                    Login using the link below with your provided credentials
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">3.</span>
+                    Change your password to something memorable (optional)
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">4.</span>
+                    Start uploading your practice data and discover insights!
+                </div>
+            </div>
+            
+            <a href="https://app.chartaralabs.io" class="login-button">
+                🔗 Go to Chartara Labs App
+            </a>
+            
+            <div class="password-info">
+                <div class="password-title">💡 Password Management</div>
+                After you login with your temporary credentials, you can easily change your password to something more memorable through your account settings.
+            </div>
+            
+            <div class="support-info">
+                Questions or need help? <br>
+                Email us at <a href="mailto:chartaralabs@gmail.com" class="support-email">chartaralabs@gmail.com</a>
+            </div>
+        </div>
     </div>
 </body>
 </html>
