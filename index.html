@@ -157,11 +157,11 @@
 
         /* Section Styles */
         .content-section {
-            padding: 8rem 0;
+            padding: 12rem 0;
         }
 
         .content-section:first-child {
-            padding-top: 4rem;
+            padding-top: 6rem;
         }
 
         /* Hero Section */
@@ -264,9 +264,12 @@
         }
 
         .chart-categories {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .chart-category {
@@ -275,6 +278,11 @@
             padding: 2rem;
             border-radius: 20px;
             border: 1px solid rgba(0, 212, 255, 0.2);
+            flex: 1;
+            min-width: 280px;
+            max-width: 320px;
+            display: flex;
+            flex-direction: column;
         }
 
         .chart-category h3 {
@@ -648,7 +656,7 @@
             <section id="home" class="content-section">
                 <!-- Hero Section -->
                 <div class="hero">
-                    <img src="brand_logo.jpg" alt="Chartara Labs Logo" style="max-width: 500px; width: 95%; height: auto; display: block; margin: 0 auto 1rem; border: none; text-align: center;">
+                    <img src="brand_logo.jpg" alt="Chartara Labs Logo" style="max-width: 400px; width: 50%; height: auto; display: block; margin: 0 auto 3rem; border: none; text-align: center;">
                     <h1>Machine Learning.<br>
                         Data Visualization.<br>
                         Supervision Engine.</h1>
