@@ -660,12 +660,12 @@
     <header class="header">
         <div class="container">
             <nav class="nav">
-                <span class="logo" onclick="showSection('home')" style="cursor: pointer;">Chartara Labs</span>
+                <span class="logo" data-section="home" style="cursor: pointer;">Chartara Labs</span>
                 <ul class="nav-links" id="navLinks">
-                    <li><span class="nav-link" onclick="showSection('home')">Home</span></li>
-                    <li><span class="nav-link" onclick="showSection('pricing')">Pricing</span></li>
-                    <li><span class="nav-link" onclick="showSection('founder')">Meet the Founder</span></li>
-                    <li><span class="nav-link" onclick="showSection('contact')">Contact</span></li>
+                    <li><span class="nav-link" data-section="home">Home</span></li>
+                    <li><span class="nav-link" data-section="pricing">Pricing</span></li>
+                    <li><span class="nav-link" data-section="founder">Meet the Founder</span></li>
+                    <li><span class="nav-link" data-section="contact">Contact</span></li>
                 </ul>
                 <a href="https://buy.stripe.com/aFa7sMcTkemigG32gO4Rq01" class="nav-cta" style="text-decoration: none; display: inline-block; text-align: center;">Get Started</a>
                 <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
@@ -987,26 +987,44 @@
     <script>
         // Navigation functionality - Fixed version
         function showSection(sectionId) {
-            // Hide all sections
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => {
-                section.classList.remove('active');
-            });
+            console.log('showSection called with:', sectionId); // Debug log
             
-            // Show the selected section
-            const targetSection = document.getElementById(sectionId);
-            if (targetSection) {
-                targetSection.classList.add('active');
+            try {
+                // Hide all sections
+                const sections = document.querySelectorAll('.section');
+                console.log('Found sections:', sections.length); // Debug log
+                
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Show the selected section
+                const targetSection = document.getElementById(sectionId);
+                console.log('Target section:', targetSection); // Debug log
+                
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                    console.log('Section activated:', sectionId); // Debug log
+                } else {
+                    console.error('Section not found:', sectionId);
+                }
+                
+                // Scroll to top
+                window.scrollTo(0, 0);
+                
+                // Close mobile menu if open
+                const navLinks = document.getElementById('navLinks');
+                if (navLinks && navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                }
+            } catch (error) {
+                console.error('Error in showSection:', error);
             }
-            
-            // Scroll to top
-            window.scrollTo(0, 0);
-            
-            // Close mobile menu if open
-            const navLinks = document.getElementById('navLinks');
-            if (navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-            }
+        }
+
+        // Test function to verify JavaScript is working
+        function testJS() {
+            alert('JavaScript is working!');
         }
 
         // FAQ functionality
@@ -1049,6 +1067,23 @@
             if (!nav.contains(event.target) && navLinks.classList.contains('active')) {
                 navLinks.classList.remove('active');
             }
+        });
+
+        // Ensure JavaScript loads and add event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('JavaScript loaded successfully');
+            
+            // Add click event listeners to navigation links
+            const navLinks = document.querySelectorAll('[data-section]');
+            console.log('Found navigation elements:', navLinks.length);
+            
+            navLinks.forEach(function(link) {
+                link.addEventListener('click', function() {
+                    const sectionId = this.getAttribute('data-section');
+                    console.log('Clicked navigation for section:', sectionId);
+                    showSection(sectionId);
+                });
+            });
         });
     </script>
 </body>
