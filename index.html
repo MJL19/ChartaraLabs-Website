@@ -50,6 +50,7 @@
             font-weight: 800;
             color: #00d4ff;
             text-decoration: none;
+            cursor: pointer;
         }
 
         .nav-links {
@@ -65,6 +66,7 @@
             font-weight: 500;
             transition: color 0.3s;
             font-size: 1rem;
+            cursor: pointer;
         }
 
         .nav-links a:hover {
@@ -658,12 +660,12 @@
     <header class="header">
         <div class="container">
             <nav class="nav">
-                <a href="#home" class="logo" onclick="showSection('home')">Chartara Labs</a>
+                <span class="logo" onclick="showSection('home')">Chartara Labs</span>
                 <ul class="nav-links" id="navLinks">
-                    <li><a href="#home" onclick="showSection('home')">Home</a></li>
-                    <li><a href="#pricing" onclick="showSection('pricing')">Pricing</a></li>
-                    <li><a href="#founder" onclick="showSection('founder')">Meet the Founder</a></li>
-                    <li><a href="#contact" onclick="showSection('contact')">Contact</a></li>
+                    <li><a onclick="showSection('home')">Home</a></li>
+                    <li><a onclick="showSection('pricing')">Pricing</a></li>
+                    <li><a onclick="showSection('founder')">Meet the Founder</a></li>
+                    <li><a onclick="showSection('contact')">Contact</a></li>
                 </ul>
                 <a href="https://buy.stripe.com/aFa7sMcTkemigG32gO4Rq01" class="nav-cta" style="text-decoration: none; display: inline-block; text-align: center;">Get Started</a>
                 <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
@@ -680,8 +682,8 @@
                 <!-- Hero Section -->
                 <div class="hero">
                     <img src="brand_logo.jpg" alt="Chartara Labs Logo" style="max-width: 500px; width: 95%; height: auto; display: block; margin: 0 auto 1rem; border: none; text-align: center;">
-                    <h1>Machine Learning.
-                        Data Visualization.
+                    <h1>Machine Learning.<br>
+                        Data Visualization.<br>
                         Supervision Engine.</h1>
                     <div class="chart-showcase">
                         <img src="Individual Client PHQ9 Tracker.png" alt="PHQ-9 Tracker Chart Example" style="max-width: 100%; height: auto; border-radius: 15px;">
@@ -717,20 +719,20 @@
     <img src="Build%20My%20Dashboard%20Updated%20Pic.png" alt="EMR Integration - Build My Dashboard" style="max-width: 100%; height: auto; border-radius: 15px;">
     
     <!-- Three-column guide section -->
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; max-width: 1000px; margin-left: auto; margin-right: auto;">
-        <div style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); padding: 2rem; border-radius: 15px; border: 1px solid rgba(0, 212, 255, 0.2); text-align: center;">
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 3rem; max-width: 1000px; margin-left: auto; margin-right: auto;">
+        <div style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); padding: 2rem; border-radius: 15px; border: 1px solid rgba(0, 212, 255, 0.2); text-align: center; flex: 1; min-width: 280px; max-width: 320px; display: flex; flex-direction: column; justify-content: space-between;">
             <h3 style="color: #00d4ff; font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem;">Use the Chartara Master Excel Workbook</h3>
-            <p style="color: #e0e0e0; line-height: 1.6;">Chartara Labs provides a Master Excel Workbook downloadable in "Build My Dashboard". Customize your data according to your specific needs. Integrate the Chartara Master Excel Workbook into your workflow to enhance your supervision, outcome tracking, and/or business intelligence capabilities.</p>
+            <p style="color: #e0e0e0; line-height: 1.6; margin: 0;">Chartara Labs provides a Master Excel Workbook downloadable in "Build My Dashboard". Customize your data according to your specific needs. Integrate the Chartara Master Excel Workbook into your workflow to enhance your supervision, outcome tracking, and/or business intelligence capabilities.</p>
         </div>
         
-        <div style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); padding: 2rem; border-radius: 15px; border: 1px solid rgba(0, 212, 255, 0.2); text-align: center;">
+        <div style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); padding: 2rem; border-radius: 15px; border: 1px solid rgba(0, 212, 255, 0.2); text-align: center; flex: 1; min-width: 280px; max-width: 320px; display: flex; flex-direction: column; justify-content: space-between;">
             <h3 style="color: #00d4ff; font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem;">Workbook Guide</h3>
-            <p style="color: #e0e0e0; line-height: 1.6;">Use the simple Workbook Guide in "Build My Dashboard" to understand the tabs on the bottom of the Excel file. Each tab powers a specific chart. Evidence Based Practice charts use their own Excel templates separate from the Chartara Master Excel Workbook. Once logged in, navigate to the EBP category to download those specific templates.</p>
+            <p style="color: #e0e0e0; line-height: 1.6; margin: 0;">Use the simple Workbook Guide in "Build My Dashboard" to understand the tabs on the bottom of the Excel file. Each tab powers a specific chart. Evidence Based Practice charts use their own Excel templates separate from the Chartara Master Excel Workbook. Once logged in, navigate to the EBP category to download those specific templates.</p>
         </div>
         
-        <div style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); padding: 2rem; border-radius: 15px; border: 1px solid rgba(0, 212, 255, 0.2); text-align: center;">
+        <div style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); padding: 2rem; border-radius: 15px; border: 1px solid rgba(0, 212, 255, 0.2); text-align: center; flex: 1; min-width: 280px; max-width: 320px; display: flex; flex-direction: column; justify-content: space-between;">
             <h3 style="color: #00d4ff; font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem;">Upload Your File</h3>
-            <p style="color: #e0e0e0; line-height: 1.6;">Only enter the data you have or need. You do not need to fill out the whole Excel workbook. The software features a date tagged "Use Last Uploaded" button. You do not need to upload a new file every time you login. Instantly upon upload, visual analytics are generated based on your specific data and the chart tabs you filled out. Navigate to the specific charts to view your results.</p>
+            <p style="color: #e0e0e0; line-height: 1.6; margin: 0;">Only enter the data you have or need. You do not need to fill out the whole Excel workbook. The software features a date tagged "Use Last Uploaded" button. You do not need to upload a new file every time you login. Instantly upon upload, visual analytics are generated based on your specific data and the chart tabs you filled out. Navigate to the specific charts to view your results.</p>
         </div>
     </div>
 </div>
@@ -983,7 +985,7 @@
     </main>
 
     <script>
-        // Navigation functionality
+        // Navigation functionality - Fixed version
         function showSection(sectionId) {
             // Hide all sections
             const sections = document.querySelectorAll('.section');
@@ -997,11 +999,14 @@
                 targetSection.classList.add('active');
             }
             
-            // Update URL hash
-            window.location.hash = sectionId;
-            
             // Scroll to top
             window.scrollTo(0, 0);
+            
+            // Close mobile menu if open
+            const navLinks = document.getElementById('navLinks');
+            if (navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+            }
         }
 
         // FAQ functionality
@@ -1035,35 +1040,6 @@
             const navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
         }
-
-        // Stripe checkout functionality (placeholder)
-        function handleStripeCheckout() {
-            // This is where you'll integrate with Stripe
-            alert('Stripe integration will be added here. This will redirect to payment processing and then to your Streamlit app.');
-            // Future implementation:
-            // 1. Redirect to Stripe Checkout
-            // 2. After payment, create user in Cognito
-            // 3. Send email verification
-            // 4. Redirect to Streamlit app for login
-        }
-
-        // Handle initial page load with hash
-        window.addEventListener('load', function() {
-            const hash = window.location.hash.substring(1);
-            if (hash && document.getElementById(hash)) {
-                showSection(hash);
-            }
-        });
-
-        // Handle browser back/forward buttons
-        window.addEventListener('hashchange', function() {
-            const hash = window.location.hash.substring(1);
-            if (hash && document.getElementById(hash)) {
-                showSection(hash);
-            } else if (!hash) {
-                showSection('home');
-            }
-        });
 
         // Close mobile menu when clicking outside
         document.addEventListener('click', function(event) {
