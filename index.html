@@ -157,7 +157,11 @@
 
         /* Section Styles */
         .content-section {
-            padding: 5rem 0;
+            padding: 8rem 0;
+        }
+
+        .content-section:first-child {
+            padding-top: 4rem;
         }
 
         /* Hero Section */
@@ -195,9 +199,12 @@
         }
 
         .problems-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .problem-card {
@@ -207,6 +214,12 @@
             border-radius: 20px;
             border: 1px solid rgba(0, 212, 255, 0.2);
             transition: all 0.3s ease;
+            flex: 1;
+            min-width: 280px;
+            max-width: 320px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .problem-card:hover {
@@ -226,6 +239,7 @@
             color: #e0e0e0;
             font-size: 1.1rem;
             line-height: 1.6;
+            margin: 0;
         }
 
         /* EMR Section */
@@ -669,7 +683,9 @@
                 <!-- EMR Section -->
                 <div class="emr-section">
                     <h2>Lightweight Add-On to Your Existing EMR</h2>
-                    <img src="Build%20My%20Dashboard%20Updated%20Pic.png" alt="EMR Integration - Build My Dashboard" style="max-width: 100%; height: auto; border-radius: 15px;">
+                    <div class="chart-showcase">
+                        <img src="Build%20My%20Dashboard%20Updated%20Pic.png" alt="EMR Integration - Build My Dashboard" style="max-width: 100%; height: auto; border-radius: 15px;">
+                    </div>
                     
                     <!-- Three-column guide section -->
                     <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 3rem; max-width: 1000px; margin-left: auto; margin-right: auto;">
