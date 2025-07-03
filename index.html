@@ -650,7 +650,12 @@
             display: none;
         }
 
-        .section.active, .section#home {
+        .section.active {
+            display: block !important;
+        }
+
+        /* Home section should be visible by default */
+        .section#home {
             display: block;
         }
     </style>
