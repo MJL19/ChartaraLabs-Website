@@ -60,7 +60,7 @@
             align-items: center;
         }
 
-        .nav-links a {
+        .nav-links span.nav-link {
             text-decoration: none;
             color: #ffffff;
             font-weight: 500;
@@ -69,7 +69,7 @@
             cursor: pointer;
         }
 
-        .nav-links a:hover {
+        .nav-links span.nav-link:hover {
             color: #00d4ff;
         }
 
@@ -662,10 +662,10 @@
             <nav class="nav">
                 <span class="logo" onclick="showSection('home')" style="cursor: pointer;">Chartara Labs</span>
                 <ul class="nav-links" id="navLinks">
-                    <li><a href="javascript:void(0)" onclick="showSection('home')">Home</a></li>
-                    <li><a href="javascript:void(0)" onclick="showSection('pricing')">Pricing</a></li>
-                    <li><a href="javascript:void(0)" onclick="showSection('founder')">Meet the Founder</a></li>
-                    <li><a href="javascript:void(0)" onclick="showSection('contact')">Contact</a></li>
+                    <li><span class="nav-link" onclick="showSection('home')">Home</span></li>
+                    <li><span class="nav-link" onclick="showSection('pricing')">Pricing</span></li>
+                    <li><span class="nav-link" onclick="showSection('founder')">Meet the Founder</span></li>
+                    <li><span class="nav-link" onclick="showSection('contact')">Contact</span></li>
                 </ul>
                 <a href="https://buy.stripe.com/aFa7sMcTkemigG32gO4Rq01" class="nav-cta" style="text-decoration: none; display: inline-block; text-align: center;">Get Started</a>
                 <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
