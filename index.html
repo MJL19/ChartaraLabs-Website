@@ -17,7 +17,7 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.6;
             color: #ffffff;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #7c3aed 100%);
             min-height: 100vh;
         }
 
@@ -35,7 +35,7 @@
             width: 100%;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.3);
         }
 
         .nav {
@@ -48,7 +48,7 @@
         .logo {
             font-size: 1.8rem;
             font-weight: 800;
-            color: #00d4ff;
+            color: #3b82f6;
             text-decoration: none;
             cursor: pointer;
         }
@@ -95,7 +95,7 @@
             right: 0;
             background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(0, 212, 255, 0.3);
+            border: 1px solid rgba(59, 130, 246, 0.3);
             border-radius: 10px;
             min-width: 200px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
@@ -126,12 +126,12 @@
         }
 
         .nav-dropdown a:hover {
-            background: rgba(0, 212, 255, 0.1);
-            color: #00d4ff;
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
         }
 
         .nav-cta {
-            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
             color: white;
             padding: 0.75rem 1.5rem;
             border-radius: 25px;
@@ -144,9 +144,9 @@
         }
 
         .nav-cta:hover {
-            background: linear-gradient(135deg, #0099cc 0%, #007399 100%);
+            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.3);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
         }
 
         /* Main Content */
@@ -157,11 +157,11 @@
 
         /* Section Styles */
         .content-section {
-            padding: 12rem 0;
+            padding: 6rem 0;
         }
 
         .content-section:first-child {
-            padding-top: 6rem;
+            padding-top: 3rem;
         }
 
         /* Hero Section */
@@ -174,7 +174,7 @@
             font-size: 4.2rem;
             font-weight: 800;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, #00d4ff 0%, #ffffff 100%);
+            background: linear-gradient(135deg, #3b82f6 0%, #ffffff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -189,16 +189,246 @@
             margin: 3rem auto;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
         }
 
-        /* Core Problems Section */
+        /* Services Section */
+        .services-section {
+            background: rgba(59, 130, 246, 0.05);
+            padding: 6rem 0;
+        }
+
+        .services-section h2 {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            color: #3b82f6;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Make the 4th card (Chartara Notes) span all 3 columns and center */
+        .service-card:nth-child(4) {
+            grid-column: 1 / -1;
+            max-width: 350px;
+            justify-self: center;
+            margin-top: 1rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.3s ease;
+            color: #1f2937;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: #3b82f6;
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+            text-decoration: none;
+            color: #1f2937;
+        }
+
+        .service-image {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, #e5f3ff 0%, #f0f9ff 100%);
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #93c5fd;
+            color: #3b82f6;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .service-card h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #1e40af;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: #4b5563;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-buttons {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .service-cta {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            flex: 1;
+            text-align: center;
+            min-width: 100px;
+        }
+
+        .service-cta:hover {
+            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .service-pricing {
+            background: transparent;
+            border: 2px solid #2563eb;
+            color: #2563eb;
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            flex: 1;
+            text-align: center;
+            min-width: 100px;
+        }
+
+        .service-pricing:hover {
+            background: #2563eb;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Service Detail Pages */
+        .service-detail {
+            display: none;
+            padding: 6rem 0;
+            background: rgba(59, 130, 246, 0.05);
+        }
+
+        .service-detail.active {
+            display: block;
+        }
+
+        .back-button {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+            transform: translateY(-2px);
+        }
+
+        .detail-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .detail-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .detail-header h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #3b82f6;
+            margin-bottom: 1rem;
+        }
+
+        .detail-header p {
+            font-size: 1.2rem;
+            color: #ffffff;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            font-weight: 500;
+        }
+
+        .media-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .media-section.single {
+            grid-template-columns: 1fr;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .media-placeholder {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 3rem 2rem;
+            text-align: center;
+            color: #1f2937;
+            border: 2px dashed #93c5fd;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .video-placeholder {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            border: 2px dashed #93c5fd;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Core Problems Section - IMPROVED TEXT CONTRAST */
         .problems-section h2 {
             text-align: center;
             font-size: 3rem;
             font-weight: 800;
             margin-bottom: 3rem;
-            color: #00d4ff;
+            color: #3b82f6;
         }
 
         .problems-grid {
@@ -215,7 +445,7 @@
             backdrop-filter: blur(20px);
             padding: 2.5rem;
             border-radius: 20px;
-            border: 1px solid rgba(0, 212, 255, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.2);
             transition: all 0.3s ease;
             flex: 1;
             min-width: 280px;
@@ -227,25 +457,26 @@
 
         .problem-card:hover {
             transform: translateY(-10px);
-            border-color: #00d4ff;
-            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+            border-color: #3b82f6;
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
         }
 
         .problem-card h3 {
             font-size: 1.8rem;
             font-weight: 700;
-            color: #00d4ff;
+            color: #3b82f6;
             margin-bottom: 1rem;
         }
 
         .problem-card p {
-            color: #e0e0e0;
+            color: #f8fafc;
             font-size: 1.1rem;
             line-height: 1.6;
             margin: 0;
+            font-weight: 400;
         }
 
-        /* EMR Section */
+        /* EMR Section - IMPROVED TEXT CONTRAST */
         .emr-section {
             text-align: center;
         }
@@ -255,6 +486,7 @@
             font-weight: 700;
             margin-bottom: 3rem;
             color: #ffffff;
+            font-weight: 800;
         }
 
         /* Charts Section */
@@ -263,7 +495,7 @@
             font-size: 3rem;
             font-weight: 800;
             margin-bottom: 3rem;
-            color: #00d4ff;
+            color: #3b82f6;
         }
 
         .chart-categories {
@@ -280,7 +512,7 @@
             backdrop-filter: blur(20px);
             padding: 2rem;
             border-radius: 20px;
-            border: 1px solid rgba(0, 212, 255, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.2);
             flex: 1;
             min-width: 280px;
             max-width: 320px;
@@ -291,7 +523,7 @@
         .chart-category h3 {
             font-size: 1.6rem;
             font-weight: 700;
-            color: #00d4ff;
+            color: #3b82f6;
             margin-bottom: 1.5rem;
         }
 
@@ -301,17 +533,18 @@
 
         .chart-list li {
             padding: 0.5rem 0;
-            color: #e0e0e0;
+            color: #f8fafc;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-weight: 400;
         }
 
         .chart-list li:last-child {
             border-bottom: none;
         }
 
-        /* What We Are Section */
+        /* What We Are Section - IMPROVED TEXT CONTRAST */
         .what-we-are {
-            background: rgba(0, 212, 255, 0.05);
+            background: rgba(59, 130, 246, 0.05);
             padding: 6rem 0;
         }
 
@@ -320,7 +553,7 @@
             font-size: 3rem;
             font-weight: 800;
             margin-bottom: 3rem;
-            color: #00d4ff;
+            color: #3b82f6;
         }
 
         .what-grid {
@@ -362,24 +595,25 @@
         }
 
         .what-text {
-            color: #e0e0e0;
+            color: #f8fafc;
             line-height: 1.5;
+            font-weight: 400;
         }
 
-        /* FAQ Section */
+        /* FAQ Section - IMPROVED TEXT CONTRAST */
         .faq-section h2 {
             text-align: center;
             font-size: 3rem;
             font-weight: 800;
             margin-bottom: 3rem;
-            color: #00d4ff;
+            color: #3b82f6;
         }
 
         .faq-item {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 15px;
             margin-bottom: 1rem;
-            border: 1px solid rgba(0, 212, 255, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.2);
         }
 
         .faq-question {
@@ -394,14 +628,15 @@
         }
 
         .faq-question:hover {
-            color: #00d4ff;
+            color: #3b82f6;
         }
 
         .faq-answer {
             padding: 0 2rem 1.5rem;
-            color: #e0e0e0;
+            color: #f8fafc;
             line-height: 1.6;
             display: none;
+            font-weight: 400;
         }
 
         .faq-answer.active {
@@ -410,7 +645,7 @@
 
         .faq-toggle {
             font-size: 1.5rem;
-            color: #00d4ff;
+            color: #3b82f6;
             transition: transform 0.3s ease;
         }
 
@@ -420,7 +655,7 @@
 
         /* Pricing Section */
         .pricing-section {
-            background: rgba(0, 212, 255, 0.05);
+            background: rgba(59, 130, 246, 0.05);
             padding: 6rem 0;
         }
 
@@ -429,7 +664,7 @@
             font-size: 3rem;
             font-weight: 800;
             margin-bottom: 3rem;
-            color: #00d4ff;
+            color: #3b82f6;
         }
 
         .pricing-grid {
@@ -445,21 +680,21 @@
             backdrop-filter: blur(20px);
             padding: 3rem 2rem;
             border-radius: 20px;
-            border: 1px solid rgba(0, 212, 255, 0.3);
+            border: 1px solid rgba(59, 130, 246, 0.3);
             text-align: center;
             transition: all 0.3s ease;
         }
 
         .pricing-card:hover {
             transform: translateY(-10px);
-            border-color: #00d4ff;
-            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+            border-color: #3b82f6;
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
         }
 
         .pricing-card h3 {
             font-size: 2rem;
             font-weight: 700;
-            color: #00d4ff;
+            color: #3b82f6;
             margin-bottom: 1rem;
         }
 
@@ -471,8 +706,9 @@
         }
 
         .price-period {
-            color: #a0a0a0;
+            color: #d1d5db;
             margin-bottom: 2rem;
+            font-weight: 500;
         }
 
         .pricing-features {
@@ -483,9 +719,10 @@
 
         .pricing-features li {
             padding: 0.5rem 0;
-            color: #e0e0e0;
+            color: #f8fafc;
             display: flex;
             align-items: center;
+            font-weight: 400;
         }
 
         .pricing-features li:before {
@@ -497,7 +734,7 @@
         }
 
         .pricing-cta {
-            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
             color: white;
             padding: 1rem 2rem;
             border-radius: 25px;
@@ -512,22 +749,22 @@
         }
 
         .pricing-cta:hover {
-            background: linear-gradient(135deg, #0099cc 0%, #007399 100%);
+            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
             transform: translateY(-2px);
         }
 
         .pricing-cta.secondary {
             background: transparent;
-            border: 2px solid #00d4ff;
-            color: #00d4ff;
+            border: 2px solid #3b82f6;
+            color: #3b82f6;
         }
 
         .pricing-cta.secondary:hover {
-            background: #00d4ff;
-            color: #000000;
+            background: #3b82f6;
+            color: #ffffff;
         }
 
-        /* Founder Section */
+        /* Founder Section - IMPROVED TEXT CONTRAST */
         .founder-content {
             display: grid;
             grid-template-columns: 1fr 300px;
@@ -538,7 +775,7 @@
         .founder-text h2 {
             font-size: 3rem;
             font-weight: 800;
-            color: #00d4ff;
+            color: #3b82f6;
             margin-bottom: 2rem;
         }
 
@@ -550,10 +787,11 @@
         }
 
         .founder-text p {
-            color: #e0e0e0;
+            color: #f8fafc;
             font-size: 1.1rem;
             margin-bottom: 1.5rem;
             line-height: 1.7;
+            font-weight: 400;
         }
 
         .founder-image {
@@ -561,7 +799,7 @@
             top: 120px;
         }
 
-        /* Contact Section */
+        /* Contact Section - IMPROVED TEXT CONTRAST */
         .contact-section {
             text-align: center;
         }
@@ -569,19 +807,20 @@
         .contact-section h2 {
             font-size: 3rem;
             font-weight: 800;
-            color: #00d4ff;
+            color: #3b82f6;
             margin-bottom: 2rem;
         }
 
         .contact-section p {
             font-size: 1.2rem;
-            color: #e0e0e0;
+            color: #f8fafc;
             margin-bottom: 2rem;
+            font-weight: 500;
         }
 
         .contact-email {
             font-size: 1.5rem;
-            color: #00d4ff;
+            color: #3b82f6;
             text-decoration: none;
             font-weight: 600;
         }
@@ -597,6 +836,10 @@
             }
 
             .problems-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -621,11 +864,30 @@
             .founder-image {
                 position: static;
             }
+
+            .service-buttons {
+                flex-direction: column;
+            }
+
+            .media-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
         }
 
         /* Smooth scrolling */
         html {
             scroll-behavior: smooth;
+        }
+
+        /* Hidden by default */
+        .hidden {
+            display: none;
         }
     </style>
 </head>
@@ -643,9 +905,11 @@
                     </button>
                     <div class="nav-dropdown" id="navDropdown">
                         <a href="#home">Home</a>
+                        <a href="#services">Services</a>
                         <a href="#pricing">Pricing</a>
                         <a href="#founder">Meet the Founder</a>
                         <a href="#contact">Contact</a>
+                        <a href="https://www.linkedin.com/company/chartara-labs/" target="_blank">LinkedIn</a>
                         <a href="https://instagram.com/chartaralabs" target="_blank">Instagram</a>
                         <a href="https://www.youtube.com/@ChartaraLabs" target="_blank">YouTube</a>
                     </div>
@@ -661,17 +925,68 @@
         <div class="container">
             
             <!-- Home Section -->
-            <section id="home" class="content-section">
+            <section id="home" class="content-section main-page">
                 <!-- Hero Section -->
                 <div class="hero">
                     <img src="brand_logo.jpg" alt="Chartara Labs Logo" style="max-width: 800px; width: 80%; height: auto; display: block; margin: 1rem auto 1rem; border: none; text-align: center;">
                     <h1>Machine Learning.<br>
                         Data Visualization.<br>
                         Supervision Engine.</h1>
-                    <div class="chart-showcase">
-                        <img src="PHQ9_Big.png" alt="PHQ-9 Tracker Chart Example" style="max-width: 100%; height: auto; border-radius: 15px;">
-                    </div>
                 </div>
+
+                <!-- Services Section -->
+                <section id="services" class="services-section">
+                    <h2>Our AI-Powered Solutions</h2>
+                    <div class="services-grid">
+                        <div class="service-card" onclick="showServiceDetail('train')">
+                            <div class="service-image">
+                                <img src="Chartara_Train_Welcome_Page.png" alt="Chartara Train Interface" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
+                            </div>
+                            <h3>Chartara Train</h3>
+                            <p>AI-powered training platform for therapists, delivering interactive, evidence-based exercises that reinforce CBT, psychoeducation, and cultural adaptation practices.</p>
+                            <div class="service-buttons">
+                                <a href="#" class="service-cta" onclick="event.stopPropagation()">Request Access</a>
+                                <a href="#" class="service-pricing" onclick="event.stopPropagation()">Get a Quote</a>
+                            </div>
+                        </div>
+
+                        <div class="service-card" onclick="showServiceDetail('essential')">
+                            <div class="service-image">
+                                <img src="Essential_Practice_Welcome_Page.png" alt="Essential Practice Interface" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
+                            </div>
+                            <h3>Chartara Labs Essential Practice</h3>
+                            <p>Complete AI-powered visual analytics platform with comprehensive chart library, PDF reporting, and intelligent business insights for behavioral health practices.</p>
+                            <div class="service-buttons">
+                                <a href="https://buy.stripe.com/4gM3cw7z06TQcpNaNk4Rq00" class="service-cta" onclick="event.stopPropagation()">Start Now</a>
+                                <a href="#pricing" class="service-pricing" onclick="event.stopPropagation()">View Pricing</a>
+                            </div>
+                        </div>
+
+                        <div class="service-card" onclick="showServiceDetail('sync')">
+                            <div class="service-image">
+                                <img src="Chartara_Sync_Login_Page.png" alt="Chartara Sync Interface" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
+                            </div>
+                            <h3>Chartara Sync</h3>
+                            <p>Enterprise-level AI data extraction and visualization pipeline. Seamlessly connects with any EMR to unlock actionable insights through custom dashboards.</p>
+                            <div class="service-buttons">
+                                <a href="#" class="service-cta" onclick="event.stopPropagation()">Request Demo</a>
+                                <a href="#" class="service-pricing" onclick="event.stopPropagation()">Get a Quote</a>
+                            </div>
+                        </div>
+
+                        <div class="service-card" onclick="showServiceDetail('notes')">
+                            <div class="service-image">
+                                <img src="Chartara_Notes.png" alt="Chartara Notes Interface" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
+                            </div>
+                            <h3>Chartara Notes</h3>
+                            <p>Converts live dictation and structured inputs into HIPAA-compliant, AI-assisted clinical notes. Reduces clinician documentation time while improving accuracy and consistency across care teams.</p>
+                            <div class="service-buttons">
+                                <a href="#" class="service-cta" onclick="event.stopPropagation()">Request Access</a>
+                                <a href="#" class="service-pricing" onclick="event.stopPropagation()">Get a Quote</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
                 <!-- Core Problems Section -->
                 <div class="problems-section">
@@ -687,81 +1002,11 @@
                         </div>
                         <div class="problem-card">
                             <h3>Outcome Blindness</h3>
-                            <p>Machine learning analytics reveal which clients are improving, which need intervention, and what treatment approaches work best for your practice. Each data visualization is combined with a comprehsnsive analytics section- dynamically adapted to your unique caseload. Machine learning algorithms include descriptive, prescriptive, and predictive analytics. </p>
+                            <p>Machine learning analytics reveal which clients are improving, which need intervention, and what treatment approaches work best for your practice. Each data visualization is combined with a comprehensive analytics section- dynamically adapted to your unique caseload. Machine learning algorithms include descriptive, prescriptive, and predictive analytics.</p>
                         </div>
                         <div class="problem-card">
                             <h3>Business Mystery</h3>
                             <p>Intelligent forecasting and analysis learns your practice patterns and predicts growth opportunities, seasonal trends, and financial optimization strategies. Business Intelligence analytics are included across charts. All vertically integrated for Behavioral Health.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- EMR Section -->
-                <div class="emr-section content-section">
-                    <h2>Lightweight Add-On to Your Existing EMR</h2>
-                    <div class="chart-showcase">
-                        <img src="Build%20My%20Dashboard%20Updated%20Pic.png" alt="EMR Integration - Build My Dashboard" style="max-width: 100%; height: auto; border-radius: 15px;">
-                    </div>
-                    
-                    <!-- Three-column guide section -->
-                    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 3rem; max-width: 1000px; margin-left: auto; margin-right: auto;">
-                        <div style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); padding: 2rem; border-radius: 15px; border: 1px solid rgba(0, 212, 255, 0.2); text-align: center; flex: 1; min-width: 280px; max-width: 320px; display: flex; flex-direction: column; justify-content: space-between;">
-                            <h3 style="color: #00d4ff; font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem;">Use the Chartara Master Excel Workbook</h3>
-                            <p style="color: #e0e0e0; line-height: 1.6; margin: 0;">Chartara Labs provides a Master Excel Workbook downloadable in "Build My Dashboard". Customize your data according to your specific needs. Integrate the Chartara Master Excel Workbook into your workflow to enhance your supervision, outcome tracking, and/or business intelligence capabilities.</p>
-                        </div>
-                        
-                        <div style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); padding: 2rem; border-radius: 15px; border: 1px solid rgba(0, 212, 255, 0.2); text-align: center; flex: 1; min-width: 280px; max-width: 320px; display: flex; flex-direction: column; justify-content: space-between;">
-                            <h3 style="color: #00d4ff; font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem;">Workbook Guide</h3>
-                            <p style="color: #e0e0e0; line-height: 1.6; margin: 0;">Use the simple Workbook Guide in "Build My Dashboard" to understand the tabs on the bottom of the Excel file. Each tab powers a specific chart. Evidence Based Practice charts use their own Excel templates separate from the Chartara Master Excel Workbook. Once logged in, navigate to the EBP category to download those specific templates.</p>
-                        </div>
-                        
-                        <div style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); padding: 2rem; border-radius: 15px; border: 1px solid rgba(0, 212, 255, 0.2); text-align: center; flex: 1; min-width: 280px; max-width: 320px; display: flex; flex-direction: column; justify-content: space-between;">
-                            <h3 style="color: #00d4ff; font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem;">Upload Your File</h3>
-                            <p style="color: #e0e0e0; line-height: 1.6; margin: 0;">Only enter the data you have or need. You do not need to fill out the whole Excel workbook. The software features a date tagged "Use Last Uploaded" button. You do not need to upload a new file every time you login. Instantly upon upload, visual analytics are generated based on your specific data and the chart tabs you filled out. Navigate to the specific charts to view your results.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Charts Section -->
-                <div class="charts-section content-section">
-                    <h2>Comprehensive Chart Library</h2>
-                    <div class="chart-categories">
-                        <div class="chart-category">
-                            <h3>📊 Business Intelligence</h3>
-                            <ul class="chart-list">
-                                <li>Revenue by CPT Code</li>
-                                <li>Income by Month</li>
-                                <li>Caseload Breakdown by Diagnosis</li>
-                                <li>Treatment Months by Insurance Type</li>
-                            </ul>
-                        </div>
-                        <div class="chart-category">
-                            <h3>🧠 Clinical Monitoring</h3>
-                            <ul class="chart-list">
-                                <li>Treatment Plan Review Tracker</li>
-                                <li>PHQ-9 Scores (Clients with Any Score)</li>
-                                <li>GAD-7 Scores (Clients with Any Score)</li>
-                                <li>Risk Level Distribution</li>
-                                <li>Individual Client PHQ-9 Tracker</li>
-                                <li>Individual Client GAD-7 Tracker</li>
-                                <li>Cultural Adaptation Tracker</li>
-                            </ul>
-                        </div>
-                        <div class="chart-category">
-                            <h3>👥 Demographics & Attendance</h3>
-                            <ul class="chart-list">
-                                <li>Client Distribution by Age, Race, and Sex</li>
-                                <li>Client Attendance by Session Type</li>
-                                <li>Attendance by Age and Sex</li>
-                                <li>No Show Percentage by Client</li>
-                            </ul>
-                        </div>
-                        <div class="chart-category">
-                            <h3>🔬 Evidence Based Practice Support Tools</h3>
-                            <ul class="chart-list">
-                                <li>Behavioral Activation Tracker</li>
-                                <li>Automatic Thought Tracker</li>
-                            </ul>
                         </div>
                     </div>
                 </div>
@@ -846,8 +1091,161 @@
                 </div>
             </section>
 
+            <!-- Service Detail Pages -->
+            
+            <!-- Chartara Train Detail -->
+            <section id="train-detail" class="service-detail">
+                <div class="container">
+                    <a href="#" class="back-button" onclick="showMainPage()">← Back to Services</a>
+                    <div class="detail-content">
+                        <div class="detail-header">
+                            <h2>Chartara Train</h2>
+                            <p>An AI-powered training platform for therapists, delivering interactive, evidence-based exercises that reinforce CBT, psychoeducation, and cultural adaptation practices. Designed for clinics and universities seeking scalable, engaging professional development.</p>
+                        </div>
+                        
+                        <div class="media-section single">
+                            <div class="media-placeholder">
+                                <img src="Automatic_Thought_Tracker_Page.png" alt="Automatic Thought Tracker Interface" style="width: 100%; height: auto; border-radius: 15px;">
+                            </div>
+                        </div>
+                        
+                        <div class="cta-section">
+                            <div class="cta-buttons">
+                                <a href="#" class="service-cta">Request Access</a>
+                                <a href="#" class="service-pricing">Get a Quote</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chartara Sync Detail -->
+            <section id="sync-detail" class="service-detail">
+                <div class="container">
+                    <a href="#" class="back-button" onclick="showMainPage()">← Back to Services</a>
+                    <div class="detail-content">
+                        <div class="detail-header">
+                            <h2>Chartara Sync</h2>
+                            <p>Enterprise-level AI data extraction and visualization pipeline. Seamlessly connects with any EMR to unlock actionable insights through custom dashboards and advanced analytics. Built for executives and administrators who need real-time operational intelligence.</p>
+                        </div>
+                        
+                        
+                        <div class="cta-section">
+                            <div class="cta-buttons">
+                                <a href="#" class="service-cta">Request Demo</a>
+                                <a href="#" class="service-pricing">Get a Quote</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chartara Notes Detail -->
+            <section id="notes-detail" class="service-detail">
+                <div class="container">
+                    <a href="#" class="back-button" onclick="showMainPage()">← Back to Services</a>
+                    <div class="detail-content">
+                        <div class="detail-header">
+                            <h2>Chartara Notes</h2>
+                            <p>Converts live dictation and structured inputs into HIPAA-compliant, AI-assisted clinical notes. Reduces clinician documentation time while improving accuracy and consistency across care teams.</p>
+                        </div>
+                        
+                        
+                        <div class="cta-section">
+                            <div class="cta-buttons">
+                                <a href="#" class="service-cta">Request Access</a>
+                                <a href="#" class="service-pricing">Get a Quote</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chartara Labs Essential Practice Detail -->
+            <section id="essential-detail" class="service-detail">
+                <div class="container">
+                    <a href="#" class="back-button" onclick="showMainPage()">← Back to Services</a>
+                    <div class="detail-content">
+                        <div class="detail-header">
+                            <h2>Chartara Labs Essential Practice</h2>
+                            <p>Complete AI-powered visual analytics platform with comprehensive chart library, PDF reporting, and intelligent business insights specifically designed for behavioral health practices.</p>
+                        </div>
+
+                        <!-- EMR Integration Section -->
+                        <div class="emr-section content-section">
+                            <h2>Lightweight Add-On to Your Existing EMR</h2>
+                            <div class="chart-showcase">
+                                <img src="Build%20My%20Dashboard%20Updated%20Pic.png" alt="EMR Integration - Build My Dashboard" style="max-width: 100%; height: auto; border-radius: 15px;">
+                            </div>
+                            
+                            <!-- Three-column guide section -->
+                            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 3rem; max-width: 1000px; margin-left: auto; margin-right: auto;">
+                                <div style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); padding: 2rem; border-radius: 15px; border: 1px solid rgba(59, 130, 246, 0.2); text-align: center; flex: 1; min-width: 280px; max-width: 320px; display: flex; flex-direction: column; justify-content: space-between;">
+                                    <h3 style="color: #3b82f6; font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem;">Use the Chartara Master Excel Workbook</h3>
+                                    <p style="color: #f8fafc; line-height: 1.6; margin: 0; font-weight: 400;">Chartara Labs provides a Master Excel Workbook downloadable in "Build My Dashboard". Customize your data according to your specific needs. Integrate the Chartara Master Excel Workbook into your workflow to enhance your supervision, outcome tracking, and/or business intelligence capabilities.</p>
+                                </div>
+                                
+                                <div style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); padding: 2rem; border-radius: 15px; border: 1px solid rgba(59, 130, 246, 0.2); text-align: center; flex: 1; min-width: 280px; max-width: 320px; display: flex; flex-direction: column; justify-content: space-between;">
+                                    <h3 style="color: #3b82f6; font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem;">Workbook Guide</h3>
+                                    <p style="color: #f8fafc; line-height: 1.6; margin: 0; font-weight: 400;">Use the simple Workbook Guide in "Build My Dashboard" to understand the tabs on the bottom of the Excel file. Each tab powers a specific chart. Navigate to specific chart categories to download specialized templates for your practice needs.</p>
+                                </div>
+                                
+                                <div style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); padding: 2rem; border-radius: 15px; border: 1px solid rgba(59, 130, 246, 0.2); text-align: center; flex: 1; min-width: 280px; max-width: 320px; display: flex; flex-direction: column; justify-content: space-between;">
+                                    <h3 style="color: #3b82f6; font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem;">Upload Your File</h3>
+                                    <p style="color: #f8fafc; line-height: 1.6; margin: 0; font-weight: 400;">Only enter the data you have or need. You do not need to fill out the whole Excel workbook. The software features a date tagged "Use Last Uploaded" button. You do not need to upload a new file every time you login. Instantly upon upload, visual analytics are generated based on your specific data and the chart tabs you filled out. Navigate to the specific charts to view your results.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Charts Section -->
+                        <div class="charts-section content-section">
+                            <h2>Comprehensive Chart Library</h2>
+                            <div class="chart-categories">
+                                <div class="chart-category">
+                                    <h3>📊 Business Intelligence</h3>
+                                    <ul class="chart-list">
+                                        <li>Revenue by CPT Code</li>
+                                        <li>Income by Month</li>
+                                        <li>Caseload Breakdown by Diagnosis</li>
+                                        <li>Treatment Months by Insurance Type</li>
+                                    </ul>
+                                </div>
+                                <div class="chart-category">
+                                    <h3>🧠 Clinical Monitoring</h3>
+                                    <ul class="chart-list">
+                                        <li>Treatment Plan Review Tracker</li>
+                                        <li>PHQ-9 Scores (Clients with Any Score)</li>
+                                        <li>GAD-7 Scores (Clients with Any Score)</li>
+                                        <li>Risk Level Distribution</li>
+                                        <li>Individual Client PHQ-9 Tracker</li>
+                                        <li>Individual Client GAD-7 Tracker</li>
+                                        <li>Cultural Adaptation Tracker</li>
+                                    </ul>
+                                </div>
+                                <div class="chart-category">
+                                    <h3>👥 Demographics & Attendance</h3>
+                                    <ul class="chart-list">
+                                        <li>Client Distribution by Age, Race, and Sex</li>
+                                        <li>Client Attendance by Session Type</li>
+                                        <li>Attendance by Age and Sex</li>
+                                        <li>No Show Percentage by Client</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="cta-section">
+                            <div class="cta-buttons">
+                                <a href="https://buy.stripe.com/4gM3cw7z06TQcpNaNk4Rq00" class="service-cta">Start Now - $20/month</a>
+                                <a href="#pricing" class="service-pricing">View Full Pricing</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- Pricing Section -->
-            <section id="pricing" class="content-section pricing-section">
+            <section id="pricing" class="content-section pricing-section main-page">
                 <h2>Choose Your Plan</h2>
                 <div class="pricing-grid">
                     <div class="pricing-card">
@@ -866,36 +1264,37 @@
                             <li>No-show prediction and risk assessment</li>
                             <li>PHQ-9 & GAD-7 outcome tracking with ML predictions</li>
                             <li>Regular product updates with new charts at no additional cost</li>
-                            <li>Evidence-based practice support tools</li>
                             <li>Unlimited data uploads and chart generation</li>
                             <li>Email support and documentation</li>
                         </ul>
                         <a href="https://buy.stripe.com/4gM3cw7z06TQcpNaNk4Rq00" class="pricing-cta">Get Started Today</a>
                     </div>
                     <div class="pricing-card">
-                        <h3>Custom Solutions</h3>
+                        <h3>Custom Integration Bundle</h3>
                         <div class="price">Contact</div>
                         <div class="price-period">for pricing</div>
                         <ul class="pricing-features">
                             <li>Everything in Essential Practice</li>
+                            <li>Bundle all services together in one unified interface</li>
+                            <li>Chartara Train + Chartara Sync + Chartara Notes integration</li>
                             <li>Custom data visualization development</li>
-                            <li>Organization-specific analytics</li>
-                            <li>Advanced team-oriented features</li>
-                            <li>Custom user experience priorities</li>
+                            <li>Organization-specific analytics and workflows</li>
+                            <li>Advanced team-oriented features and permissions</li>
                             <li>Direct consultation with clinical technologist</li>
-                            <li>Tailored implementation and training</li>
+                            <li>Tailored implementation and comprehensive training</li>
                             <li>Priority support and dedicated account management</li>
+                            <li>Seamless single sign-on across all modules</li>
                         </ul>
-                        <a href="mailto:ChartaraLabs@gmail.com?subject=Custom Solution Inquiry&body=Hi, I'm interested in a custom solution for my practice. Please contact Milo LeGendre, LMHC at 315-278-1649 or reply to this email." class="pricing-cta secondary">Contact for Custom Solution</a>
-                        <div style="margin-top: 1.5rem; font-size: 0.9rem; color: #a0a0a0; line-height: 1.5;">
-                            Consult with a clinician-technologist who will collaborate on advanced visual analytics, team oriented, and user experience priorities as they relate to your organization. Purchase a custom made, data driven solution for your organization's specific needs. Milo LeGendre, LMHC combines clinical expertise, data science, and technology to develop innovative tools for a range of behavioral health settings.
+                        <a href="mailto:ChartaraLabs@gmail.com?subject=Custom Integration Bundle Inquiry&body=Hi, I'm interested in the Custom Integration Bundle for my organization. Please contact Milo LeGendre, LMHC at 315-278-1649 or reply to this email." class="pricing-cta secondary">Contact for Integration Bundle</a>
+                        <div style="margin-top: 1.5rem; font-size: 0.9rem; color: #d1d5db; line-height: 1.5; font-weight: 400;">
+                            Bundle all Chartara Labs services together in one unified interface. Consult with a clinician-technologist who will collaborate on advanced visual analytics, team oriented workflows, and user experience priorities tailored to your organization's specific needs.
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- Founder Section -->
-            <section id="founder" class="content-section">
+            <section id="founder" class="content-section main-page">
                 <div class="founder-content">
                     <div class="founder-text">
                         <h2>Meet the Founder: Milo&nbsp;LeGendre, LMHC</h2>
@@ -928,18 +1327,18 @@
                         </p>
                     </div>
                     <div class="founder-image">
-                        <img src="Founder Pic.PNG" alt="Milo LeGendre, LMHC" style="max-width: 100%; height: auto; border-radius: 15px;">
+                        <img src="LinkedIn_Pic.jpeg" alt="Milo LeGendre, LMHC" style="max-width: 100%; height: auto; border-radius: 15px;">
                     </div>
                 </div>
             </section>
 
             <!-- Contact Section -->
-            <section id="contact" class="content-section contact-section">
+            <section id="contact" class="content-section contact-section main-page">
                 <h2>Get in Touch</h2>
                 <p>Have questions about Chartara Labs? Want to discuss custom solutions for your organization?</p>
                 <p>We're here to help you transform your practice with AI-powered analytics.</p>
                 <a href="mailto:ChartaraLabs@gmail.com" class="contact-email">ChartaraLabs@gmail.com</a>
-                <div style="margin-top: 2rem; color: #a0a0a0;">
+                <div style="margin-top: 2rem; color: #d1d5db;">
                     <p>Reach out to us with any questions about implementation, pricing, or custom development needs.</p>
                 </div>
             </section>
@@ -1002,6 +1401,74 @@
                 toggle.textContent = '+';
             }
         }
+
+        // Service detail page functionality
+        function showServiceDetail(serviceId) {
+            // Hide main page sections
+            document.querySelectorAll('.main-page').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Hide all service details
+            document.querySelectorAll('.service-detail').forEach(detail => {
+                detail.classList.remove('active');
+            });
+            
+            // Show selected service detail
+            document.getElementById(serviceId + '-detail').classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        function showMainPage() {
+            // Show main page sections
+            document.querySelectorAll('.main-page').forEach(section => {
+                section.style.display = 'block';
+            });
+            
+            // Hide all service details
+            document.querySelectorAll('.service-detail').forEach(detail => {
+                detail.classList.remove('active');
+            });
+            
+            // Scroll to services section
+            document.getElementById('services').scrollIntoView();
+        }
+
+        // Handle navigation menu clicks
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add event listeners to navigation links
+            const servicesLink = document.querySelector('a[href="#services"]');
+            if (servicesLink) {
+                servicesLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    showMainPage();
+                });
+            }
+
+            // Handle all navigation links that might be hidden
+            document.querySelectorAll('a[href^="#"]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#services') {
+                        e.preventDefault();
+                        showMainPage();
+                    } else if (href.startsWith('#')) {
+                        // For other internal links, ensure main page is visible
+                        const target = document.querySelector(href);
+                        if (target && target.classList.contains('main-page')) {
+                            e.preventDefault();
+                            showMainPage();
+                            // Small delay to ensure page is shown before scrolling
+                            setTimeout(() => {
+                                target.scrollIntoView();
+                            }, 100);
+                        }
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>
