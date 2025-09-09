@@ -385,7 +385,7 @@
 
         .media-section.single {
             grid-template-columns: 1fr;
-            max-width: 600px;
+            max-width: 900px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -393,15 +393,24 @@
         .media-placeholder {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
-            padding: 3rem 2rem;
+            padding: 2rem;
             text-align: center;
             color: #1f2937;
             border: 2px dashed #93c5fd;
-            min-height: 300px;
+            min-height: 400px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 600;
+        }
+        
+        .media-placeholder img {
+            max-width: 100%;
+            max-height: 500px;
+            height: auto;
+            width: auto;
+            object-fit: contain;
+            border-radius: 15px;
         }
 
         .video-placeholder {
@@ -872,6 +881,19 @@
             .media-section {
                 grid-template-columns: 1fr;
                 gap: 2rem;
+            }
+            
+            .media-section.single {
+                max-width: 95%;
+            }
+            
+            .media-placeholder {
+                min-height: 300px;
+                padding: 1.5rem;
+            }
+            
+            .media-placeholder img {
+                max-height: 400px;
             }
 
             .cta-buttons {
