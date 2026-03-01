@@ -214,13 +214,6 @@
             margin: 0 auto;
         }
 
-        /* Make the 4th card (Chartara Notes) span all 3 columns and center */
-        .service-card:nth-child(4) {
-            grid-column: 1 / -1;
-            max-width: 350px;
-            justify-self: center;
-            margin-top: 1rem;
-        }
 
         .service-card {
             background: rgba(255, 255, 255, 0.95);
@@ -936,7 +929,7 @@
                         <a href="https://www.youtube.com/@ChartaraLabs" target="_blank">YouTube</a>
                     </div>
                 </div>
-                <a href="https://buy.stripe.com/4gM3cw7z06TQcpNaNk4Rq00" class="nav-cta">Get Started</a>
+                <a href="https://buy.stripe.com/8x228sg5wceaexV5t04Rq03" class="nav-cta">Get Started</a>
                 <a href="https://app.chartaralabs.io" class="nav-cta">Login</a>
             </nav>
         </div>
@@ -972,20 +965,6 @@
                             </div>
                         </div>
 
-                        <div class="service-card" onclick="showServiceDetail('essential')">
-                            <div class="service-image">
-                                <img src="Essential_Practice_Welcome_Page.png" alt="Essential Practice Interface" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
-                            </div>
-                            <h3>Chartara Labs Essential Practice</h3>
-                            <p>Complete AI-powered visual analytics platform with comprehensive chart library, PDF reporting, and intelligent business insights for behavioral health practices.</p>
-                            <div class="service-buttons">
-                                <a href="https://buy.stripe.com/4gM3cw7z06TQcpNaNk4Rq00" class="service-cta" onclick="event.stopPropagation()">Start Now</a>
-                                <a href="#pricing" class="service-pricing" onclick="event.stopPropagation()">View Pricing</a>
-                            </div>
-                            <div style="display: flex; justify-content: center; margin-top: 0.75rem;">
-                                <a href="#" class="service-pricing" onclick="event.stopPropagation(); showServiceDetail('essential');">See More Info</a>
-                            </div>
-                        </div>
 
                         <div class="service-card" onclick="showServiceDetail('sync')">
                             <div class="service-image">
@@ -994,7 +973,7 @@
                             <h3>Chartara Sync</h3>
                             <p>A multi-modal AI visual analytics pipeline that seamlessly connects with any EMR. Chartara Sync transforms raw clinical and operational data into intuitive dashboards, reshaping therapist, supervisor, and administrator workflows for routine outcome monitoring and reporting. Built for organizations that demand precision, adaptability, and real-time insight.
 
-Chartara Sync is a more advanced, automated version of the Essential Practice subscription that works without manual data entry. You get data visualizations, machine learning analytics, and PDF reporting — instantly, at the click of a button. Visual analytics are tailored to your unique practice needs.</p>
+Chartara Sync is a more advanced, automated version of the Chartara Notes subscription that works without manual data entry. You get data visualizations, machine learning analytics, and PDF reporting — instantly, at the click of a button. Visual analytics are tailored to your unique practice needs.</p>
                             <div class="service-buttons">
                                 <a href="mailto:support@chartaralabs.io?subject=Demo Request for Chartara Sync&body=Hi, I'm interested in requesting a demo of Chartara Sync for my clinic, university, healthcare system, or practice. Please provide information about scheduling a demonstration." class="service-cta" onclick="event.stopPropagation()">Request Demo</a>
                                 <a href="#" class="service-pricing" onclick="event.stopPropagation(); showServiceDetail('sync');">See More Info</a>
@@ -1259,7 +1238,7 @@ Chartara Sync is a more advanced, automated version of the Essential Practice su
                         <div class="detail-header">
                             <h2>Chartara Sync</h2>
                             <p>A multi-modal AI visual analytics pipeline that seamlessly connects with any EMR. Chartara Sync transforms raw clinical and operational data into intuitive dashboards, reshaping therapist, supervisor, and administrator workflows for routine outcome monitoring and reporting. Built for organizations that demand precision, adaptability, and real-time insight.</p>
-                            <p>Chartara Sync is a more advanced, automated version of the Essential Practice subscription that works without manual data entry. You get data visualizations, machine learning analytics, and PDF reporting — instantly, at the click of a button. Visual analytics are tailored to your unique practice needs.</p>
+                            <p>Chartara Sync is a more advanced, automated version of the Chartara Notes subscription that works without manual data entry. You get data visualizations, machine learning analytics, and PDF reporting — instantly, at the click of a button. Visual analytics are tailored to your unique practice needs.</p>
                         </div>
                         
                         
@@ -1312,119 +1291,37 @@ Chartara Sync is a more advanced, automated version of the Essential Practice su
                 </div>
             </section>
 
-            <!-- Chartara Labs Essential Practice Detail -->
-            <section id="essential-detail" class="service-detail">
-                <div class="container">
-                    <a href="#" class="back-button" onclick="showMainPage()">← Back to Services</a>
-                    <div class="detail-content">
-                        <div class="detail-header">
-                            <h2>Chartara Labs Essential Practice</h2>
-                            <p>Complete AI-powered visual analytics platform with comprehensive chart library, PDF reporting, and intelligent business insights specifically designed for behavioral health practices.</p>
-                        </div>
-
-                        <!-- EMR Integration Section -->
-                        <div class="emr-section content-section">
-                            <h2>Lightweight Add-On to Your Existing EMR</h2>
-                            <div class="chart-showcase">
-                                <img src="Build%20My%20Dashboard%20Updated%20Pic.png" alt="EMR Integration - Build My Dashboard" style="max-width: 100%; height: auto; border-radius: 15px;">
-                            </div>
-                            
-                            <!-- Three-column guide section -->
-                            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 3rem; max-width: 1000px; margin-left: auto; margin-right: auto;">
-                                <div style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); padding: 2rem; border-radius: 15px; border: 1px solid rgba(59, 130, 246, 0.2); text-align: center; flex: 1; min-width: 280px; max-width: 320px; display: flex; flex-direction: column; justify-content: flex-start; min-height: 200px;">
-                                    <h3 style="color: #ffffff; font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem;">Use the Chartara Master Excel Workbook</h3>
-                                    <p style="color: #ffffff; line-height: 1.6; margin: 0; font-weight: 400;">Chartara Labs provides a Master Excel Workbook downloadable in "Build My Dashboard". Customize your data according to your specific needs. Integrate the Chartara Master Excel Workbook into your workflow to enhance your supervision, outcome tracking, and/or business intelligence capabilities.</p>
-                                </div>
-                                
-                                <div style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); padding: 2rem; border-radius: 15px; border: 1px solid rgba(59, 130, 246, 0.2); text-align: center; flex: 1; min-width: 280px; max-width: 320px; display: flex; flex-direction: column; justify-content: flex-start; min-height: 200px;">
-                                    <h3 style="color: #ffffff; font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem;">Workbook Guide</h3>
-                                    <p style="color: #ffffff; line-height: 1.6; margin: 0; font-weight: 400;">Use the simple Workbook Guide in "Build My Dashboard" to understand the tabs on the bottom of the Excel file. Each tab powers a specific chart.</p>
-                                </div>
-                                
-                                <div style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); padding: 2rem; border-radius: 15px; border: 1px solid rgba(59, 130, 246, 0.2); text-align: center; flex: 1; min-width: 280px; max-width: 320px; display: flex; flex-direction: column; justify-content: flex-start; min-height: 200px;">
-                                    <h3 style="color: #ffffff; font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem;">Upload Your File</h3>
-                                    <p style="color: #ffffff; line-height: 1.6; margin: 0; font-weight: 400;">Only enter the data you have or need. You do not need to fill out the whole Excel workbook. The software features a date tagged "Use Last Uploaded" button. You do not need to upload a new file every time you login. Instantly upon upload, visual analytics are generated based on your specific data and the chart tabs you filled out. Navigate to the specific charts to view your results.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Charts Section -->
-                        <div class="charts-section content-section">
-                            <h2>Comprehensive Chart Library</h2>
-                            <div class="chart-categories">
-                                <div class="chart-category">
-                                    <h3>📊 Business Intelligence</h3>
-                                    <ul class="chart-list">
-                                        <li>Revenue by CPT Code</li>
-                                        <li>Income by Month</li>
-                                        <li>Caseload Breakdown by Diagnosis</li>
-                                        <li>Treatment Months by Insurance Type</li>
-                                    </ul>
-                                </div>
-                                <div class="chart-category">
-                                    <h3>🧠 Clinical Monitoring</h3>
-                                    <ul class="chart-list">
-                                        <li>Treatment Plan Review Tracker</li>
-                                        <li>PHQ-9 Scores (Clients with Any Score)</li>
-                                        <li>GAD-7 Scores (Clients with Any Score)</li>
-                                        <li>Risk Level Distribution</li>
-                                        <li>Individual Client PHQ-9 Tracker</li>
-                                        <li>Individual Client GAD-7 Tracker</li>
-                                    </ul>
-                                </div>
-                                <div class="chart-category">
-                                    <h3>👥 Demographics & Attendance</h3>
-                                    <ul class="chart-list">
-                                        <li>Client Distribution by Age, Race, and Sex</li>
-                                        <li>Client Attendance by Session Type</li>
-                                        <li>Attendance by Age and Sex</li>
-                                        <li>No Show Percentage by Client</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="cta-section">
-                            <div class="cta-buttons">
-                                <a href="https://buy.stripe.com/4gM3cw7z06TQcpNaNk4Rq00" class="service-cta">Start Now - $20/month</a>
-                                <a href="#pricing" class="service-pricing">View Full Pricing</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
             <!-- Pricing Section -->
             <section id="pricing" class="content-section pricing-section main-page">
                 <h2>Choose Your Plan</h2>
                 <div class="pricing-grid">
                     <div class="pricing-card">
-                        <h3>Essential Practice</h3>
+                        <h3>Chartara Notes</h3>
                         <div class="price">$20</div>
                         <div class="price-period">per month / per seat</div>
                         <ul class="pricing-features">
-                            <li>Numerous AI-powered visualization charts</li>
-                            <li>Automated Colored PDF Report Generation for Every Chart</li>
-                            <li>Revenue forecasting with intelligent algorithms</li>
+                            <li>AI-powered progress note generation from voice recordings</li>
+                            <li>Custom template builder with your exact section headings</li>
+                            <li>SOAP, DAP, and other proven clinical formats</li>
+                            <li>AI-powered visualization charts for caseload analytics</li>
+                            <li>Automated PDF report generation</li>
+                            <li>Treatment Plan Review tracking and monitoring</li>
                             <li>Add team members and manage multiple seats</li>
                             <li>Email invitations for team member access</li>
                             <li>HIPAA-compliant cloud storage</li>
-                            <li>Simple Practice data export compatibility</li>
                             <li>Mobile browser compatible - works on iPhone, Android & tablets</li>
-                            <li>No-show prediction and risk assessment</li>
-                            <li>PHQ-9 & GAD-7 outcome tracking with ML predictions</li>
-                            <li>Regular product updates with new charts at no additional cost</li>
-                            <li>Unlimited data uploads and chart generation</li>
+                            <li>Regular product updates at no additional cost</li>
                             <li>Email support and documentation</li>
                         </ul>
-                        <a href="https://buy.stripe.com/4gM3cw7z06TQcpNaNk4Rq00" class="pricing-cta">Get Started Today</a>
+                        <a href="https://buy.stripe.com/8x228sg5wceaexV5t04Rq03" class="pricing-cta">Get Started Today</a>
                     </div>
                     <div class="pricing-card">
                         <h3>Custom Integration Bundle</h3>
                         <div class="price">Contact</div>
                         <div class="price-period">for pricing</div>
                         <ul class="pricing-features">
-                            <li>Everything in Essential Practice</li>
+                            <li>Everything in Chartara Notes</li>
                             <li>Bundle all services together in one unified interface</li>
                             <li>Chartara Train + Chartara Sync + Chartara Notes integration</li>
                             <li>Custom data visualization development</li>
