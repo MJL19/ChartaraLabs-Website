@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chartara Labs - AI-Powered Machine Learning for Behavioral Health</title>
-    <meta name="description" content="AI-Powered Machine Learning and Decision Support System for Behavioral Health. Built by therapists, for therapists.">
+    <title>Chartara Labs - AI Scribe & Clinical Decision Support for Behavioral Health</title>
+    <meta name="description" content="Chartara Notes: AI-powered voice-to-clinical-note documentation, visual analytics, and ML-powered clinical decision support for behavioral health. Free to use. Built by therapists, for therapists.">
     
     <style>
         * {
@@ -920,8 +920,9 @@
                     </button>
                     <div class="nav-dropdown" id="navDropdown">
                         <a href="#home">Home</a>
-                        <a href="#services">Services</a>
+                        <a href="#features">Features</a>
                         <a href="#pricing">Pricing</a>
+                        <a href="#getting-started">Getting Started</a>
                         <a href="#founder">Meet the Founder</a>
                         <a href="#contact">Contact</a>
                         <a href="https://www.linkedin.com/company/chartara-labs/" target="_blank">LinkedIn</a>
@@ -929,7 +930,7 @@
                         <a href="https://www.youtube.com/@ChartaraLabs" target="_blank">YouTube</a>
                     </div>
                 </div>
-                <a href="https://buy.stripe.com/8x228sg5wceaexV5t04Rq03" class="nav-cta">Get Started</a>
+                <a href="https://buy.stripe.com/7sYdRag5wemidtR7B84Rq09" class="nav-cta">Get Started Free</a>
                 <a href="https://notes.chartaralabs.io" class="nav-cta">Login</a>
             </nav>
         </div>
@@ -944,51 +945,25 @@
                 <!-- Hero Section -->
                 <div class="hero">
                     <img src="brand_logo.jpg" alt="Chartara Labs Logo" style="max-width: 800px; width: 80%; height: auto; display: block; margin: 1rem auto 1rem; border: none; text-align: center;">
-                    <h1>Machine Learning.<br>
+                    <h1>AI Scribe.<br>
                         Data Visualization.<br>
-                        Supervision Engine.</h1>
+                        Clinical Decision Support.</h1>
                 </div>
 
-                <!-- Services Section -->
-                <section id="services" class="services-section">
-                    <h2>Our AI-Powered Solutions</h2>
-                    <div class="services-grid">
-                        <div class="service-card" onclick="showServiceDetail('notes')">
+                <!-- Features Section -->
+                <section id="features" class="services-section">
+                    <h2>Chartara Notes: AI Scribe & Clinical Decision Support</h2>
+                    <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                        <div class="service-card" onclick="showServiceDetail('notes')" style="cursor: pointer;">
                             <div class="service-image">
                                 <img src="Notes_Dashboard.png" alt="Chartara Notes Interface" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
                             </div>
-                            <h3>Chartara Notes</h3>
-                            <p>Create professional clinical documentation by simply speaking about your sessions. Chartara Notes adapts to YOUR workflow - build custom templates with your exact section headings, or use proven formats like SOAP and DAP. Our AI understands therapeutic language and intelligently transforms your natural speech into polished, HIPAA-compliant notes in seconds. Stop typing for 30 minutes. Start speaking for 60 seconds.</p>
-                            <div class="service-buttons">
-                                <a href="https://buy.stripe.com/8x228sg5wceaexV5t04Rq03" class="service-cta" onclick="event.stopPropagation()">Start Now</a>
+                            <h3>AI-Powered Clinical Documentation & Visual Analytics</h3>
+                            <p style="text-align: left;">Create professional clinical documentation by simply speaking about your sessions. Chartara Notes adapts to YOUR workflow — build custom templates with your exact section headings, or use proven formats like SOAP and DAP. Our AI understands therapeutic language and intelligently transforms your natural speech into polished, HIPAA-compliant notes in seconds. Stop typing for 30 minutes. Start speaking for 60 seconds.</p>
+                            <p style="text-align: left;">Beyond documentation, Chartara Notes includes a full visual analytics and clinical decision support dashboard — powered by machine learning algorithms that analyze your caseload data and surface actionable insights. Instant PDF reports, outcome tracking, and data-driven supervision — all in one platform.</p>
+                            <div class="service-buttons" style="justify-content: center;">
+                                <a href="https://buy.stripe.com/7sYdRag5wemidtR7B84Rq09" class="service-cta" onclick="event.stopPropagation()">Start Free</a>
                                 <a href="#" class="service-pricing" onclick="event.stopPropagation(); showServiceDetail('notes');">See More Info</a>
-                            </div>
-                        </div>
-
-
-                        <div class="service-card" onclick="showServiceDetail('sync')">
-                            <div class="service-image">
-                                <img src="Chartara_Sync_Login_Page.png" alt="Chartara Sync Interface" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
-                            </div>
-                            <h3>Chartara Sync</h3>
-                            <p>A multi-modal AI visual analytics pipeline that seamlessly connects with any EMR. Chartara Sync transforms raw clinical and operational data into intuitive dashboards, reshaping therapist, supervisor, and administrator workflows for routine outcome monitoring and reporting. Built for organizations that demand precision, adaptability, and real-time insight.
-
-Chartara Sync is a more advanced, automated version of the Chartara Notes subscription that works without manual data entry. You get data visualizations, machine learning analytics, and PDF reporting — instantly, at the click of a button. Visual analytics are tailored to your unique practice needs.</p>
-                            <div class="service-buttons">
-                                <a href="mailto:support@chartaralabs.io?subject=Demo Request for Chartara Sync&body=Hi, I'm interested in requesting a demo of Chartara Sync for my clinic, university, healthcare system, or practice. Please provide information about scheduling a demonstration." class="service-cta" onclick="event.stopPropagation()">Request Demo</a>
-                                <a href="#" class="service-pricing" onclick="event.stopPropagation(); showServiceDetail('sync');">See More Info</a>
-                            </div>
-                        </div>
-
-                        <div class="service-card" onclick="showServiceDetail('train')">
-                            <div class="service-image">
-                                <img src="Chartara_Train_Welcome_Page.png" alt="Chartara Train Interface" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
-                            </div>
-                            <h3>Chartara Train</h3>
-                            <p>Master evidence-based interventions through AI-powered analytics for behavioral activation, cognitive restructuring, and cultural competence—with outcome tracking that strengthens funding opportunities and demonstrates program effectiveness.</p>
-                            <div class="service-buttons">
-                                <a href="mailto:support@chartaralabs.io?subject=Access Request for Chartara Train&body=Hi, I'm interested in accessing Chartara Train for my clinic, university, healthcare system, or practice. Please provide information about getting started." class="service-cta" onclick="event.stopPropagation()">Request Access</a>
-                                <a href="#" class="service-pricing" onclick="event.stopPropagation(); showServiceDetail('train');">See More Info</a>
                             </div>
                         </div>
                     </div>
@@ -998,17 +973,21 @@ Chartara Sync is a more advanced, automated version of the Chartara Notes subscr
                 <div class="problems-section">
                     <h2>Core Problems We Solve</h2>
                     <div class="problems-grid">
+                        <div class="problem-card" style="border-color: rgba(59, 130, 246, 0.5); background: rgba(59, 130, 246, 0.1);">
+                            <h3>Documentation Burnout</h3>
+                            <p>Therapists spend up to 30 minutes typing a single progress note. With Chartara Notes AI Scribe, speak naturally about your session for 60 seconds and get a polished, HIPAA-compliant clinical note — instantly. Build custom templates with YOUR section headings or use proven formats like SOAP and DAP. Voice dictation that actually understands therapeutic language. Your voice. Your workflow. Your notes — done.</p>
+                        </div>
                         <div class="problem-card">
                             <h3>Supervision Guesswork</h3>
                             <p>Generate instant PDF performance reports comparing therapists, outcomes, client attendance show rates, comprehensive caseload analytics, and more. Instant PDF report for every chart: including the colored data visualization and the analytics section. Evidence-based supervision in seconds, not hours.</p>
                         </div>
                         <div class="problem-card">
                             <h3>Data Chaos</h3>
-                            <p>Therapists are in over their heads in data. And it's hard to make sense of it. Stop navigating through lots of screens in your EMR, trying to interpret unhelpful, disorganized data. Use Chartara Labs to CENTRALIZE YOUR DATA and GENERATE INSTANT VISUALIZATIONS that bring your caseload to life. Make your data ACTIONABLE.</p>
+                            <p>Therapists are in over their heads in data. And it's hard to make sense of it. Stop navigating through lots of screens in your EMR, trying to interpret unhelpful, disorganized data. Use Chartara Notes to CENTRALIZE YOUR DATA and GENERATE INSTANT VISUALIZATIONS that bring your caseload to life. Simple web forms — no spreadsheets needed. Make your data ACTIONABLE.</p>
                         </div>
                         <div class="problem-card">
                             <h3>Outcome Blindness</h3>
-                            <p>Machine learning analytics reveal which clients are improving, which need intervention, and what treatment approaches work best for your practice. Each data visualization is combined with a comprehensive analytics section- dynamically adapted to your unique caseload. Machine learning algorithms include descriptive, prescriptive, and predictive analytics.</p>
+                            <p>Machine learning analytics reveal which clients are improving, which need intervention, and what treatment approaches work best for your practice. Each data visualization is combined with a comprehensive analytics section — dynamically adapted to your unique caseload. Machine learning algorithms include descriptive, prescriptive, and predictive analytics.</p>
                         </div>
                         <div class="problem-card">
                             <h3>Business Mystery</h3>
@@ -1025,7 +1004,7 @@ Chartara Sync is a more advanced, automated version of the Chartara Notes subscr
                             <h3>What We Are</h3>
                             <div class="what-item">
                                 <span class="what-icon">✅</span>
-                                <div class="what-text">Machine learning visual analytics platform - the first of its kind in behavioral health</div>
+                                <div class="what-text">AI Scribe and machine learning visual analytics platform — the first of its kind in behavioral health</div>
                             </div>
                             <div class="what-item">
                                 <span class="what-icon">✅</span>
@@ -1049,7 +1028,7 @@ Chartara Sync is a more advanced, automated version of the Chartara Notes subscr
     
                             <div class="what-item">
                                 <span class="what-icon">❌</span>
-                                <div class="what-text">Not meant to replace therapist decision making. Instead, Chartara Labs acts as a decision support system, respecting the autonomy and professional skillset of therapists. Therapists should ultimately make their own determinations and use Chartara Labs as an advanced decision support tool.</div>
+                                <div class="what-text">Not meant to replace therapist decision making. Instead, Chartara Notes acts as a clinical decision support system, respecting the autonomy and professional skillset of therapists. Therapists should ultimately make their own determinations and use Chartara Notes as an advanced decision support tool.</div>
                             </div>
                         </div>
                     </div>
@@ -1078,11 +1057,11 @@ Chartara Sync is a more advanced, automated version of the Chartara Notes subscr
                     </div>
                     <div class="faq-item">
                         <div class="faq-question" onclick="toggleFAQ(this)">
-                            <span>Can Chartara Labs integrate with existing EMRs?</span>
+                            <span>How does the AI Scribe work?</span>
                             <span class="faq-toggle">+</span>
                         </div>
                         <div class="faq-answer">
-                            Yes. Our Chartara Sync feature seamlessly connects with any EMR through a multi-modal AI pipeline. It automates data extraction and transforms routine information into advanced visual analytics. This integration completely enhances and reshapes how therapists and supervisors approach routine outcome monitoring, reporting, and workflow management—without requiring changes to their existing EMR system. This feature is available by Request only with custom visual analytics tailored to your unique practice needs.
+                            Simply speak naturally about your session — describe what happened, interventions used, client presentation, and treatment progress. Chartara Notes AI Scribe transforms your voice recording into a polished, professional clinical note in seconds. You can build custom templates with your exact section headings, or use proven formats like SOAP and DAP. The AI understands therapeutic language and adapts to your clinical style. No typing, no copy-paste, no reformatting.
                         </div>
                     </div>
                     <div class="faq-item">
@@ -1099,168 +1078,15 @@ Chartara Sync is a more advanced, automated version of the Chartara Notes subscr
 
             <!-- Service Detail Pages -->
             
-            <!-- Chartara Train Detail -->
-            <section id="train-detail" class="service-detail">
-                <div class="container">
-                    <a href="#" class="back-button" onclick="showMainPage()">← Back to Services</a>
-                    <div class="detail-content">
-                        <div class="detail-header">
-                            <h2>Chartara Train</h2>
-                            <p>Chartara Train is a sophisticated analytics platform that empowers behavioral health professionals to master evidence-based interventions through data-driven clinical training. By combining structured data collection with advanced AI analytics, Chartara Train provides therapists with professional-grade insights, treatment planning tools, and outcome monitoring capabilities across three specialized clinical domains.</p>
-                        </div>
-                        
-                        <div class="media-section single">
-                            <div class="media-placeholder">
-                                <img src="Automatic_Thought_Tracker_Page.png" alt="Automatic Thought Tracker Interface" style="width: 100%; height: auto; border-radius: 15px;">
-                            </div>
-                        </div>
-
-                        <div class="media-section single">
-                            <div class="media-placeholder">
-                                <img src="Cultural Adaptations.png" alt="Cultural Adaptations Interface" style="width: 100%; height: auto; border-radius: 15px;">
-                            </div>
-                        </div>
-                        
-                        <!-- Core Platform Features Section -->
-                        <div class="content-section">
-                            <h2>Core Platform Features</h2>
-
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
-                                <div style="background: rgba(255, 255, 255, 0.05); padding: 1.5rem; border-radius: 15px; border: 1px solid rgba(59, 130, 246, 0.2);">
-                                    <h3 style="color: #ffffff; margin-bottom: 1rem;">Intelligent Data Processing</h3>
-                                    <p style="color: #ffffff; line-height: 1.6;">Upload clinical tracking data via web forms or structured templates and receive comprehensive AI-powered analysis within seconds. Our machine learning algorithms identify patterns, correlations, and treatment opportunities that would take hours to discover manually. Client mobile app for self-tracking coming soon.</p>
-                                </div>
-
-                                <div style="background: rgba(255, 255, 255, 0.05); padding: 1.5rem; border-radius: 15px; border: 1px solid rgba(59, 130, 246, 0.2);">
-                                    <h3 style="color: #ffffff; margin-bottom: 1rem;">Professional Visualization</h3>
-                                    <p style="color: #ffffff; line-height: 1.6;">Interactive charts transform complex clinical data into clear, actionable visualizations. Track progress over time, compare intervention effectiveness, and identify optimal treatment strategies through intuitive graphical representations.</p>
-                                </div>
-
-                                <div style="background: rgba(255, 255, 255, 0.05); padding: 1.5rem; border-radius: 15px; border: 1px solid rgba(59, 130, 246, 0.2);">
-                                    <h3 style="color: #ffffff; margin-bottom: 1rem;">Clinical Documentation</h3>
-                                    <p style="color: #ffffff; line-height: 1.6;">Generate professional PDF reports combining analytics, visualizations, and evidence-based recommendations. Perfect for treatment planning, supervision, case consultation, and clinical documentation requirements.</p>
-                                </div>
-
-                                <div style="background: rgba(255, 255, 255, 0.05); padding: 1.5rem; border-radius: 15px; border: 1px solid rgba(59, 130, 246, 0.2);">
-                                    <h3 style="color: #ffffff; margin-bottom: 1rem;">HIPAA-Compliant Architecture</h3>
-                                    <p style="color: #ffffff; line-height: 1.6;">Built on Azure's enterprise-grade infrastructure with comprehensive Business Associate Agreement coverage. All data processing occurs within HIPAA-compliant cloud services, ensuring maximum security for protected health information.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Three Specialized Training Modules -->
-                        <div class="charts-section content-section">
-                            <h2>Three Specialized Training Modules</h2>
-
-                            <div style="margin-bottom: 3rem;">
-                                <h3 style="color: #ffffff; font-size: 1.5rem; margin-bottom: 1rem;">1. Behavioral Activation Tracker</h3>
-                                <p style="color: #ffffff; margin-bottom: 1rem;">Master structured behavioral activation therapy through systematic activity-mood analysis. This module helps clinicians identify which activities provide optimal therapeutic benefit for each client through:</p>
-                                <ul style="color: #ffffff; line-height: 1.8; margin-bottom: 1rem;">
-                                    <li>Activity-satisfaction correlation analysis with ranking algorithms</li>
-                                    <li>Temporal pattern recognition (optimal timing, duration, frequency)</li>
-                                    <li>Category-based effectiveness comparison</li>
-                                    <li>AI-generated activity recommendations based on satisfaction metrics</li>
-                                    <li>Progress tracking with daily trend analysis</li>
-                                    <li>Treatment planning integration with session-by-session guidance</li>
-                                </ul>
-                                <p style="color: #ffffff; font-style: italic;"><strong>Clinical Applications:</strong> Depression treatment, anxiety management, behavioral engagement strategies, values-based action planning, relapse prevention</p>
-                            </div>
-
-                            <div style="margin-bottom: 3rem;">
-                                <h3 style="color: #ffffff; font-size: 1.5rem; margin-bottom: 1rem;">2. Automatic Thought Tracker</h3>
-                                <p style="color: #ffffff; margin-bottom: 1rem;">Develop expertise in cognitive restructuring through systematic thought pattern analysis. This CBT-focused module provides comprehensive cognitive distortion detection and intervention planning:</p>
-                                <ul style="color: #ffffff; line-height: 1.8; margin-bottom: 1rem;">
-                                    <li>Automated cognitive distortion categorization across 15+ distortion types</li>
-                                    <li>Frequency analysis identifying primary thought patterns</li>
-                                    <li>Evidence-based CBT intervention matching for each distortion category</li>
-                                    <li>Thought-emotion-behavior correlation tracking</li>
-                                    <li>Progress monitoring showing distortion reduction over time</li>
-                                    <li>Treatment planning with Socratic questioning frameworks</li>
-                                </ul>
-                                <p style="color: #ffffff; font-style: italic;"><strong>Clinical Applications:</strong> Cognitive behavioral therapy, anxiety disorders, depression, OCD, PTSD, cognitive restructuring interventions</p>
-                            </div>
-
-                            <div style="margin-bottom: 3rem;">
-                                <h3 style="color: #ffffff; font-size: 1.5rem; margin-bottom: 1rem;">3. Cultural Competence Tracker</h3>
-                                <p style="color: #ffffff; margin-bottom: 1rem;">Build culturally responsive therapeutic skills through systematic adaptation monitoring. This novel module helps clinicians develop and refine cultural competency through evidence-based practice:</p>
-                                <ul style="color: #ffffff; line-height: 1.8; margin-bottom: 1rem;">
-                                    <li>Cultural adaptation strategy documentation and tracking via web forms</li>
-                                    <li>Effectiveness measurement across diverse client populations</li>
-                                    <li>Best practice identification through engagement metrics</li>
-                                    <li>Competency level assessment (Beginning → Developing → Advanced)</li>
-                                    <li>Evidence-based cultural adaptation frameworks</li>
-                                    <li>Professional development pathway recommendations</li>
-                                </ul>
-                                <p style="color: #ffffff; font-style: italic;"><strong>Clinical Applications:</strong> Multicultural counseling, cultural formulation, EBP adaptation for diverse populations, supervision and training, cultural humility development</p>
-                            </div>
-                        </div>
-
-                        <!-- Benefits for Outcome-Based Funding -->
-                        <div class="content-section" style="background: rgba(59, 130, 246, 0.1); padding: 2rem; border-radius: 15px; margin-bottom: 3rem;">
-                            <h2 style="color: #ffffff; margin-bottom: 1.5rem;">Supporting Outcome-Based Funding Models</h2>
-
-                            <div style="margin-bottom: 2rem;">
-                                <h3 style="color: #ffffff; font-size: 1.3rem; margin-bottom: 1rem;">Administrative Excellence</h3>
-                                <p style="color: #ffffff; line-height: 1.8;">Chartara Train provides administrators with clear, data-driven insights into which culturally adapted evidence-based interventions are achieving optimal outcomes across diverse client populations. This transparency enables strategic resource allocation and program development based on proven effectiveness metrics.</p>
-                            </div>
-
-                            <div style="margin-bottom: 2rem;">
-                                <h3 style="color: #ffffff; font-size: 1.3rem; margin-bottom: 1rem;">Therapist Engagement</h3>
-                                <p style="color: #ffffff; line-height: 1.8;">The platform naturally encourages therapists to apply evidence-based interventions by making the clinical benefits immediately visible through real-time analytics. This data-driven feedback loop enhances treatment fidelity and promotes consistent application of best practices.</p>
-                            </div>
-
-                            <div style="margin-bottom: 2rem;">
-                                <h3 style="color: #ffffff; font-size: 1.3rem; margin-bottom: 1rem;">Leadership Empowerment</h3>
-                                <p style="color: #ffffff; line-height: 1.8;">Clinical directors and first-level leaders gain powerful tools to enhance organizational accountability. The platform's comprehensive tracking and reporting capabilities make it easy to demonstrate program effectiveness, identify areas for improvement, and maintain high standards of care delivery.</p>
-                            </div>
-
-                            <div style="background: rgba(255, 255, 255, 0.05); padding: 1.5rem; border-radius: 10px;">
-                                <h3 style="color: #ffffff; font-size: 1.3rem; margin-bottom: 1rem;">🎯 Funding Opportunities</h3>
-                                <p style="color: #ffffff; line-height: 1.8;">When organizations can demonstrate measurable outcomes from cultural competence initiatives and evidence-based interventions, they significantly strengthen their position for grant applications and funding opportunities. Chartara Train provides the robust data foundation needed to showcase program impact, client improvement metrics, and return on investment—key factors that funding bodies prioritize when evaluating behavioral health programs.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="cta-section">
-                            <div class="cta-buttons">
-                                <a href="mailto:support@chartaralabs.io?subject=Access Request for Chartara Train&body=Hi, I'm interested in accessing Chartara Train for my clinic, university, healthcare system, or practice. Please provide information about getting started." class="service-cta">Request Access</a>
-                                <a href="#" class="service-cta" onclick="showMainPage()">Back to Services</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Chartara Sync Detail -->
-            <section id="sync-detail" class="service-detail">
-                <div class="container">
-                    <a href="#" class="back-button" onclick="showMainPage()">← Back to Services</a>
-                    <div class="detail-content">
-                        <div class="detail-header">
-                            <h2>Chartara Sync</h2>
-                            <p>A multi-modal AI visual analytics pipeline that seamlessly connects with any EMR. Chartara Sync transforms raw clinical and operational data into intuitive dashboards, reshaping therapist, supervisor, and administrator workflows for routine outcome monitoring and reporting. Built for organizations that demand precision, adaptability, and real-time insight.</p>
-                            <p>Chartara Sync is a more advanced, automated version of the Chartara Notes subscription that works without manual data entry. You get data visualizations, machine learning analytics, and PDF reporting — instantly, at the click of a button. Visual analytics are tailored to your unique practice needs.</p>
-                        </div>
-                        
-                        
-                        <div class="cta-section">
-                            <div class="cta-buttons">
-                                <a href="mailto:support@chartaralabs.io?subject=Demo Request for Chartara Sync&body=Hi, I'm interested in requesting a demo of Chartara Sync for my clinic, university, healthcare system, or practice. Please provide information about scheduling a demonstration." class="service-cta">Request Demo</a>
-                                <a href="#" class="service-cta" onclick="showMainPage()">Back to Services</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
             <!-- Chartara Notes Detail -->
             <section id="notes-detail" class="service-detail">
                 <div class="container">
-                    <a href="#" class="back-button" onclick="showMainPage()">← Back to Services</a>
+                    <a href="#" class="back-button" onclick="showMainPage()">← Back</a>
                     <div class="detail-content">
                         <div class="detail-header">
-                            <h2>Chartara Notes</h2>
-                            <p>Create professional clinical documentation by simply speaking about your sessions. Chartara Notes adapts to YOUR workflow - build custom templates with your exact section headings, or use proven formats like SOAP and DAP. Our AI understands therapeutic language and intelligently transforms your natural speech into polished, HIPAA-compliant notes in seconds. Stop typing for 30 minutes. Start speaking for 60 seconds.</p>
-                            <p>Set and save your templates for ANY documentation format. Intake. Session Note. Termination Summary etc.</p>
+                            <h2>Chartara Notes: AI Scribe & Clinical Decision Support</h2>
+                            <p>Create professional clinical documentation by simply speaking about your sessions. Chartara Notes adapts to YOUR workflow — build custom templates with your exact section headings, or use proven formats like SOAP and DAP. Our AI understands therapeutic language and intelligently transforms your natural speech into polished, HIPAA-compliant notes in seconds. Stop typing for 30 minutes. Start speaking for 60 seconds.</p>
+                            <p>Set and save your templates for ANY documentation format. Intake. Session Note. Termination Summary — and more. Plus, access a full visual analytics dashboard with instant data visualization, ML-powered clinical decision support, and downloadable PDF reports unique to your caseload.</p>
                         </div>
                         
                         <div class="media-section single">
@@ -1283,8 +1109,8 @@ Chartara Sync is a more advanced, automated version of the Chartara Notes subscr
                         
                         <div class="cta-section">
                             <div class="cta-buttons">
-                                <a href="https://buy.stripe.com/8x228sg5wceaexV5t04Rq03" class="service-cta">Start Now</a>
-                                <a href="#" class="service-cta" onclick="showMainPage()">Back to Services</a>
+                                <a href="https://buy.stripe.com/7sYdRag5wemidtR7B84Rq09" class="service-cta">Start Free</a>
+                                <a href="#" class="service-cta" onclick="showMainPage()">Back</a>
                             </div>
                         </div>
                     </div>
@@ -1296,46 +1122,89 @@ Chartara Sync is a more advanced, automated version of the Chartara Notes subscr
             <section id="pricing" class="content-section pricing-section main-page">
                 <h2>Choose Your Plan</h2>
                 <div class="pricing-grid">
-                    <div class="pricing-card">
-                        <h3>Chartara Notes</h3>
-                        <div class="price">$20</div>
-                        <div class="price-period">per month / per seat</div>
+                    <div class="pricing-card" style="border-color: rgba(59, 130, 246, 0.6); position: relative;">
+                        <div style="background: linear-gradient(135deg, #2563eb, #7c3aed); color: white; padding: 0.4rem 1.2rem; border-radius: 20px; font-size: 0.85rem; font-weight: 700; display: inline-block; margin-bottom: 1rem;">Most Popular</div>
+                        <h3>Free Plan</h3>
+                        <div class="price">$0</div>
+                        <div class="price-period">free forever — no credit card required</div>
                         <ul class="pricing-features">
-                            <li>AI-powered progress note generation from voice recordings</li>
-                            <li>Custom template builder with your exact section headings</li>
-                            <li>SOAP, DAP, and other proven clinical formats</li>
-                            <li>AI-powered visualization charts for caseload analytics</li>
-                            <li>Automated PDF report generation</li>
-                            <li>Treatment Plan Review tracking and monitoring</li>
-                            <li>Add team members and manage multiple seats</li>
-                            <li>Email invitations for team member access</li>
-                            <li>HIPAA-compliant cloud storage</li>
-                            <li>Mobile browser compatible - works on iPhone, Android & tablets</li>
-                            <li>Regular product updates at no additional cost</li>
-                            <li>Email support and documentation</li>
+                            <li>AI-Powered Clinical Documentation</li>
+                            <li>Voice-to-Note in Seconds</li>
+                            <li>Custom Note Templates</li>
+                            <li>Visual Analytics & Insights Dashboard</li>
+                            <li>Instant Data Visualization for Therapists</li>
+                            <li>ML-Powered Clinical Decision Support</li>
+                            <li>Instant PDF Downloads</li>
+                            <li>Instant PDF of Visual Analytics Data Unique to Your Caseload</li>
+                            <li>Simple Web Forms — No Spreadsheets</li>
+                            <li>HIPAA-Compliant & Secure</li>
                         </ul>
-                        <a href="https://buy.stripe.com/8x228sg5wceaexV5t04Rq03" class="pricing-cta">Get Started Today</a>
+                        <a href="https://buy.stripe.com/7sYdRag5wemidtR7B84Rq09" class="pricing-cta">Get Started Free</a>
                     </div>
-                    <div class="pricing-card">
-                        <h3>Custom Integration Bundle</h3>
-                        <div class="price">Contact</div>
-                        <div class="price-period">for pricing</div>
+                    <div class="pricing-card" style="opacity: 0.85;">
+                        <div style="background: rgba(255, 255, 255, 0.15); color: white; padding: 0.4rem 1.2rem; border-radius: 20px; font-size: 0.85rem; font-weight: 700; display: inline-block; margin-bottom: 1rem;">Coming Soon</div>
+                        <h3>Supervisor Plan</h3>
+                        <div class="price" style="font-size: 2.2rem;">Coming Soon</div>
+                        <div class="price-period">for clinical supervisors & team leads</div>
                         <ul class="pricing-features">
-                            <li>Everything in Chartara Notes</li>
-                            <li>Bundle all services together in one unified interface</li>
-                            <li>Chartara Train + Chartara Sync + Chartara Notes integration</li>
-                            <li>Custom data visualization development</li>
-                            <li>Organization-specific analytics and workflows</li>
-                            <li>Advanced team-oriented features and permissions</li>
-                            <li>Direct consultation with clinical technologist</li>
-                            <li>Tailored implementation and comprehensive training</li>
-                            <li>Priority support and dedicated account management</li>
-                            <li>Seamless single sign-on across all modules</li>
+                            <li>Everything in the Free Plan</li>
+                            <li>Supervisor Dashboards & Views</li>
+                            <li>Multi-Clinician Monitoring From Your Account</li>
+                            <li>Staffing Pattern Analytics</li>
+                            <li>Caseload Trend Analytics</li>
+                            <li>Documentation Compliance Tracking</li>
+                            <li>Dedicated Support</li>
                         </ul>
-                        <a href="mailto:support@chartaralabs.io?subject=Custom Integration Bundle Inquiry&body=Hi, I'm interested in the Custom Integration Bundle for my organization. Please contact Milo LeGendre, LMHC at 315-278-1649 or reply to this email." class="pricing-cta secondary">Contact for Integration Bundle</a>
+                        <span class="pricing-cta secondary" style="cursor: default; opacity: 0.7;">Coming Soon</span>
                         <div style="margin-top: 1.5rem; font-size: 0.9rem; color: #ffffff; line-height: 1.5; font-weight: 400;">
-                            Bundle all Chartara Labs services together in one unified interface. Consult with a clinician-technologist who will collaborate on advanced visual analytics, team oriented workflows, and user experience priorities tailored to your organization's specific needs.
+                            Oversee your team from a single account. Supervisor-level views give you real-time insight into clinician documentation, caseload trends, staffing patterns, and more — purpose-built for clinical supervisors and program leaders in behavioral health.
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Getting Started Section -->
+            <section id="getting-started" class="content-section main-page" style="padding-bottom: 4rem;">
+                <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                    <h2 style="font-size: 3rem; font-weight: 800; color: #ffffff; margin-bottom: 1rem;">What to Expect When You Sign Up</h2>
+                    <p style="font-size: 1.2rem; color: #ffffff; margin-bottom: 3rem; font-weight: 500;">Getting started is free. No credit card or payment information required.</p>
+
+                    <div style="display: grid; gap: 1.5rem; text-align: left;">
+                        <div style="background: rgba(255, 255, 255, 0.05); padding: 1.5rem 2rem; border-radius: 15px; border: 1px solid rgba(59, 130, 246, 0.2); display: flex; align-items: flex-start; gap: 1.5rem;">
+                            <div style="background: linear-gradient(135deg, #2563eb, #7c3aed); color: white; min-width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem;">1</div>
+                            <div>
+                                <h3 style="color: #ffffff; margin-bottom: 0.5rem; font-size: 1.2rem;">Sign Up Free</h3>
+                                <p style="color: #ffffff; font-weight: 400; line-height: 1.6;">Click "Get Started Free" and complete the sign-up form. Enter your <strong>Full Name</strong> and <strong>email address</strong> — no credit card or payment info needed. The Full Name you provide will appear in the app and on all your downloadable PDF reports.</p>
+                            </div>
+                        </div>
+
+                        <div style="background: rgba(255, 255, 255, 0.05); padding: 1.5rem 2rem; border-radius: 15px; border: 1px solid rgba(59, 130, 246, 0.2); display: flex; align-items: flex-start; gap: 1.5rem;">
+                            <div style="background: linear-gradient(135deg, #2563eb, #7c3aed); color: white; min-width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem;">2</div>
+                            <div>
+                                <h3 style="color: #ffffff; margin-bottom: 0.5rem; font-size: 1.2rem;">Check Your Email</h3>
+                                <p style="color: #ffffff; font-weight: 400; line-height: 1.6;">You will receive an email with your <strong>username</strong> (which is your email address) and a <strong>temporary password</strong>.</p>
+                            </div>
+                        </div>
+
+                        <div style="background: rgba(255, 255, 255, 0.05); padding: 1.5rem 2rem; border-radius: 15px; border: 1px solid rgba(59, 130, 246, 0.2); display: flex; align-items: flex-start; gap: 1.5rem;">
+                            <div style="background: linear-gradient(135deg, #2563eb, #7c3aed); color: white; min-width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem;">3</div>
+                            <div>
+                                <h3 style="color: #ffffff; margin-bottom: 0.5rem; font-size: 1.2rem;">Log In at <a href="https://notes.chartaralabs.io" style="color: #93c5fd; text-decoration: underline;">notes.chartaralabs.io</a></h3>
+                                <p style="color: #ffffff; font-weight: 400; line-height: 1.6;">Go to <strong><a href="https://notes.chartaralabs.io" style="color: #93c5fd;">notes.chartaralabs.io</a></strong> and enter your email and temporary password. You will be prompted to <strong>create your own new password</strong> upon first login.</p>
+                            </div>
+                        </div>
+
+                        <div style="background: rgba(255, 255, 255, 0.05); padding: 1.5rem 2rem; border-radius: 15px; border: 1px solid rgba(59, 130, 246, 0.2); display: flex; align-items: flex-start; gap: 1.5rem;">
+                            <div style="background: linear-gradient(135deg, #2563eb, #7c3aed); color: white; min-width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem;">4</div>
+                            <div>
+                                <h3 style="color: #ffffff; margin-bottom: 0.5rem; font-size: 1.2rem;">Start Using Chartara Notes</h3>
+                                <p style="color: #ffffff; font-weight: 400; line-height: 1.6;">You're in. Start creating clinical notes with the AI Scribe, build custom templates, access your visual analytics dashboard, and download instant PDF reports — all included for free.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2.5rem;">
+                        <a href="https://buy.stripe.com/7sYdRag5wemidtR7B84Rq09" class="pricing-cta" style="display: inline-block; width: auto; padding: 1rem 3rem;">Get Started Free</a>
                     </div>
                 </div>
             </section>
@@ -1479,18 +1348,21 @@ Chartara Sync is a more advanced, automated version of the Chartara Notes subscr
                 detail.classList.remove('active');
             });
             
-            // Scroll to services section
-            document.getElementById('services').scrollIntoView();
+            // Scroll to features section
+            document.getElementById('features').scrollIntoView();
         }
 
         // Handle navigation menu clicks
         document.addEventListener('DOMContentLoaded', function() {
             // Add event listeners to navigation links
-            const servicesLink = document.querySelector('a[href="#services"]');
-            if (servicesLink) {
-                servicesLink.addEventListener('click', function(e) {
+            const featuresLink = document.querySelector('a[href="#features"]');
+            if (featuresLink) {
+                featuresLink.addEventListener('click', function(e) {
                     e.preventDefault();
                     showMainPage();
+                    setTimeout(() => {
+                        document.getElementById('features').scrollIntoView();
+                    }, 100);
                 });
             }
 
@@ -1498,9 +1370,12 @@ Chartara Sync is a more advanced, automated version of the Chartara Notes subscr
             document.querySelectorAll('a[href^="#"]').forEach(link => {
                 link.addEventListener('click', function(e) {
                     const href = this.getAttribute('href');
-                    if (href === '#services') {
+                    if (href === '#features') {
                         e.preventDefault();
                         showMainPage();
+                        setTimeout(() => {
+                            document.getElementById('features').scrollIntoView();
+                        }, 100);
                     } else if (href.startsWith('#')) {
                         // For other internal links, ensure main page is visible
                         const target = document.querySelector(href);
