@@ -238,17 +238,51 @@
 
         .service-image {
             width: 100%;
-            height: 180px;
-            background: linear-gradient(135deg, #e5f3ff 0%, #f0f9ff 100%);
             border-radius: 15px;
             margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px dashed #93c5fd;
-            color: #3b82f6;
-            font-weight: 600;
-            font-size: 0.9rem;
+            overflow: hidden;
+        }
+
+        .service-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 15px;
+        }
+
+        /* Showcase Grid */
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .showcase-item {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .showcase-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.25);
+        }
+
+        .showcase-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .showcase-caption {
+            padding: 1rem 1.2rem;
+            color: #1e40af;
+            font-weight: 700;
+            font-size: 0.95rem;
             text-align: center;
         }
 
@@ -871,6 +905,10 @@
                 flex-direction: column;
             }
 
+            .showcase-grid {
+                grid-template-columns: 1fr;
+            }
+
             .media-section {
                 grid-template-columns: 1fr;
                 gap: 2rem;
@@ -956,7 +994,7 @@
                     <div style="max-width: 800px; margin: 0 auto; text-align: center;">
                         <div class="service-card" onclick="showServiceDetail('notes')" style="cursor: pointer;">
                             <div class="service-image">
-                                <img src="Notes_Dashboard.png" alt="Chartara Notes Interface" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
+                                <img src="Visual Analytics Dashboard.png" alt="Chartara Notes Visual Analytics Dashboard">
                             </div>
                             <h3>AI-Powered Clinical Documentation & Visual Analytics</h3>
                             <p style="text-align: left;">Create professional clinical documentation by simply speaking about your sessions. Chartara Notes adapts to YOUR workflow — build custom templates with your exact section headings, or use proven formats like SOAP and DAP. Our AI understands therapeutic language and intelligently transforms your natural speech into polished, HIPAA-compliant notes in seconds. Stop typing for 30 minutes. Start speaking for 60 seconds.</p>
@@ -968,6 +1006,39 @@
                         </div>
                     </div>
                 </section>
+
+                <!-- Visual Analytics Showcase -->
+                <div class="content-section">
+                    <h2 style="text-align: center; font-size: 3rem; font-weight: 800; color: #ffffff; margin-bottom: 1rem;">Visual Analytics in Action</h2>
+                    <p style="text-align: center; color: #ffffff; font-size: 1.2rem; margin-bottom: 3rem; font-weight: 500;">Instant data visualization, ML-powered clinical insights, and downloadable PDF reports</p>
+
+                    <div class="showcase-grid">
+                        <div class="showcase-item">
+                            <img src="phq9 tracker data visualization.png" alt="PHQ-9 Depression Tracker with AI Forecast">
+                            <div class="showcase-caption">PHQ-9 Depression Tracker with AI Forecast</div>
+                        </div>
+                        <div class="showcase-item">
+                            <img src="Caseload Breakdown Data Viz.png" alt="Caseload Breakdown by Diagnosis">
+                            <div class="showcase-caption">Caseload Breakdown by Diagnosis</div>
+                        </div>
+                        <div class="showcase-item">
+                            <img src="No Show Data Visualization.png" alt="No-Show Risk Analysis by Client">
+                            <div class="showcase-caption">No-Show Risk Analysis by Client</div>
+                        </div>
+                        <div class="showcase-item">
+                            <img src="No Show Analytics.png" alt="AI-Powered Clinical Intervention Strategies">
+                            <div class="showcase-caption">AI-Powered Clinical Intervention Strategies</div>
+                        </div>
+                        <div class="showcase-item">
+                            <img src="Caseload Analytics.png" alt="Practice Specialization Analysis">
+                            <div class="showcase-caption">Practice Specialization Analysis</div>
+                        </div>
+                        <div class="showcase-item">
+                            <img src="TPR PDF.png" alt="Instant Downloadable PDF Reports">
+                            <div class="showcase-caption">Instant Downloadable PDF Reports</div>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Core Problems Section -->
                 <div class="problems-section">
@@ -1089,18 +1160,71 @@
                             <p>Set and save your templates for ANY documentation format. Intake. Session Note. Termination Summary — and more. Plus, access a full visual analytics dashboard with instant data visualization, ML-powered clinical decision support, and downloadable PDF reports unique to your caseload.</p>
                         </div>
                         
+                        <!-- Visual Analytics Dashboard -->
+                        <h3 style="color: #ffffff; text-align: center; font-size: 1.5rem; margin-bottom: 1rem;">Visual Analytics Dashboard</h3>
                         <div class="media-section single">
                             <div class="media-placeholder">
-                                <img src="Notes_Dashboard.png" alt="Chartara Notes Dashboard Interface" style="width: 100%; height: auto; border-radius: 15px;">
+                                <img src="Visual Analytics Dashboard.png" alt="Visual Analytics Dashboard — All Charts" style="width: 100%; height: auto; border-radius: 15px;">
                             </div>
                         </div>
-                        
-                        <div class="media-section single">
+
+                        <!-- PHQ-9 Tracker -->
+                        <h3 style="color: #ffffff; text-align: center; font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1rem;">Individual Client PHQ-9 Tracker</h3>
+                        <div class="media-section">
                             <div class="media-placeholder">
-                                <img src="Notes_Create_New_Template.png" alt="Chartara Notes Create New Template Interface" style="width: 100%; height: auto; border-radius: 15px;">
+                                <img src="phq9 tracker client selector.png" alt="PHQ-9 Client Selector" style="width: 100%; height: auto; border-radius: 15px;">
+                            </div>
+                            <div class="media-placeholder">
+                                <img src="phq9 tracker data visualization.png" alt="PHQ-9 Data Visualization with AI Forecast" style="width: 100%; height: auto; border-radius: 15px;">
                             </div>
                         </div>
-                        
+
+                        <!-- Caseload Breakdown -->
+                        <h3 style="color: #ffffff; text-align: center; font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1rem;">Caseload Breakdown by Diagnosis</h3>
+                        <div class="media-section">
+                            <div class="media-placeholder">
+                                <img src="Caseload Breakdown Data Viz.png" alt="Caseload Breakdown Data Visualization" style="width: 100%; height: auto; border-radius: 15px;">
+                            </div>
+                            <div class="media-placeholder">
+                                <img src="Caseload Analytics.png" alt="Caseload Analytics — Practice Specialization" style="width: 100%; height: auto; border-radius: 15px;">
+                            </div>
+                        </div>
+
+                        <!-- No-Show Analysis -->
+                        <h3 style="color: #ffffff; text-align: center; font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1rem;">No-Show Analysis</h3>
+                        <div class="media-section">
+                            <div class="media-placeholder">
+                                <img src="No Show Data Visualization.png" alt="No-Show Data Visualization" style="width: 100%; height: auto; border-radius: 15px;">
+                            </div>
+                            <div class="media-placeholder">
+                                <img src="No Show Analytics.png" alt="No-Show Clinical Interventions" style="width: 100%; height: auto; border-radius: 15px;">
+                            </div>
+                        </div>
+
+                        <!-- Treatment Plan Review Tracker -->
+                        <h3 style="color: #ffffff; text-align: center; font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1rem;">Treatment Plan Review Tracker</h3>
+                        <div class="media-section">
+                            <div class="media-placeholder">
+                                <img src="TPR Data Visualization.png" alt="Treatment Plan Review Data Visualization" style="width: 100%; height: auto; border-radius: 15px;">
+                            </div>
+                            <div class="media-placeholder">
+                                <img src="TPR Analytics.png" alt="Treatment Plan Review Analytics" style="width: 100%; height: auto; border-radius: 15px;">
+                            </div>
+                        </div>
+
+                        <!-- Data Entry & PDF Reports -->
+                        <h3 style="color: #ffffff; text-align: center; font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1rem;">Simple Data Entry & Instant PDF Reports</h3>
+                        <div class="media-section">
+                            <div class="media-placeholder">
+                                <img src="Caseload Data Entry.png" alt="Simple Web Form Data Entry" style="width: 100%; height: auto; border-radius: 15px;">
+                            </div>
+                            <div class="media-placeholder">
+                                <img src="TPR PDF.png" alt="Instant Downloadable PDF Report" style="width: 100%; height: auto; border-radius: 15px;">
+                            </div>
+                        </div>
+
+                        <!-- Voice Recording -->
+                        <h3 style="color: #ffffff; text-align: center; font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1rem;">AI Scribe — Voice to Clinical Note</h3>
                         <div class="media-section single">
                             <div class="media-placeholder">
                                 <img src="Notes_Voice_Recording.png" alt="Chartara Notes Voice Recording Interface" style="width: 100%; height: auto; border-radius: 15px;">
