@@ -959,6 +959,8 @@
                     <div class="nav-dropdown" id="navDropdown">
                         <a href="#home">Home</a>
                         <a href="#features">Features</a>
+                        <a href="#" onclick="showServiceDetail('scribe'); return false;">AI Scribe</a>
+                        <a href="#" onclick="showServiceDetail('analytics'); return false;">Visual Analytics</a>
                         <a href="#pricing">Pricing</a>
                         <a href="#getting-started">Getting Started</a>
                         <a href="#founder">Meet the Founder</a>
@@ -991,17 +993,28 @@
                 <!-- Features Section -->
                 <section id="features" class="services-section">
                     <h2>Chartara Notes: AI Scribe & Clinical Decision Support</h2>
-                    <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-                        <div class="service-card" onclick="showServiceDetail('notes')" style="cursor: pointer;">
+                    <div class="services-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 950px; margin: 0 auto;">
+                        <div class="service-card" onclick="showServiceDetail('scribe')">
+                            <div class="service-image">
+                                <img src="Voice Dictation Front Page.png" alt="Chartara Notes AI Scribe Interface">
+                            </div>
+                            <h3>AI Scribe</h3>
+                            <p>Create professional clinical documentation by simply speaking about your sessions. Choose from SOAP, DAP, GIRP, Narrative, or build your own custom templates with your exact section headings. Voice-to-note in seconds — stop typing for 30 minutes, start speaking for 60 seconds.</p>
+                            <div class="service-buttons">
+                                <a href="https://buy.stripe.com/7sYdRag5wemidtR7B84Rq09" class="service-cta" onclick="event.stopPropagation()">Start Free</a>
+                                <a href="#" class="service-pricing" onclick="event.stopPropagation(); showServiceDetail('scribe');">See More Info</a>
+                            </div>
+                        </div>
+
+                        <div class="service-card" onclick="showServiceDetail('analytics')">
                             <div class="service-image">
                                 <img src="Visual Analytics Dashboard.png" alt="Chartara Notes Visual Analytics Dashboard">
                             </div>
-                            <h3>AI-Powered Clinical Documentation & Visual Analytics</h3>
-                            <p style="text-align: left;">Create professional clinical documentation by simply speaking about your sessions. Chartara Notes adapts to YOUR workflow — build custom templates with your exact section headings, or use proven formats like SOAP and DAP. Our AI understands therapeutic language and intelligently transforms your natural speech into polished, HIPAA-compliant notes in seconds. Stop typing for 30 minutes. Start speaking for 60 seconds.</p>
-                            <p style="text-align: left;">Beyond documentation, Chartara Notes includes a full visual analytics and clinical decision support dashboard — powered by machine learning algorithms that analyze your caseload data and surface actionable insights. Instant PDF reports, outcome tracking, and data-driven supervision — all in one platform.</p>
-                            <div class="service-buttons" style="justify-content: center;">
+                            <h3>Visual Analytics</h3>
+                            <p>Instant data visualization and ML-powered clinical decision support for your caseload. PHQ-9 tracking with AI forecasting, caseload breakdowns, no-show risk analysis, treatment plan review monitoring, and more. Downloadable PDF reports with every chart — all from simple web forms.</p>
+                            <div class="service-buttons">
                                 <a href="https://buy.stripe.com/7sYdRag5wemidtR7B84Rq09" class="service-cta" onclick="event.stopPropagation()">Start Free</a>
-                                <a href="#" class="service-pricing" onclick="event.stopPropagation(); showServiceDetail('notes');">See More Info</a>
+                                <a href="#" class="service-pricing" onclick="event.stopPropagation(); showServiceDetail('analytics');">See More Info</a>
                             </div>
                         </div>
                     </div>
@@ -1149,17 +1162,79 @@
 
             <!-- Service Detail Pages -->
             
-            <!-- Chartara Notes Detail -->
-            <section id="notes-detail" class="service-detail">
+            <!-- AI Scribe Detail -->
+            <section id="scribe-detail" class="service-detail">
                 <div class="container">
                     <a href="#" class="back-button" onclick="showMainPage()">← Back</a>
                     <div class="detail-content">
                         <div class="detail-header">
-                            <h2>Chartara Notes: AI Scribe & Clinical Decision Support</h2>
-                            <p>Create professional clinical documentation by simply speaking about your sessions. Chartara Notes adapts to YOUR workflow — build custom templates with your exact section headings, or use proven formats like SOAP and DAP. Our AI understands therapeutic language and intelligently transforms your natural speech into polished, HIPAA-compliant notes in seconds. Stop typing for 30 minutes. Start speaking for 60 seconds.</p>
-                            <p>Set and save your templates for ANY documentation format. Intake. Session Note. Termination Summary — and more. Plus, access a full visual analytics dashboard with instant data visualization, ML-powered clinical decision support, and downloadable PDF reports unique to your caseload.</p>
+                            <h2>AI Scribe — Voice to Clinical Note</h2>
+                            <p>Create professional clinical documentation by simply speaking about your sessions. Chartara Notes adapts to YOUR workflow — build custom templates with your exact section headings, or use proven formats like SOAP, DAP, GIRP, and Narrative. Our AI understands therapeutic language and intelligently transforms your natural speech into polished, HIPAA-compliant notes in seconds.</p>
+                            <p>Set and save your templates for ANY documentation format. Intake. Individual Session Note. Termination Summary. Transfer Summary — and more. Stop typing for 30 minutes. Start speaking for 60 seconds.</p>
                         </div>
-                        
+
+                        <!-- 1. Voice Dictation Front Page -->
+                        <h3 style="color: #ffffff; text-align: center; font-size: 1.5rem; margin-bottom: 1rem;">Select Note Format & Start Recording</h3>
+                        <div class="media-section single">
+                            <div class="media-placeholder">
+                                <img src="Voice Dictation Front Page.png" alt="AI Scribe — Select Note Format and Start Recording" style="width: 100%; height: auto; border-radius: 15px;">
+                            </div>
+                        </div>
+
+                        <!-- 2. Create New Template Interface -->
+                        <h3 style="color: #ffffff; text-align: center; font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1rem;">Build Custom Templates with Your Exact Sections</h3>
+                        <div class="media-section single">
+                            <div class="media-placeholder">
+                                <img src="Create New Template Interface.png" alt="Create New Custom Template Interface" style="width: 100%; height: auto; border-radius: 15px;">
+                            </div>
+                        </div>
+
+                        <!-- 3. Voice Recording Note Dropdown Selector -->
+                        <h3 style="color: #ffffff; text-align: center; font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1rem;">Choose from Your Saved Templates</h3>
+                        <div class="media-section single">
+                            <div class="media-placeholder">
+                                <img src="Voice Recording Note Dropdown Selector.png" alt="Template Dropdown Selector on Voice Recording Page" style="width: 100%; height: auto; border-radius: 15px;">
+                            </div>
+                        </div>
+
+                        <!-- 4-6. Sample Custom Templates -->
+                        <h3 style="color: #ffffff; text-align: center; font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1rem;">Sample Custom Templates</h3>
+                        <div class="media-section single">
+                            <div class="media-placeholder">
+                                <img src="Note Template Individual Session Note.png" alt="Custom Template — Individual Session Note" style="width: 100%; height: auto; border-radius: 15px;">
+                            </div>
+                        </div>
+                        <div class="media-section">
+                            <div class="media-placeholder">
+                                <img src="Note Template Termination Summary and Intake .png" alt="Custom Templates — Termination Summary and Intake" style="width: 100%; height: auto; border-radius: 15px;">
+                            </div>
+                            <div class="media-placeholder">
+                                <img src="Note Template Transfer Summary.png" alt="Custom Template — Transfer Summary" style="width: 100%; height: auto; border-radius: 15px;">
+                            </div>
+                        </div>
+
+                        <div class="cta-section">
+                            <div class="cta-buttons">
+                                <a href="https://buy.stripe.com/7sYdRag5wemidtR7B84Rq09" class="service-cta">Start Free</a>
+                                <a href="#" class="service-cta" onclick="showServiceDetail('analytics')">See Visual Analytics</a>
+                                <a href="#" class="service-cta" onclick="showMainPage()">Back</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Visual Analytics Detail -->
+            <section id="analytics-detail" class="service-detail">
+                <div class="container">
+                    <a href="#" class="back-button" onclick="showMainPage()">← Back</a>
+                    <div class="detail-content">
+                        <div class="detail-header">
+                            <h2>Visual Analytics & Clinical Decision Support</h2>
+                            <p>Instant data visualization and ML-powered clinical decision support for your caseload. Enter data through simple web forms — no spreadsheets needed — and get instant charts, analytics, and downloadable PDF reports unique to your practice.</p>
+                            <p>Each chart includes descriptive, prescriptive, and predictive analytics dynamically adapted to your data. Track outcomes, monitor compliance, identify at-risk clients, and generate evidence-based supervision reports — all at the click of a button.</p>
+                        </div>
+
                         <!-- Visual Analytics Dashboard -->
                         <h3 style="color: #ffffff; text-align: center; font-size: 1.5rem; margin-bottom: 1rem;">Visual Analytics Dashboard</h3>
                         <div class="media-section single">
@@ -1223,17 +1298,10 @@
                             </div>
                         </div>
 
-                        <!-- Voice Recording -->
-                        <h3 style="color: #ffffff; text-align: center; font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1rem;">AI Scribe — Voice to Clinical Note</h3>
-                        <div class="media-section single">
-                            <div class="media-placeholder">
-                                <img src="Notes_Voice_Recording.png" alt="Chartara Notes Voice Recording Interface" style="width: 100%; height: auto; border-radius: 15px;">
-                            </div>
-                        </div>
-                        
                         <div class="cta-section">
                             <div class="cta-buttons">
                                 <a href="https://buy.stripe.com/7sYdRag5wemidtR7B84Rq09" class="service-cta">Start Free</a>
+                                <a href="#" class="service-cta" onclick="showServiceDetail('scribe')">See AI Scribe</a>
                                 <a href="#" class="service-cta" onclick="showMainPage()">Back</a>
                             </div>
                         </div>
