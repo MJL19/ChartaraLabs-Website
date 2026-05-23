@@ -3,1592 +3,1058 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chartara Labs - AI Scribe & Clinical Decision Support for Behavioral Health</title>
-    <meta name="description" content="Chartara Notes: AI-powered voice-to-clinical-note documentation, visual analytics, and ML-powered clinical decision support for behavioral health. Free to use. Built by therapists, for therapists.">
-    
+    <title>Chartara Labs — AI-Powered Clinical Technology for Behavioral Health</title>
+    <meta name="description" content="Chartara Notes combines an AI Documentation Scribe with Visual Analytics and Clinical Decision Support. Free to use. Built by a licensed therapist, for behavioral health professionals.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --bg: #07101f;
+            --bg-alt: #0b1628;
+            --bg-card: rgba(255,255,255,0.04);
+            --border: rgba(148,163,184,0.1);
+            --border-accent: rgba(59,130,246,0.3);
+            --blue: #3b82f6;
+            --purple: #7c3aed;
+            --green: #10b981;
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --text-dim: #64748b;
+            --gradient: linear-gradient(135deg, #3b82f6 0%, #7c3aed 100%);
+            --gradient-text: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+            --glow: 0 0 40px rgba(59,130,246,0.12);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --radius-lg: 24px;
         }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
             line-height: 1.6;
-            color: #ffffff;
-            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #7c3aed 100%);
-            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        body::before {
+            content: '';
+            position: fixed; inset: 0;
+            background-image:
+                radial-gradient(circle at 15% 15%, rgba(59,130,246,0.06) 0%, transparent 50%),
+                radial-gradient(circle at 85% 85%, rgba(124,58,237,0.06) 0%, transparent 50%);
+            pointer-events: none; z-index: 0;
         }
 
-        /* Header */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+        /* HEADER */
         .header {
-            background: rgba(0, 0, 0, 0.9);
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(7,16,31,0.88);
             backdrop-filter: blur(20px);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+            border-bottom: 1px solid var(--border);
         }
 
-        .nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
+        .nav { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 1.5rem; }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: #3b82f6;
-            text-decoration: none;
-            cursor: pointer;
+            font-size: 1.4rem; font-weight: 800; cursor: pointer; flex-shrink: 0; text-decoration: none;
+            background: var(--gradient-text);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
 
-        /* Hamburger Menu */
-        .hamburger-menu {
-            position: relative;
+        .nav-links { display: flex; align-items: center; gap: 0.25rem; list-style: none; }
+        .nav-links a {
+            color: var(--text-muted); text-decoration: none; font-size: 0.875rem; font-weight: 500;
+            padding: 0.45rem 0.75rem; border-radius: 8px; transition: color 0.2s, background 0.2s;
         }
+        .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
 
-        .hamburger-toggle {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
+        .nav-dropdown-wrap { position: relative; }
+        .nav-dropdown-wrap > a { display: flex; align-items: center; gap: 0.3rem; }
+        .nav-dropdown-wrap > a::after { content: '▾'; font-size: 0.7rem; opacity: 0.6; }
 
-        .hamburger-line {
-            width: 25px;
-            height: 3px;
-            background: #ffffff;
-            transition: all 0.3s ease;
-            border-radius: 2px;
-        }
-
-        .hamburger-toggle.active .hamburger-line:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
-        }
-
-        .hamburger-toggle.active .hamburger-line:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger-toggle.active .hamburger-line:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
-
-        /* Dropdown Menu */
         .nav-dropdown {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            border-radius: 10px;
-            min-width: 200px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            transform: translateY(-10px);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
+            position: absolute; top: calc(100% + 8px); left: 0;
+            background: rgba(11,22,40,0.97); backdrop-filter: blur(20px);
+            border: 1px solid var(--border-accent); border-radius: var(--radius-sm);
+            min-width: 210px; padding: 0.4rem 0;
+            opacity: 0; visibility: hidden; transform: translateY(-6px);
+            transition: all 0.2s; z-index: 200;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.4);
         }
-
-        .nav-dropdown.active {
-            transform: translateY(0);
-            opacity: 1;
-            visibility: visible;
-        }
+        .nav-dropdown-wrap:hover .nav-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
 
         .nav-dropdown a {
-            display: block;
-            padding: 15px 20px;
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: block; padding: 0.65rem 1rem; color: var(--text-muted);
+            text-decoration: none; font-size: 0.875rem; font-weight: 500;
+            border-radius: 0; background: none; transition: color 0.15s, background 0.15s;
         }
+        .nav-dropdown a:hover { color: var(--text); background: rgba(59,130,246,0.08); }
+        .nav-dropdown-muted { opacity: 0.5; cursor: default; pointer-events: none; }
 
-        .nav-dropdown a:last-child {
-            border-bottom: none;
+        .nav-actions { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
+
+        .btn-ghost {
+            color: var(--text-muted); text-decoration: none; font-size: 0.875rem; font-weight: 500;
+            padding: 0.45rem 1rem; border-radius: 50px; border: 1px solid var(--border); transition: all 0.2s;
         }
+        .btn-ghost:hover { color: var(--text); border-color: var(--border-accent); }
 
-        .nav-dropdown a:hover {
-            background: rgba(59, 130, 246, 0.1);
-            color: #3b82f6;
+        .btn-primary {
+            background: var(--gradient); color: white; text-decoration: none;
+            font-size: 0.875rem; font-weight: 700; padding: 0.55rem 1.25rem; border-radius: 50px;
+            transition: all 0.2s; box-shadow: 0 4px 15px rgba(59,130,246,0.3);
         }
+        .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 22px rgba(59,130,246,0.4); }
 
-        .nav-cta {
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            margin-left: 1rem;
+        .hamburger {
+            display: none; flex-direction: column; gap: 5px;
+            background: none; border: none; cursor: pointer; padding: 8px;
         }
+        .hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
 
-        .nav-cta:hover {
-            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        .mobile-nav {
+            display: none; position: absolute; top: 100%; left: 0; right: 0;
+            background: rgba(7,16,31,0.98); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border); padding: 0.75rem 0;
         }
+        .mobile-nav.open { display: block; }
+        .mobile-nav a { display: block; padding: 0.7rem 1.5rem; color: var(--text-muted); text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: color 0.2s; }
+        .mobile-nav a:hover { color: var(--text); }
+        .mobile-nav-divider { height: 1px; background: var(--border); margin: 0.5rem 1.5rem; }
 
-        /* Main Content */
-        .main-content {
-            margin-top: 80px;
-            padding: 0;
+        /* SECTION */
+        .section { padding: 32px 0; }
+        .section-alt { background: var(--bg-alt); }
+
+        .section-header { text-align: center; margin-bottom: 2rem; }
+        .eyebrow { font-size: 1.1rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.75rem; }
+        .section-title { font-size: clamp(1.75rem, 3.5vw, 2.8rem); font-weight: 800; line-height: 1.2; margin-bottom: 1rem; }
+        .section-desc { font-size: 1.05rem; color: var(--text-muted); max-width: 600px; margin: 0 auto; line-height: 1.7; }
+
+        /* BADGE */
+        .badge {
+            display: inline-flex; align-items: center; gap: 0.35rem;
+            font-size: 0.72rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+            padding: 0.28rem 0.7rem; border-radius: 50px; margin-bottom: 1rem;
         }
+        .badge-live { background: rgba(16,185,129,0.12); color: #34d399; border: 1px solid rgba(16,185,129,0.25); }
+        .badge-soon { background: rgba(124,58,237,0.12); color: #a78bfa; border: 1px solid rgba(124,58,237,0.25); }
 
-        /* Section Styles */
-        .content-section {
-            padding: 6rem 0;
+        /* HERO */
+        .hero { padding: 80px 0 0; }
+        .hero-logo { max-width: 220px; width: 40%; height: auto; display: block; margin: 0; }
+
+        .btn-lg {
+            text-decoration: none; font-size: 1rem; font-weight: 700; padding: 0.9rem 2rem; border-radius: 50px;
+            transition: all 0.2s; display: inline-block; cursor: pointer; border: none; font-family: inherit;
         }
+        .btn-lg-primary { background: var(--gradient); color: white; box-shadow: 0 4px 20px rgba(59,130,246,0.35); }
+        .btn-lg-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(59,130,246,0.45); }
+        .btn-lg-secondary { background: transparent; color: var(--text); border: 1px solid var(--border-accent); }
+        .btn-lg-secondary:hover { background: rgba(59,130,246,0.07); border-color: var(--blue); }
 
-        .content-section:first-child {
-            padding-top: 3rem;
+        /* PRODUCTS */
+        .products-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 1.5rem; }
+
+        .product-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-lg); padding: 2rem;
+            transition: all 0.3s; position: relative; overflow: hidden;
         }
+        .product-card-featured { border-color: var(--border-accent); box-shadow: var(--glow); }
+        .product-card:hover { border-color: rgba(59,130,246,0.4); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(59,130,246,0.15); }
 
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 1rem 0;
+        .product-name { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .product-desc { color: var(--text-muted); font-size: 0.95rem; line-height: 1.65; margin-bottom: 1.5rem; }
+
+        .product-image { width: 100%; border-radius: var(--radius); overflow: hidden; margin-bottom: 1.5rem; }
+        .product-image img { width: 100%; height: auto; display: block; border-radius: var(--radius); }
+
+        .product-features { list-style: none; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; }
+        .product-features li { font-size: 0.9rem; color: var(--text-muted); padding-left: 1.25rem; position: relative; }
+        .product-features li::before { content: '→'; position: absolute; left: 0; color: var(--blue); font-size: 0.85rem; }
+
+        .product-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+        .product-cta {
+            background: var(--gradient); color: white; text-decoration: none;
+            font-size: 0.875rem; font-weight: 700; padding: 0.6rem 1.4rem; border-radius: 50px;
+            transition: all 0.2s; box-shadow: 0 3px 12px rgba(59,130,246,0.25);
         }
-
-        .hero h1 {
-            font-size: 4.2rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #3b82f6 0%, #ffffff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.3;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+        .product-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(59,130,246,0.35); }
+        .product-cta-outline {
+            color: var(--text-muted); text-decoration: none; font-size: 0.875rem; font-weight: 600;
+            padding: 0.6rem 1.4rem; border-radius: 50px; border: 1px solid var(--border);
+            transition: all 0.2s; cursor: pointer; background: none; font-family: inherit;
         }
+        .product-cta-outline:hover { color: var(--text); border-color: var(--border-accent); }
 
-        .chart-showcase {
-            max-width: 800px;
-            margin: 3rem auto;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+        /* FEATURES */
+        .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 960px; margin: 0 auto; }
+
+        .feature-card {
+            background: rgba(255,255,255,0.95); border-radius: var(--radius-lg); padding: 1.75rem;
+            border: 1px solid rgba(59,130,246,0.15); cursor: pointer; transition: all 0.3s; color: #1f2937;
         }
+        .feature-card:hover { transform: translateY(-6px); border-color: var(--blue); box-shadow: 0 16px 40px rgba(59,130,246,0.2); }
 
-        /* Services Section */
-        .services-section {
-            background: rgba(59, 130, 246, 0.05);
-            padding: 6rem 0;
+        .feature-card-img { width: 100%; border-radius: var(--radius-sm); overflow: hidden; margin-bottom: 1.25rem; }
+        .feature-card-img img { width: 100%; height: auto; display: block; border-radius: var(--radius-sm); }
+
+        .feature-card h3 { font-size: 1.4rem; font-weight: 700; color: #1e40af; margin-bottom: 0.75rem; }
+        .feature-card p { font-size: 0.92rem; color: #4b5563; line-height: 1.65; margin-bottom: 1.25rem; }
+
+        .feature-btns { display: flex; gap: 0.65rem; flex-wrap: wrap; }
+        .btn-feature-cta {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8); color: white;
+            text-decoration: none; font-size: 0.83rem; font-weight: 700;
+            padding: 0.5rem 1.1rem; border-radius: 50px; border: none; cursor: pointer;
+            font-family: inherit; transition: all 0.2s; flex: 1; text-align: center; min-width: 90px;
         }
-
-        .services-section h2 {
-            text-align: center;
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 3rem;
-            color: #ffffff;
+        .btn-feature-cta:hover { background: linear-gradient(135deg, #1d4ed8, #1e40af); transform: translateY(-1px); }
+        .btn-feature-outline {
+            background: transparent; border: 2px solid #2563eb; color: #2563eb;
+            text-decoration: none; font-size: 0.83rem; font-weight: 700;
+            padding: 0.5rem 1.1rem; border-radius: 50px; cursor: pointer; font-family: inherit;
+            transition: all 0.2s; flex: 1; text-align: center; min-width: 90px;
         }
+        .btn-feature-outline:hover { background: #2563eb; color: white; }
 
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-
-        .service-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            padding: 2rem;
-            border-radius: 20px;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            transition: all 0.3s ease;
-            color: #1f2937;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: #3b82f6;
-            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
-            text-decoration: none;
-            color: #1f2937;
-        }
-
-        .service-image {
-            width: 100%;
-            border-radius: 15px;
-            margin-bottom: 1.5rem;
-            overflow: hidden;
-        }
-
-        .service-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 15px;
-        }
-
-        /* Showcase Grid */
-        .showcase-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
+        /* SHOWCASE */
+        .showcase-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 1100px; margin: 0 auto; }
 
         .showcase-item {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.95); border-radius: var(--radius); overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15); transition: all 0.3s;
         }
+        .showcase-item:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(59,130,246,0.2); }
+        .showcase-item img { width: 100%; height: auto; display: block; }
+        .showcase-caption { padding: 0.85rem 1rem; color: #1e40af; font-weight: 700; font-size: 0.88rem; text-align: center; }
 
-        .showcase-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.25);
-        }
-
-        .showcase-item img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .showcase-caption {
-            padding: 1rem 1.2rem;
-            color: #1e40af;
-            font-weight: 700;
-            font-size: 0.95rem;
-            text-align: center;
-        }
-
-        .service-card h3 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: #1e40af;
-            margin-bottom: 1rem;
-        }
-
-        .service-card p {
-            color: #4b5563;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .service-buttons {
-            display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-        }
-
-        .service-cta {
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-            color: white;
-            padding: 0.6rem 1.2rem;
-            border-radius: 20px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            flex: 1;
-            text-align: center;
-            min-width: 100px;
-        }
-
-        .service-cta:hover {
-            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
-        }
-
-        .service-pricing {
-            background: transparent;
-            border: 2px solid #2563eb;
-            color: #2563eb;
-            padding: 0.6rem 1.2rem;
-            border-radius: 20px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            flex: 1;
-            text-align: center;
-            min-width: 100px;
-        }
-
-        .service-pricing:hover {
-            background: #2563eb;
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* Service Detail Pages */
-        .service-detail {
-            display: none;
-            padding: 6rem 0;
-            background: rgba(59, 130, 246, 0.05);
-        }
-
-        .service-detail.active {
-            display: block;
-        }
-
-        .back-button {
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            display: inline-block;
-            transition: all 0.3s ease;
-        }
-
-        .back-button:hover {
-            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
-            transform: translateY(-2px);
-        }
-
-        .detail-content {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .detail-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .detail-header h2 {
-            font-size: 3rem;
-            font-weight: 800;
-            color: #ffffff;
-            margin-bottom: 1rem;
-        }
-
-        .detail-header p {
-            font-size: 1.2rem;
-            color: #ffffff;
-            max-width: 800px;
-            margin: 0 auto 2rem;
-            font-weight: 500;
-        }
-
-        .media-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 4rem;
-        }
-
-        .media-section.single {
-            grid-template-columns: 1fr;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .media-placeholder {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            color: #1f2937;
-            border: 2px dashed #93c5fd;
-            min-height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-        }
-        
-        .media-placeholder img {
-            max-width: 100%;
-            max-height: 500px;
-            height: auto;
-            width: auto;
-            object-fit: contain;
-            border-radius: 15px;
-        }
-
-        .video-placeholder {
-            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
-            color: white;
-            border: 2px dashed #93c5fd;
-        }
-
-        .cta-section {
-            text-align: center;
-            margin-top: 3rem;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        /* Core Problems Section - IMPROVED TEXT CONTRAST */
-        .problems-section h2 {
-            text-align: center;
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 3rem;
-            color: #ffffff;
-        }
-
-        .problems-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+        /* PROBLEMS */
+        .problems-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; }
 
         .problem-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            padding: 2.5rem;
-            border-radius: 20px;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            transition: all 0.3s ease;
-            flex: 1;
-            min-width: 280px;
-            max-width: 320px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 2rem;
+            flex: 1; min-width: 260px; max-width: 300px; transition: all 0.3s;
         }
+        .problem-card:hover { border-color: var(--border-accent); transform: translateY(-4px); box-shadow: 0 12px 30px rgba(59,130,246,0.12); }
+        .problem-card-accent { border-color: rgba(59,130,246,0.4); background: rgba(59,130,246,0.06); }
+        .problem-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.75rem; }
+        .problem-card p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.65; }
 
-        .problem-card:hover {
-            transform: translateY(-10px);
-            border-color: #3b82f6;
-            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
-        }
+        /* WHAT WE ARE */
+        .what-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; max-width: 960px; margin: 0 auto; }
 
-        .problem-card h3 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 1rem;
-        }
-
-        .problem-card p {
-            color: #ffffff;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin: 0;
-            font-weight: 400;
-        }
-
-        /* EMR Section - IMPROVED TEXT CONTRAST */
-        .emr-section {
-            text-align: center;
-        }
-
-        .emr-section h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 3rem;
-            color: #ffffff;
-            font-weight: 800;
-        }
-
-        /* Charts Section */
-        .charts-section h2 {
-            text-align: center;
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 3rem;
-            color: #ffffff;
-        }
-
-        .chart-categories {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .chart-category {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            padding: 2rem;
-            border-radius: 20px;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            flex: 1;
-            min-width: 280px;
-            max-width: 320px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .chart-category h3 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 1.5rem;
-        }
-
-        .chart-list {
-            list-style: none;
-        }
-
-        .chart-list li {
-            padding: 0.5rem 0;
-            color: #ffffff;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            font-weight: 400;
-        }
-
-        .chart-list li:last-child {
-            border-bottom: none;
-        }
-
-        /* What We Are Section - IMPROVED TEXT CONTRAST */
-        .what-we-are {
-            background: rgba(59, 130, 246, 0.05);
-            padding: 6rem 0;
-        }
-
-        .what-we-are h2 {
-            text-align: center;
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 3rem;
-            color: #ffffff;
-        }
-
-        .what-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .what-column h3 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .what-column.positive h3 {
-            color: #10b981;
-        }
-
-        .what-column.negative h3 {
-            color: #ef4444;
-        }
+        .what-column h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem; text-align: center; }
+        .what-column.positive h3 { color: var(--green); }
+        .what-column.negative h3 { color: #ef4444; }
 
         .what-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
+            display: flex; align-items: flex-start; gap: 0.85rem; margin-bottom: 1rem;
+            padding: 1rem; background: var(--bg-card); border-radius: var(--radius-sm); border: 1px solid var(--border);
         }
+        .what-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem; }
+        .what-text { font-size: 0.92rem; color: var(--text-muted); line-height: 1.55; }
 
-        .what-icon {
-            font-size: 1.5rem;
-            margin-right: 1rem;
-            margin-top: 0.2rem;
-        }
+        /* FAQ */
+        .faq-list { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.75rem; }
 
-        .what-text {
-            color: #ffffff;
-            line-height: 1.5;
-            font-weight: 400;
-        }
-
-        /* FAQ Section - IMPROVED TEXT CONTRAST */
-        .faq-section h2 {
-            text-align: center;
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 3rem;
-            color: #ffffff;
-        }
-
-        .faq-item {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            margin-bottom: 1rem;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-        }
+        .faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: border-color 0.2s; }
+        .faq-item:hover { border-color: var(--border-accent); }
 
         .faq-question {
-            padding: 1.5rem 2rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            color: #ffffff;
-            transition: all 0.3s ease;
+            width: 100%; display: flex; justify-content: space-between; align-items: center;
+            padding: 1.25rem 1.5rem; background: none; border: none; cursor: pointer;
+            color: var(--text); font-size: 0.95rem; font-weight: 600; text-align: left;
+            font-family: inherit; transition: color 0.2s; gap: 1rem;
         }
+        .faq-question:hover { color: var(--blue); }
 
-        .faq-question:hover {
-            color: #3b82f6;
-        }
+        .faq-icon { font-size: 1.4rem; color: var(--blue); font-weight: 300; flex-shrink: 0; transition: transform 0.3s; }
+        .faq-icon.open { transform: rotate(45deg); }
 
-        .faq-answer {
-            padding: 0 2rem 1.5rem;
-            color: #ffffff;
-            line-height: 1.6;
-            display: none;
-            font-weight: 400;
-        }
+        .faq-answer { display: none; padding: 0 1.5rem 1.25rem; font-size: 0.92rem; color: var(--text-muted); line-height: 1.7; }
+        .faq-answer.open { display: block; }
 
-        .faq-answer.active {
-            display: block;
-        }
-
-        .faq-toggle {
-            font-size: 1.5rem;
-            color: #3b82f6;
-            transition: transform 0.3s ease;
-        }
-
-        .faq-toggle.active {
-            transform: rotate(45deg);
-        }
-
-        /* Pricing Section */
-        .pricing-section {
-            background: rgba(59, 130, 246, 0.05);
-            padding: 6rem 0;
-        }
-
-        .pricing-section h2 {
-            text-align: center;
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 3rem;
-            color: #ffffff;
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
+        /* PRICING */
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; max-width: 780px; margin: 0 auto; }
 
         .pricing-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            padding: 3rem 2rem;
-            border-radius: 20px;
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            text-align: center;
-            transition: all 0.3s ease;
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-lg); padding: 2.5rem 2rem; text-align: center; transition: all 0.3s;
         }
+        .pricing-card:hover { border-color: var(--border-accent); transform: translateY(-4px); box-shadow: var(--glow); }
+        .pricing-card-featured { border-color: var(--border-accent); box-shadow: var(--glow); }
 
-        .pricing-card:hover {
-            transform: translateY(-10px);
-            border-color: #3b82f6;
-            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
-        }
+        .pricing-badge { display: inline-block; padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; margin-bottom: 1rem; }
+        .pricing-badge-popular { background: var(--gradient); color: white; }
+        .pricing-badge-soon { background: rgba(255,255,255,0.08); color: var(--text-dim); border: 1px solid var(--border); }
 
-        .pricing-card h3 {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 1rem;
-        }
+        .pricing-name { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .pricing-price { font-size: 3rem; font-weight: 900; margin-bottom: 0.25rem; }
+        .pricing-period { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem; }
 
-        .price {
-            font-size: 3rem;
-            font-weight: 800;
-            color: #ffffff;
-            margin-bottom: 0.5rem;
-        }
-
-        .price-period {
-            color: #d1d5db;
-            margin-bottom: 2rem;
-            font-weight: 500;
-        }
-
-        .pricing-features {
-            list-style: none;
-            margin-bottom: 2rem;
-            text-align: left;
-        }
-
-        .pricing-features li {
-            padding: 0.5rem 0;
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            font-weight: 400;
-        }
-
-        .pricing-features li:before {
-            content: "✓";
-            color: #10b981;
-            font-weight: bold;
-            margin-right: 0.5rem;
-            font-size: 1.2rem;
-        }
+        .pricing-features { list-style: none; text-align: left; margin-bottom: 2rem; display: flex; flex-direction: column; gap: 0.6rem; }
+        .pricing-features li { font-size: 0.9rem; color: var(--text-muted); display: flex; align-items: flex-start; gap: 0.5rem; }
+        .pricing-features li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; font-size: 1rem; margin-top: 0.05rem; }
 
         .pricing-cta {
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            display: inline-block;
-            width: 100%;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
+            display: block; width: 100%; padding: 0.9rem 1.5rem; border-radius: 50px;
+            font-size: 1rem; font-weight: 700; text-decoration: none; border: none;
+            cursor: pointer; font-family: inherit; transition: all 0.2s;
+        }
+        .pricing-cta-primary { background: var(--gradient); color: white; box-shadow: 0 4px 15px rgba(59,130,246,0.3); }
+        .pricing-cta-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 22px rgba(59,130,246,0.4); }
+        .pricing-cta-muted { background: rgba(255,255,255,0.05); color: var(--text-dim); cursor: default; border: 1px solid var(--border); }
+
+        .pricing-note { margin-top: 1.25rem; font-size: 0.85rem; color: var(--text-dim); line-height: 1.5; }
+
+        /* GETTING STARTED */
+        .steps-list { display: flex; flex-direction: column; gap: 1.25rem; max-width: 780px; margin: 0 auto 2.5rem; }
+
+        .step-card {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1.5rem 2rem; display: flex; align-items: flex-start; gap: 1.5rem; transition: border-color 0.2s;
+        }
+        .step-card:hover { border-color: var(--border-accent); }
+
+        .step-num {
+            background: var(--gradient); color: white;
+            min-width: 44px; height: 44px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 1.15rem; flex-shrink: 0;
         }
 
-        .pricing-cta:hover {
-            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
-            transform: translateY(-2px);
+        .step-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem; }
+        .step-card p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.65; }
+        .step-card a { color: #93c5fd; }
+
+        /* FOUNDER */
+        .founder-grid { display: grid; grid-template-columns: 1fr 300px; gap: 4rem; align-items: start; }
+
+        .founder-text h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 800; margin-bottom: 1.5rem; }
+        .founder-text h3 { font-size: 1.2rem; font-weight: 700; margin: 1.75rem 0 0.75rem; }
+        .founder-text p { font-size: 0.97rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 1rem; }
+        .founder-text strong { color: var(--text); }
+
+        .founder-img { position: sticky; top: 100px; }
+        .founder-img img { width: 100%; height: auto; border-radius: var(--radius-lg); border: 1px solid var(--border); }
+
+        .references { font-size: 0.82rem; color: var(--text-dim); line-height: 1.6; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
+
+        /* CONTACT */
+        .contact-inner { text-align: center; max-width: 600px; margin: 0 auto; }
+        .contact-inner h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 800; margin-bottom: 1rem; }
+        .contact-inner p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 0.75rem; line-height: 1.7; }
+        .contact-email { font-size: 1.3rem; color: var(--text); font-weight: 700; text-decoration: none; display: block; margin: 1.5rem auto 2rem; }
+        .contact-email:hover { color: var(--blue); }
+
+        /* FOOTER */
+        .footer { background: var(--bg-alt); border-top: 1px solid var(--border); padding: 2.5rem 0; }
+        .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+        .footer-brand { font-weight: 700; background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .footer-copy { color: var(--text-dim); font-size: 0.82rem; }
+        .footer-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+        .footer-links a { color: var(--text-dim); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--text-muted); }
+
+        /* DETAIL PAGES */
+        .detail-page { display: none; padding: 100px 0 60px; }
+        .detail-page.active { display: block; }
+
+        .back-btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: var(--gradient); color: white; text-decoration: none;
+            padding: 0.65rem 1.4rem; border-radius: 50px; font-weight: 700; font-size: 0.875rem;
+            margin-bottom: 2.5rem; border: none; cursor: pointer; font-family: inherit;
+            transition: all 0.2s; box-shadow: 0 3px 12px rgba(59,130,246,0.25);
+        }
+        .back-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(59,130,246,0.35); }
+
+        .detail-header { text-align: center; margin-bottom: 3.5rem; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .detail-header h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 1rem; }
+        .detail-header p { font-size: 1.05rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 0.75rem; }
+
+        .detail-section-title { text-align: center; font-size: 1.3rem; font-weight: 700; margin: 3rem 0 1.25rem; }
+
+        .media-single { max-width: 900px; margin: 0 auto 2rem; }
+        .media-single img { width: 100%; height: auto; border-radius: var(--radius-lg); display: block; }
+
+        .media-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+        .media-pair img { width: 100%; height: auto; border-radius: var(--radius); display: block; }
+
+        .detail-cta { text-align: center; margin-top: 3rem; }
+        .detail-cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .detail-cta-btn {
+            background: var(--gradient); color: white; text-decoration: none;
+            font-size: 0.9rem; font-weight: 700; padding: 0.75rem 1.75rem; border-radius: 50px;
+            transition: all 0.2s; box-shadow: 0 3px 12px rgba(59,130,246,0.25);
+            border: none; cursor: pointer; font-family: inherit;
+        }
+        .detail-cta-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(59,130,246,0.35); }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .nav-links, .nav-actions .btn-ghost { display: none; }
+            .hamburger { display: flex; }
         }
 
-        .pricing-cta.secondary {
-            background: transparent;
-            border: 2px solid #ffffff;
-            color: #ffffff;
-        }
-
-        .pricing-cta.secondary:hover {
-            background: #3b82f6;
-            color: #ffffff;
-        }
-
-        /* Founder Section - IMPROVED TEXT CONTRAST */
-        .founder-content {
-            display: grid;
-            grid-template-columns: 1fr 300px;
-            gap: 4rem;
-            align-items: start;
-        }
-
-        .founder-text h2 {
-            font-size: 3rem;
-            font-weight: 800;
-            color: #ffffff;
-            margin-bottom: 2rem;
-        }
-
-        .founder-text h3 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #ffffff;
-            margin: 2rem 0 1rem;
-        }
-
-        .founder-text p {
-            color: #ffffff;
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-            font-weight: 400;
-        }
-
-        .founder-image {
-            position: sticky;
-            top: 120px;
-        }
-
-        /* Contact Section - IMPROVED TEXT CONTRAST */
-        .contact-section {
-            text-align: center;
-        }
-
-        .contact-section h2 {
-            font-size: 3rem;
-            font-weight: 800;
-            color: #ffffff;
-            margin-bottom: 2rem;
-        }
-
-        .contact-section p {
-            font-size: 1.2rem;
-            color: #ffffff;
-            margin-bottom: 2rem;
-            font-weight: 500;
-        }
-
-        .contact-email {
-            font-size: 1.5rem;
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .contact-email:hover {
-            text-decoration: underline;
-        }
-
-        /* Responsive Design */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .problems-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .chart-categories {
-                grid-template-columns: 1fr;
-            }
-
-            .what-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .pricing-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .founder-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .founder-image {
-                position: static;
-            }
-
-            .service-buttons {
-                flex-direction: column;
-            }
-
-            .showcase-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .media-section {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .media-section.single {
-                max-width: 95%;
-            }
-            
-            .media-placeholder {
-                min-height: 300px;
-                padding: 1.5rem;
-            }
-            
-            .media-placeholder img {
-                max-height: 400px;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
+            .products-grid { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: 1fr; }
+            .showcase-grid { grid-template-columns: 1fr; }
+            .what-grid { grid-template-columns: 1fr; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .founder-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .founder-img { position: static; }
+            .media-pair { grid-template-columns: 1fr; }
+            .hero { padding: 100px 0 50px; }
         }
 
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Hidden by default */
-        .hidden {
-            display: none;
-        }
+        .hidden { display: none !important; }
     </style>
 </head>
 <body>
-    <!-- Header -->
+
+    <!-- HEADER -->
     <header class="header">
         <div class="container">
             <nav class="nav">
-                <span class="logo">Chartara Labs</span>
-                <div class="hamburger-menu">
-                    <button class="hamburger-toggle" id="hamburgerToggle">
-                        <span class="hamburger-line"></span>
-                        <span class="hamburger-line"></span>
-                        <span class="hamburger-line"></span>
-                    </button>
-                    <div class="nav-dropdown" id="navDropdown">
-                        <a href="#home">Home</a>
-                        <a href="#features">Features</a>
-                        <a href="#" onclick="showServiceDetail('scribe'); return false;">AI Scribe</a>
-                        <a href="#" onclick="showServiceDetail('analytics'); return false;">Visual Analytics</a>
-                        <a href="#pricing">Pricing</a>
-                        <a href="#getting-started">Getting Started</a>
-                        <a href="#faq">FAQs</a>
-                        <a href="#founder">Meet the Founder</a>
-                        <a href="#contact">Contact</a>
-                        <a href="https://www.linkedin.com/company/chartara-labs/" target="_blank">LinkedIn</a>
-                        <a href="https://instagram.com/chartaralabs" target="_blank">Instagram</a>
-                        <a href="https://www.youtube.com/@ChartaraLabs" target="_blank">YouTube</a>
-                    </div>
+                <img src="brand_logo.jpg" alt="Chartara Labs" style="height: 44px; width: auto; display: block; cursor: pointer;" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+                <ul class="nav-links">
+                    <li class="nav-dropdown-wrap">
+                        <a href="#products">Products</a>
+                        <div class="nav-dropdown">
+                            <a href="#products">Chartara Notes</a>
+                            <a href="#products" class="nav-dropdown-muted">Chartara Train <span style="font-size:0.75rem;color:#a78bfa;">(Coming Soon)</span></a>
+                        </div>
+                    </li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#getting-started">Getting Started</a></li>
+                    <li><a href="#founder">Meet the Founder</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="https://notes.chartaralabs.io" class="btn-ghost">Login</a>
+                    <a href="https://buy.stripe.com/7sYdRag5wemidtR7B84Rq09" class="btn-primary">Get Started Free</a>
                 </div>
-                <a href="https://buy.stripe.com/7sYdRag5wemidtR7B84Rq09" class="nav-cta">Get Started Free</a>
-                <a href="https://notes.chartaralabs.io" class="nav-cta">Login</a>
+                <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </nav>
+            <nav class="mobile-nav" id="mobileNav">
+                <a href="#products">Products</a>
+                <a href="#features">Features</a>
+                <a href="#" onclick="showDetailPage('scribe'); return false;">AI Scribe</a>
+                <a href="#" onclick="showDetailPage('analytics'); return false;">Visual Analytics</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#getting-started">Getting Started</a>
+                <a href="#faq">FAQs</a>
+                <a href="#founder">Meet the Founder</a>
+                <a href="#contact">Contact</a>
+                <div class="mobile-nav-divider"></div>
+                <a href="https://www.linkedin.com/company/chartara-labs/" target="_blank">LinkedIn</a>
+                <a href="https://instagram.com/chartaralabs" target="_blank">Instagram</a>
+                <a href="https://www.youtube.com/@ChartaraLabs" target="_blank">YouTube</a>
+                <div class="mobile-nav-divider"></div>
+                <a href="https://notes.chartaralabs.io">Login</a>
+                <a href="https://buy.stripe.com/7sYdRag5wemidtR7B84Rq09">Get Started Free</a>
             </nav>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <div class="container">
-            
-            <!-- Home Section -->
-            <section id="home" class="content-section main-page">
-                <!-- Hero Section -->
-                <div class="hero">
-                    <img src="brand_logo.jpg" alt="Chartara Labs Logo" style="max-width: 800px; width: 80%; height: auto; display: block; margin: 1rem auto 1rem; border: none; text-align: center;">
-                    
+    <!-- MAIN CONTENT -->
+    <div id="mainContent">
+
+        <!-- HERO -->
+        <!-- PRODUCTS -->
+        <section class="section" id="products" style="padding-top: 88px;">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" style="color: var(--blue);">Our Products</h2>
+                    <h2 class="section-title">Built for Behavioral Health</h2>
+                    <p class="section-desc">A growing ecosystem of AI-powered tools designed by a licensed clinician for therapists, supervisors, and organizations.</p>
                 </div>
-
-                <!-- Features Section -->
-                <section id="features" class="services-section">
-                    <h2>Chartara Notes: AI Scribe & Clinical Decision Support</h2>
-                    <div class="services-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 950px; margin: 0 auto;">
-                        <div class="service-card" onclick="showServiceDetail('scribe')">
-                            <div class="service-image">
-                                <img src="Voice Dictation Front Page.png" alt="Chartara Notes AI Scribe Interface">
-                            </div>
-                            <h3>AI Scribe</h3>
-                            <p>Create professional clinical documentation by simply speaking about your sessions. Choose from SOAP, DAP, GIRP, Narrative, or build your own custom templates with your exact section headings. Voice-to-note in seconds — stop typing for 30 minutes, start speaking for 60 seconds.</p>
-                            <div class="service-buttons">
-                                <a href="https://buy.stripe.com/7sYdRag5wemidtR7B84Rq09" class="service-cta" onclick="event.stopPropagation()">Start Free</a>
-                                <a href="#" class="service-pricing" onclick="event.stopPropagation(); showServiceDetail('scribe');">See More Info</a>
-                            </div>
+                <div class="products-grid">
+                    <div class="product-card product-card-featured">
+                        <span class="badge badge-live"><span style="width:7px;height:7px;border-radius:50%;background:#34d399;display:inline-block;"></span> Live</span>
+                        <div class="product-image">
+                            <img src="chartara_notes_login.png" alt="Chartara Notes Dashboard">
                         </div>
-
-                        <div class="service-card" onclick="showServiceDetail('analytics')">
-                            <div class="service-image">
-                                <img src="Visual Analytics Dashboard.png" alt="Chartara Notes Visual Analytics Dashboard">
-                            </div>
-                            <h3>Visual Analytics</h3>
-                            <p>Instant data visualization and ML-powered clinical decision support for your caseload. PHQ-9 tracking with AI forecasting, caseload breakdowns, no-show risk analysis, treatment plan review monitoring, and more. Downloadable PDF reports with every chart — all from simple web forms.</p>
-                            <div class="service-buttons">
-                                <a href="https://buy.stripe.com/7sYdRag5wemidtR7B84Rq09" class="service-cta" onclick="event.stopPropagation()">Start Free</a>
-                                <a href="#" class="service-pricing" onclick="event.stopPropagation(); showServiceDetail('analytics');">See More Info</a>
-                            </div>
+                        <h2 class="product-name">Chartara Notes</h2>
+                        <p class="product-desc">An AI voice-to-text documentation scribe + Visual Analytics &amp; Clinical Decision Support. Speak your session summary. Get a complete, polished clinical document in under 60 seconds. Two powerful tools. One unified platform. Free to use.</p>
+                        <ul class="product-features">
+                            <li>Voice-to-note in seconds — stop typing, start speaking</li>
+                            <li>Data Visualization Decision Support</li>
+                            <li>Custom templates with your exact section headings</li>
+                            <li>ML-powered caseload analytics &amp; outcome monitoring</li>
+                            <li>Instant downloadable PDF reports</li>
+                            <li>HIPAA-compliant &amp; secure</li>
+                        </ul>
+                        <div class="product-actions">
+                            <a href="https://buy.stripe.com/7sYdRag5wemidtR7B84Rq09" class="product-cta">Get Started Free</a>
+                            <a href="https://notes.chartaralabs.io" class="product-cta-outline">Login</a>
+                            <a href="#features" style="background: transparent; border: 2px solid #2563eb; color: #ffffff; text-decoration: none; font-size: 0.83rem; font-weight: 700; padding: 0.5rem 1.1rem; border-radius: 50px; cursor: pointer; font-family: inherit; transition: all 0.2s; text-align: center; white-space: nowrap;">See Features</a>
                         </div>
                     </div>
-                </section>
-
-                <!-- Visual Analytics Showcase -->
-                <div class="content-section">
-                    <h2 style="text-align: center; font-size: 3rem; font-weight: 800; color: #ffffff; margin-bottom: 1rem;">Visual Analytics in Action</h2>
-                    <p style="text-align: center; color: #ffffff; font-size: 1.2rem; margin-bottom: 3rem; font-weight: 500;">Instant data visualization, ML-powered clinical insights, and downloadable PDF reports</p>
-
-                    <div class="showcase-grid">
-                        <div class="showcase-item">
-                            <img src="phq9 tracker data visualization.png" alt="PHQ-9 Depression Tracker with AI Forecast">
-                            <div class="showcase-caption">PHQ-9 Depression Tracker with AI Forecast</div>
+                    <div class="product-card">
+                        <span class="badge badge-soon">Coming Soon</span>
+                        <div class="product-image">
+                            <img src="Chartara_Train_Welcome_Page.png" alt="Chartara Train">
                         </div>
-                        <div class="showcase-item">
-                            <img src="Caseload Breakdown Data Viz.png" alt="Caseload Breakdown by Diagnosis">
-                            <div class="showcase-caption">Caseload Breakdown by Diagnosis</div>
-                        </div>
-                        <div class="showcase-item">
-                            <img src="No Show Data Visualization.png" alt="No-Show Risk Analysis by Client">
-                            <div class="showcase-caption">No-Show Risk Analysis by Client</div>
-                        </div>
-                        <div class="showcase-item">
-                            <img src="No Show Analytics.png" alt="AI-Powered Clinical Intervention Strategies">
-                            <div class="showcase-caption">AI-Powered Clinical Intervention Strategies</div>
-                        </div>
-                        <div class="showcase-item">
-                            <img src="Caseload Analytics.png" alt="Practice Specialization Analysis">
-                            <div class="showcase-caption">Practice Specialization Analysis</div>
-                        </div>
-                        <div class="showcase-item">
-                            <img src="TPR PDF.png" alt="Instant Downloadable PDF Reports">
-                            <div class="showcase-caption">Instant Downloadable PDF Reports</div>
+                        <h2 class="product-name">Chartara Train</h2>
+                        <p class="product-desc">AI-powered therapist training in evidence-based interventions with outcome tracking that strengthens funding opportunities.</p>
+                        <ul class="product-features">
+                            <li>Behavioral Activation Tracker</li>
+                            <li>Cognitive Restructuring &amp; Thought Tracking</li>
+                            <li>Cultural Competence Analytics</li>
+                            <li>Outcome-based funding model support</li>
+                        </ul>
+                        <div class="product-actions">
+                            <a href="mailto:support@chartaralabs.io?subject=Access Request for Chartara Train&body=Hi, I'm interested in accessing Chartara Train." class="product-cta" style="background: linear-gradient(135deg, #7c3aed, #6d28d9);">Request Access</a>
+                            <button class="product-cta-outline" onclick="showDetailPage('train')">Learn More</button>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- Core Problems Section -->
-                <div class="problems-section">
-                    <h2>Core Problems We Solve</h2>
-                    <div class="problems-grid">
-                        <div class="problem-card" style="border-color: rgba(59, 130, 246, 0.5); background: rgba(59, 130, 246, 0.1);">
-                            <h3>Documentation Burnout</h3>
-                            <p>Therapists spend up to 30 minutes typing a single progress note. With Chartara Notes AI Scribe, speak naturally about your session for 60 seconds and get a polished, HIPAA-compliant clinical note — instantly. Build custom templates with YOUR section headings or use proven formats like SOAP and DAP. Voice dictation that actually understands therapeutic language. Your voice. Your workflow. Your notes — done.</p>
+        <!-- FEATURES -->
+        <section class="section section-alt" id="features">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" style="color: var(--blue);">Chartara Notes</h2>
+                    <h2 class="section-title">AI Scribe &amp; Clinical Decision Support</h2>
+                    <p class="section-desc">Two integrated tools in one simple Web App that transform how you document and understand your caseload.</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card" onclick="showDetailPage('scribe')">
+                        <div class="feature-card-img">
+                            <img src="Chartara_Notes_AI_Scribe.png" alt="AI Scribe Interface">
                         </div>
-                        <div class="problem-card">
-                            <h3>Supervision Guesswork</h3>
-                            <p>Generate instant PDF performance reports comparing therapists, outcomes, client attendance show rates, comprehensive caseload analytics, and more. Instant PDF report for every chart: including the colored data visualization and the analytics section. Evidence-based supervision in seconds, not hours.</p>
+                        <h3>AI Scribe</h3>
+                        <p>An AI voice-to-text scribe that transforms your natural speech into any clinical document you need — in under 60 seconds. No ambient recording. No AI in the therapy room. Build custom templates once for session notes, intakes, treatment plan reviews, discharge summaries, and more. Speak once. Copy and paste. Done.</p>
+                        <div class="feature-btns">
+                            <a href="https://buy.stripe.com/7sYdRag5wemidtR7B84Rq09" class="btn-feature-cta" onclick="event.stopPropagation()">Start Free</a>
+                            <a href="#" class="btn-feature-outline" onclick="event.stopPropagation(); showDetailPage('scribe');">See More Info</a>
                         </div>
-                        <div class="problem-card">
-                            <h3>Data Chaos</h3>
-                            <p>Therapists are in over their heads in data. And it's hard to make sense of it. Stop navigating through lots of screens in your EMR, trying to interpret unhelpful, disorganized data. Use Chartara Notes to CENTRALIZE YOUR DATA and GENERATE INSTANT VISUALIZATIONS that bring your caseload to life. Simple web forms — no spreadsheets needed. Make your data ACTIONABLE.</p>
+                    </div>
+                    <div class="feature-card" onclick="showDetailPage('analytics')">
+                        <div class="feature-card-img">
+                            <img src="Chartara_Notes_Visual_Analytics_Front Page.png" alt="Visual Analytics Dashboard">
                         </div>
-                        <div class="problem-card">
-                            <h3>Outcome Blindness</h3>
-                            <p>Machine learning analytics reveal which clients are improving, which need intervention, and what treatment approaches work best for your practice. Each data visualization is combined with a comprehensive analytics section — dynamically adapted to your unique caseload. Machine learning algorithms include descriptive, prescriptive, and predictive analytics.</p>
-                        </div>
-                        <div class="problem-card">
-                            <h3>Business Mystery</h3>
-                            <p>Intelligent forecasting and analysis learns your practice patterns and predicts growth opportunities, seasonal trends, and financial optimization strategies. Business Intelligence analytics are included across charts. All vertically integrated for Behavioral Health.</p>
+                        <h3>Visual Analytics</h3>
+                        <p>Instant data visualization and ML-powered clinical decision support for your caseload. PHQ-9 tracking with AI forecasting, caseload breakdowns, no-show risk analysis, treatment plan review monitoring, and more. Instant downloadable PDF reports for every chart.</p>
+                        <div class="feature-btns">
+                            <a href="https://buy.stripe.com/7sYdRag5wemidtR7B84Rq09" class="btn-feature-cta" onclick="event.stopPropagation()">Start Free</a>
+                            <a href="#" class="btn-feature-outline" onclick="event.stopPropagation(); showDetailPage('analytics');">See More Info</a>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- What We Are Section -->
-                <div class="what-we-are content-section">
-                    <h2>What Sets Us Apart</h2>
-                    <div class="what-grid">
-                        <div class="what-column positive">
-                            <h3>What We Are</h3>
-                            <div class="what-item">
-                                <span class="what-icon">✅</span>
-                                <div class="what-text">AI Scribe and machine learning visual analytics platform — the first of its kind in behavioral health</div>
-                            </div>
-                            <div class="what-item">
-                                <span class="what-icon">✅</span>
-                                <div class="what-text">Expert logic algorithms that adapt and improve with your specific caseload data</div>
-                            </div>
-                            <div class="what-item">
-                                <span class="what-icon">✅</span>
-                                <div class="what-text">Intelligent recommendations based on patterns unique to your practice</div>
-                            </div>
-                            <div class="what-item">
-                                <span class="what-icon">✅</span>
-                                <div class="what-text">Self-improving analytics - the more data you add, the smarter the insights become</div>
-                            </div>
-                            <div class="what-item">
-                                <span class="what-icon">✅</span>
-                                <div class="what-text">Developed by a licensed therapist who pioneered machine learning for therapy workflows</div>
-                            </div>
+        <!-- CORE PROBLEMS -->
+        <section class="section section-alt" id="problems">
+            <div class="container">
+                <div class="section-header">
+                    <p class="eyebrow">Why Chartara Notes</p>
+                    <h2 class="section-title">Core Problems We Solve</h2>
+                </div>
+                <div class="problems-grid">
+                    <div class="problem-card problem-card-accent">
+                        <h3>Documentation Burnout</h3>
+                        <p>Therapists spend up to 30 minutes typing a single progress note. With Chartara Notes AI Scribe, speak naturally about your session for 60 seconds and get a polished, HIPAA-compliant clinical note instantly. Your voice. Your workflow. Your notes — done.</p>
+                    </div>
+                    <div class="problem-card">
+                        <h3>Supervision Guesswork</h3>
+                        <p>Generate instant PDF performance reports comparing therapists, outcomes, client attendance show rates, and comprehensive caseload analytics. Evidence-based supervision in seconds, not hours.</p>
+                    </div>
+                    <div class="problem-card">
+                        <h3>Data Chaos</h3>
+                        <p>Stop navigating through lots of screens in your EMR trying to interpret unhelpful, disorganized data. Centralize your data and generate instant visualizations that bring your caseload to life. Simple web forms — no spreadsheets needed.</p>
+                    </div>
+                    <div class="problem-card">
+                        <h3>Outcome Blindness</h3>
+                        <p>Machine learning analytics reveal which clients are improving, which need intervention, and what treatment approaches work best for your practice. Descriptive, prescriptive, and predictive analytics — dynamically adapted to your caseload.</p>
+                    </div>
+                    <div class="problem-card">
+                        <h3>Business Mystery</h3>
+                        <p>Intelligent forecasting learns your practice patterns and predicts growth opportunities, seasonal trends, and financial optimization strategies. Business Intelligence analytics, vertically integrated for Behavioral Health.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHAT SETS US APART -->
+        <section class="section" id="what">
+            <div class="container">
+                <div class="section-header">
+                    <p class="eyebrow">Differentiation</p>
+                    <h2 class="section-title">What Sets Us Apart</h2>
+                </div>
+                <div class="what-grid">
+                    <div class="what-column positive">
+                        <h3>What We Are</h3>
+                        <div class="what-item">
+                            <span class="what-icon">✅</span>
+                            <span class="what-text">AI Scribe and machine learning visual analytics platform — the first of its kind in behavioral health</span>
                         </div>
-                        <div class="what-column negative">
-                            <h3>What We Are NOT</h3>
-    
-                            <div class="what-item">
-                                <span class="what-icon">❌</span>
-                                <div class="what-text">Not meant to replace therapist decision making. Instead, Chartara Notes acts as a clinical decision support system, respecting the autonomy and professional skillset of therapists. Therapists should ultimately make their own determinations and use Chartara Notes as an advanced decision support tool.</div>
-                            </div>
+                        <div class="what-item">
+                            <span class="what-icon">✅</span>
+                            <span class="what-text">Expert logic algorithms that adapt and improve with your specific caseload data</span>
+                        </div>
+                        <div class="what-item">
+                            <span class="what-icon">✅</span>
+                            <span class="what-text">Intelligent recommendations based on patterns unique to your practice</span>
+                        </div>
+                        <div class="what-item">
+                            <span class="what-icon">✅</span>
+                            <span class="what-text">Self-improving analytics — the more data you add, the smarter the insights become</span>
+                        </div>
+                        <div class="what-item">
+                            <span class="what-icon">✅</span>
+                            <span class="what-text">Developed by a licensed therapist who pioneered machine learning for therapy workflows</span>
+                        </div>
+                    </div>
+                    <div class="what-column negative">
+                        <h3>What We Are NOT</h3>
+                        <div class="what-item">
+                            <span class="what-icon">❌</span>
+                            <span class="what-text">Not a browser extension. No downloads, no installs, no compatibility issues. Chartara Notes is a standalone web app that works on top of your existing EMR without touching it.</span>
+                        </div>
+                        <div class="what-item">
+                            <span class="what-icon">❌</span>
+                            <span class="what-text">Not designed to record your therapy sessions. AI has no place inside the therapy room. We believe the therapeutic environment is sacred and client privacy is non-negotiable.</span>
+                        </div>
+                        <div class="what-item">
+                            <span class="what-icon">❌</span>
+                            <span class="what-text">Not trying to outsource your clinical mind. We do not listen to your sessions, analyze your techniques, or attempt to write a better note than you can. You are the clinician. We just make your documentation faster.</span>
+                        </div>
+                        <div class="what-item">
+                            <span class="what-icon">❌</span>
+                            <span class="what-text">Not a tool that adds more buttons, more screens, or more steps to your workflow. If a documentation tool makes your job harder, it has failed. Chartara Notes is designed to get out of your way.</span>
+                        </div>
+                        <div class="what-item">
+                            <span class="what-icon">❌</span>
+                            <span class="what-text">Not complicated. Log in, speak, copy, paste, done. That is the entire workflow.</span>
+                        </div>
+                        <div class="what-item">
+                            <span class="what-icon">❌</span>
+                            <span class="what-text">Not meant to replace therapist decision making. Chartara Notes acts as a clinical decision support system, respecting the autonomy and professional skill set of therapists. Therapists should ultimately make their own clinical determinations and use Chartara Notes as an advanced decision support tool.</span>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- FAQ Section -->
-                <div class="faq-section" id="faq">
-                    <h2>Frequently Asked Questions</h2>
+        <!-- FAQ -->
+        <section class="section section-alt" id="faq">
+            <div class="container">
+                <div class="section-header">
+                    <p class="eyebrow">FAQs</p>
+                    <h2 class="section-title">Frequently Asked Questions</h2>
+                </div>
+                <div class="faq-list">
                     <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
                             <span>What is Chartara Labs?</span>
-                            <span class="faq-toggle">+</span>
-                        </div>
+                            <span class="faq-icon">+</span>
+                        </button>
                         <div class="faq-answer">
-                            Chartara Labs is a technically rigorous, research-driven AI lab developing advanced tools for behavioral health and related sectors. Our platform delivers modular solutions for clinics, public health programs, private practices, and educational technology, including therapist training in evidence-based interventions and automated progress note generation.<br><br>Unlike most behavioral health analytics platforms, Chartara Labs doesn't stop at pre-set dashboards. Built by a licensed clinician, the system expands into custom data visualizations, machine learning support, and enhanced progress reporting for training, supervision, and specialized practice needs. This makes Chartara a living ecosystem that grows with the field — not a static software tool.<br><br>The Chartara Labs ecosystem is led by Milo LeGendre, LMHC, who combines PhD level domain expertise in behavioral health administration, mental health counseling licensure, data science, and the newest technologies to develop cutting edge solutions for therapists nationwide.
+                            Chartara Labs is a technically rigorous, research-driven AI lab developing advanced tools for behavioral health and related sectors. Our platform delivers modular solutions for clinics, public health programs, private practices, and educational technology, including therapist training in evidence-based interventions and automated progress note generation.<br><br>
+                            Unlike most behavioral health analytics platforms, Chartara Labs doesn't stop at pre-set dashboards. Built by a licensed clinician, the system expands into custom data visualizations, machine learning support, and enhanced progress reporting for training, supervision, and specialized practice needs. This makes Chartara a living ecosystem that grows with the field — not a static software tool.
                         </div>
                     </div>
                     <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)">
-                            <span>What about supervision features?</span>
-                            <span class="faq-toggle">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            Whenever a clinician accesses a chart through the Chartara Labs interface, they have the option to instantly generate a colored PDF of the data visualization and comprehensive analytics section. Supervisors gain the ability to request these PDFs from their clinicians to enhance oversight, provide more targeted support, and conduct supervision through a data-driven approach. Generate comprehensive PDF reports comparing therapist performance, caseload diagnosis breakdowns, client outcomes, attendance reports, treatment plan review tracking and more. In seconds - at the click of a button. Perfect for evidence-based supervision meetings and/or general executive reporting.
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)">
-                            <span>Is my client data secure?</span>
-                            <span class="faq-toggle">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            Absolutely. Chartara Labs is HIPAA compliant with enterprise-grade security including end-to-end encryption, secure AWS cloud storage, and regular security audits. Most importantly, the platform is designed so NO client identifying information is ever required - you only upload aggregate data like PHQ-9 scores, session dates, and diagnosis codes. No names, addresses, or personal details. Your data is encrypted both in transit and at rest, with audit trails for all access. Built by a licensed therapist who understands the critical importance of client confidentiality and data protection.
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
                             <span>How does the AI Scribe work?</span>
-                            <span class="faq-toggle">+</span>
-                        </div>
+                            <span class="faq-icon">+</span>
+                        </button>
                         <div class="faq-answer">
                             Simply speak naturally about your session — describe what happened, interventions used, client presentation, and treatment progress. Chartara Notes AI Scribe transforms your voice recording into a polished, professional clinical note in seconds. You can build custom templates with your exact section headings, or use proven formats like SOAP and DAP. The AI understands therapeutic language and adapts to your clinical style. No typing, no copy-paste, no reformatting.
                         </div>
                     </div>
                     <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)">
-                            <span>How do the visual analytics work and how is this platform AI?</span>
-                            <span class="faq-toggle">+</span>
-                        </div>
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            <span>What about supervision features?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
                         <div class="faq-answer">
-                            Upload your data and instantly see beautiful charts instead of confusing spreadsheets. Data Visualizations may include line graphs, bar charts, dot plots, and heat maps. The visualizations are combined with Artificial Intelligence (AI) capabilities and algorithms to provide tailored recommendations based on your real and evolving data inputs. Chartara Labs uses descriptive, prescriptive, and predictive analytics to enhance supervision, outcome monitoring, and business intelligence vertically for behavioral health professionals. Artificial Intelligence (AI) is the overarching field that aims to develop machines that can mimic human cognitive abilities. Machine Learning (ML) is a specific method within AI that allows computers to learn from data without being explicitly programmed. Chartara Labs was developed by a licensed therapist who hand-picked the ML algorithms and programmed them with expert level logic in behavioral health practice administration. The user interface was designed to be therapist friendly and with the perspectives of frontline clinicians and clinical supervisors in mind.
+                            Whenever a clinician accesses a chart through the Chartara Labs interface, they have the option to instantly generate a colored PDF of the data visualization and comprehensive analytics section. Supervisors gain the ability to request these PDFs from their clinicians to enhance oversight, provide more targeted support, and conduct supervision through a data-driven approach. Generate comprehensive PDF reports comparing therapist performance, caseload diagnosis breakdowns, client outcomes, attendance reports, treatment plan review tracking and more — in seconds, at the click of a button.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Is my client data secure?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            Absolutely. Chartara Labs is HIPAA compliant with enterprise-grade security including end-to-end encryption, secure AWS cloud storage, and regular security audits. The platform is designed so NO client identifying information is ever required — you only upload aggregate data like PHQ-9 scores, session dates, and diagnosis codes. No names, addresses, or personal details. Your data is encrypted both in transit and at rest, with audit trails for all access.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            <span>How do the visual analytics work and how is this platform AI?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            Upload your data and instantly see beautiful charts instead of confusing spreadsheets. The visualizations are combined with AI capabilities and algorithms to provide tailored recommendations based on your real and evolving data inputs. Chartara Labs uses descriptive, prescriptive, and predictive analytics to enhance supervision, outcome monitoring, and business intelligence for behavioral health professionals. The platform was developed by a licensed therapist who hand-picked the ML algorithms and programmed them with expert-level logic in behavioral health practice administration.
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- Service Detail Pages -->
-            
-            <!-- AI Scribe Detail -->
-            <section id="scribe-detail" class="service-detail">
-                <div class="container">
-                    <a href="#" class="back-button" onclick="showMainPage()">← Back</a>
-                    <div class="detail-content">
-                        <div class="detail-header">
-                            <h2>AI Scribe — Voice to Clinical Note</h2>
-                            <p>Create professional clinical documentation by simply speaking about your sessions. Chartara Notes adapts to YOUR workflow — build custom templates with your exact section headings, or use proven formats like SOAP, DAP, GIRP, and Narrative. Our AI understands therapeutic language and intelligently transforms your natural speech into polished, HIPAA-compliant notes in seconds.</p>
-                            <p>Set and save your templates for ANY documentation format. Intake. Individual Session Note. Termination Summary. Transfer Summary — and more. Stop typing for 30 minutes. Start speaking for 60 seconds.</p>
-                        </div>
-
-                        <!-- 1. Voice Dictation Front Page -->
-                        <h3 style="color: #ffffff; text-align: center; font-size: 1.5rem; margin-bottom: 1rem;">Select Note Format & Start Recording</h3>
-                        <div class="media-section single">
-                            <div class="media-placeholder">
-                                <img src="Voice Dictation Front Page.png" alt="AI Scribe — Select Note Format and Start Recording" style="width: 100%; height: auto; border-radius: 15px;">
-                            </div>
-                        </div>
-
-                        <!-- 2. Create New Template Interface -->
-                        <h3 style="color: #ffffff; text-align: center; font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1rem;">Build Custom Templates with Your Exact Sections</h3>
-                        <div class="media-section single">
-                            <div class="media-placeholder">
-                                <img src="Create New Template Interface.png" alt="Create New Custom Template Interface" style="width: 100%; height: auto; border-radius: 15px;">
-                            </div>
-                        </div>
-
-                        <!-- 3. Voice Recording Note Dropdown Selector -->
-                        <h3 style="color: #ffffff; text-align: center; font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1rem;">Choose from Your Saved Templates</h3>
-                        <div class="media-section single">
-                            <div class="media-placeholder">
-                                <img src="Voice Recording Note Dropdown Selector.png" alt="Template Dropdown Selector on Voice Recording Page" style="width: 100%; height: auto; border-radius: 15px;">
-                            </div>
-                        </div>
-
-                        <!-- 4-6. Sample Custom Templates -->
-                        <h3 style="color: #ffffff; text-align: center; font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1rem;">Sample Custom Templates</h3>
-                        <div class="media-section single">
-                            <div class="media-placeholder">
-                                <img src="Note Template Individual Session Note.png" alt="Custom Template — Individual Session Note" style="width: 100%; height: auto; border-radius: 15px;">
-                            </div>
-                        </div>
-                        <div class="media-section">
-                            <div class="media-placeholder">
-                                <img src="Note Template Termination Summary and Intake .png" alt="Custom Templates — Termination Summary and Intake" style="width: 100%; height: auto; border-radius: 15px;">
-                            </div>
-                            <div class="media-placeholder">
-                                <img src="Note Template Transfer Summary.png" alt="Custom Template — Transfer Summary" style="width: 100%; height: auto; border-radius: 15px;">
-                            </div>
-                        </div>
-
-                        <div class="cta-section">
-                            <div class="cta-buttons">
-                                <a href="https://buy.stripe.com/7sYdRag5wemidtR7B84Rq09" class="service-cta">Start Free</a>
-                                <a href="#" class="service-cta" onclick="showServiceDetail('analytics')">See Visual Analytics</a>
-                                <a href="#" class="service-cta" onclick="showMainPage()">Back</a>
-                            </div>
-                        </div>
-                    </div>
+        <!-- PRICING -->
+        <section class="section" id="pricing">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" style="font-size: 3rem;">Chartara Notes Pricing</h2>
                 </div>
-            </section>
-
-            <!-- Visual Analytics Detail -->
-            <section id="analytics-detail" class="service-detail">
-                <div class="container">
-                    <a href="#" class="back-button" onclick="showMainPage()">← Back</a>
-                    <div class="detail-content">
-                        <div class="detail-header">
-                            <h2>Visual Analytics & Clinical Decision Support</h2>
-                            <p>Instant data visualization and ML-powered clinical decision support for your caseload. Enter data through simple web forms — no spreadsheets needed — and get instant charts, analytics, and downloadable PDF reports unique to your practice.</p>
-                            <p>Each chart includes descriptive, prescriptive, and predictive analytics dynamically adapted to your data. Track outcomes, monitor compliance, identify at-risk clients, and generate evidence-based supervision reports — all at the click of a button.</p>
-                        </div>
-
-                        <!-- Visual Analytics Dashboard -->
-                        <h3 style="color: #ffffff; text-align: center; font-size: 1.5rem; margin-bottom: 1rem;">Visual Analytics Dashboard</h3>
-                        <div class="media-section single">
-                            <div class="media-placeholder">
-                                <img src="Visual Analytics Dashboard.png" alt="Visual Analytics Dashboard — All Charts" style="width: 100%; height: auto; border-radius: 15px;">
-                            </div>
-                        </div>
-
-                        <!-- PHQ-9 Tracker -->
-                        <h3 style="color: #ffffff; text-align: center; font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1rem;">Individual Client PHQ-9 Tracker</h3>
-                        <div class="media-section">
-                            <div class="media-placeholder">
-                                <img src="phq9 tracker client selector.png" alt="PHQ-9 Client Selector" style="width: 100%; height: auto; border-radius: 15px;">
-                            </div>
-                            <div class="media-placeholder">
-                                <img src="phq9 tracker data visualization.png" alt="PHQ-9 Data Visualization with AI Forecast" style="width: 100%; height: auto; border-radius: 15px;">
-                            </div>
-                        </div>
-
-                        <!-- Caseload Breakdown -->
-                        <h3 style="color: #ffffff; text-align: center; font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1rem;">Caseload Breakdown by Diagnosis</h3>
-                        <div class="media-section">
-                            <div class="media-placeholder">
-                                <img src="Caseload Breakdown Data Viz.png" alt="Caseload Breakdown Data Visualization" style="width: 100%; height: auto; border-radius: 15px;">
-                            </div>
-                            <div class="media-placeholder">
-                                <img src="Caseload Analytics.png" alt="Caseload Analytics — Practice Specialization" style="width: 100%; height: auto; border-radius: 15px;">
-                            </div>
-                        </div>
-
-                        <!-- No-Show Analysis -->
-                        <h3 style="color: #ffffff; text-align: center; font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1rem;">No-Show Analysis</h3>
-                        <div class="media-section">
-                            <div class="media-placeholder">
-                                <img src="No Show Data Visualization.png" alt="No-Show Data Visualization" style="width: 100%; height: auto; border-radius: 15px;">
-                            </div>
-                            <div class="media-placeholder">
-                                <img src="No Show Analytics.png" alt="No-Show Clinical Interventions" style="width: 100%; height: auto; border-radius: 15px;">
-                            </div>
-                        </div>
-
-                        <!-- Treatment Plan Review Tracker -->
-                        <h3 style="color: #ffffff; text-align: center; font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1rem;">Treatment Plan Review Tracker</h3>
-                        <div class="media-section">
-                            <div class="media-placeholder">
-                                <img src="TPR Data Visualization.png" alt="Treatment Plan Review Data Visualization" style="width: 100%; height: auto; border-radius: 15px;">
-                            </div>
-                            <div class="media-placeholder">
-                                <img src="TPR Analytics.png" alt="Treatment Plan Review Analytics" style="width: 100%; height: auto; border-radius: 15px;">
-                            </div>
-                        </div>
-
-                        <!-- Data Entry & PDF Reports -->
-                        <h3 style="color: #ffffff; text-align: center; font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1rem;">Simple Data Entry & Instant PDF Reports</h3>
-                        <div class="media-section">
-                            <div class="media-placeholder">
-                                <img src="Caseload Data Entry.png" alt="Simple Web Form Data Entry" style="width: 100%; height: auto; border-radius: 15px;">
-                            </div>
-                            <div class="media-placeholder">
-                                <img src="TPR PDF.png" alt="Instant Downloadable PDF Report" style="width: 100%; height: auto; border-radius: 15px;">
-                            </div>
-                        </div>
-
-                        <div class="cta-section">
-                            <div class="cta-buttons">
-                                <a href="https://buy.stripe.com/7sYdRag5wemidtR7B84Rq09" class="service-cta">Start Free</a>
-                                <a href="#" class="service-cta" onclick="showServiceDetail('scribe')">See AI Scribe</a>
-                                <a href="#" class="service-cta" onclick="showMainPage()">Back</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-
-            <!-- Pricing Section -->
-            <section id="pricing" class="content-section pricing-section main-page">
-                <h2>Choose Your Plan</h2>
                 <div class="pricing-grid">
-                    <div class="pricing-card" style="border-color: rgba(59, 130, 246, 0.6); position: relative;">
-                        <div style="background: linear-gradient(135deg, #2563eb, #7c3aed); color: white; padding: 0.4rem 1.2rem; border-radius: 20px; font-size: 0.85rem; font-weight: 700; display: inline-block; margin-bottom: 1rem;">Most Popular</div>
-                        <h3>Free Plan</h3>
-                        <div class="price">$0</div>
-                        <div class="price-period">no credit card required</div>
+                    <div class="pricing-card pricing-card-featured">
+                        <span class="pricing-badge pricing-badge-popular">Most Popular</span>
+                        <h3 class="pricing-name">Free Plan</h3>
+                        <div class="pricing-price">$0</div>
+                        <div class="pricing-period">no credit card required</div>
                         <ul class="pricing-features">
                             <li>AI-Powered Clinical Documentation</li>
                             <li>Voice-to-Note in Seconds</li>
                             <li>Custom Note Templates</li>
-                            <li>Visual Analytics & Insights Dashboard</li>
+                            <li>Visual Analytics &amp; Insights Dashboard</li>
                             <li>Instant Data Visualization for Therapists</li>
                             <li>ML-Powered Clinical Decision Support</li>
                             <li>Instant PDF Downloads</li>
-                            <li>Instant PDF of Visual Analytics Data Unique to Your Caseload</li>
+                            <li>Instant PDF of Visual Analytics Unique to Your Caseload</li>
                             <li>Simple Web Forms — No Spreadsheets</li>
-                            <li>HIPAA-Compliant & Secure</li>
+                            <li>HIPAA-Compliant &amp; Secure</li>
                         </ul>
-                        <a href="https://buy.stripe.com/7sYdRag5wemidtR7B84Rq09" class="pricing-cta">Get Started Free</a>
+                        <a href="https://buy.stripe.com/7sYdRag5wemidtR7B84Rq09" class="pricing-cta pricing-cta-primary">Get Started Free</a>
                     </div>
                     <div class="pricing-card" style="opacity: 0.85;">
-                        <div style="background: rgba(255, 255, 255, 0.15); color: white; padding: 0.4rem 1.2rem; border-radius: 20px; font-size: 0.85rem; font-weight: 700; display: inline-block; margin-bottom: 1rem;">Coming Soon</div>
-                        <h3>Supervisor Plan</h3>
-                        <div class="price" style="font-size: 2.2rem;">Coming Soon</div>
-                        <div class="price-period">for clinical supervisors & team leads</div>
+                        <span class="pricing-badge pricing-badge-soon">Coming Soon</span>
+                        <h3 class="pricing-name">Supervisor Plan</h3>
+                        <div class="pricing-price" style="font-size: 2rem;">Coming Soon</div>
+                        <div class="pricing-period">for clinical supervisors &amp; team leads</div>
                         <ul class="pricing-features">
                             <li>Everything in the Free Plan</li>
-                            <li>Supervisor Dashboards & Views</li>
+                            <li>Supervisor Dashboards &amp; Views</li>
                             <li>Multi-Clinician Monitoring From Your Account</li>
                             <li>Staffing Pattern Analytics</li>
                             <li>Caseload Trend Analytics</li>
                             <li>Documentation Compliance Tracking</li>
                             <li>Dedicated Support</li>
                         </ul>
-                        <span class="pricing-cta secondary" style="cursor: default; opacity: 0.7;">Coming Soon</span>
-                        <div style="margin-top: 1.5rem; font-size: 0.9rem; color: #ffffff; line-height: 1.5; font-weight: 400;">
-                            Oversee your team from a single account. Supervisor-level views give you real-time insight into clinician documentation, caseload trends, staffing patterns, and more — purpose-built for clinical supervisors and program leaders in behavioral health.
+                        <span class="pricing-cta pricing-cta-muted">Coming Soon</span>
+                        <p class="pricing-note">Oversee your team from a single account. Supervisor-level views give you real-time insight into clinician documentation, caseload trends, staffing patterns, and more — purpose-built for clinical supervisors and program leaders in behavioral health.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GETTING STARTED -->
+        <section class="section section-alt" id="getting-started">
+            <div class="container">
+                <div class="section-header">
+                    <p class="eyebrow">Getting Started</p>
+                    <h2 class="section-title">What to Expect When You Sign Up</h2>
+                    <p class="section-desc">Getting started is free. No credit card or payment information required.</p>
+                </div>
+                <div class="steps-list">
+                    <div class="step-card">
+                        <div class="step-num">1</div>
+                        <div>
+                            <h3>Sign Up Free</h3>
+                            <p>Click "Get Started Free" and complete the sign-up form. Enter your <strong>Full Name</strong> and <strong>email address</strong> — no credit card or payment info needed. The Full Name you provide will appear in the app and on all your downloadable PDF reports.</p>
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-num">2</div>
+                        <div>
+                            <h3>Check Your Email</h3>
+                            <p>You will receive an email with your <strong>username</strong> (which is your email address) and a <strong>temporary password</strong>.</p>
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-num">3</div>
+                        <div>
+                            <h3>Log In at <a href="https://notes.chartaralabs.io">notes.chartaralabs.io</a></h3>
+                            <p>Go to <strong><a href="https://notes.chartaralabs.io">notes.chartaralabs.io</a></strong> and enter your email and temporary password. You will be prompted to <strong>create your own new password</strong> upon first login.</p>
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-num">4</div>
+                        <div>
+                            <h3>Start Using Chartara Notes</h3>
+                            <p>You're in. Start creating clinical notes with the AI Scribe, build custom templates, access your visual analytics dashboard, and download instant PDF reports — all included for free.</p>
                         </div>
                     </div>
                 </div>
-            </section>
-
-            <!-- Getting Started Section -->
-            <section id="getting-started" class="content-section main-page" style="padding-bottom: 4rem;">
-                <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-                    <h2 style="font-size: 3rem; font-weight: 800; color: #ffffff; margin-bottom: 1rem;">What to Expect When You Sign Up</h2>
-                    <p style="font-size: 1.2rem; color: #ffffff; margin-bottom: 3rem; font-weight: 500;">Getting started is free. No credit card or payment information required.</p>
-
-                    <div style="display: grid; gap: 1.5rem; text-align: left;">
-                        <div style="background: rgba(255, 255, 255, 0.05); padding: 1.5rem 2rem; border-radius: 15px; border: 1px solid rgba(59, 130, 246, 0.2); display: flex; align-items: flex-start; gap: 1.5rem;">
-                            <div style="background: linear-gradient(135deg, #2563eb, #7c3aed); color: white; min-width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem;">1</div>
-                            <div>
-                                <h3 style="color: #ffffff; margin-bottom: 0.5rem; font-size: 1.2rem;">Sign Up Free</h3>
-                                <p style="color: #ffffff; font-weight: 400; line-height: 1.6;">Click "Get Started Free" and complete the sign-up form. Enter your <strong>Full Name</strong> and <strong>email address</strong> — no credit card or payment info needed. The Full Name you provide will appear in the app and on all your downloadable PDF reports.</p>
-                            </div>
-                        </div>
-
-                        <div style="background: rgba(255, 255, 255, 0.05); padding: 1.5rem 2rem; border-radius: 15px; border: 1px solid rgba(59, 130, 246, 0.2); display: flex; align-items: flex-start; gap: 1.5rem;">
-                            <div style="background: linear-gradient(135deg, #2563eb, #7c3aed); color: white; min-width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem;">2</div>
-                            <div>
-                                <h3 style="color: #ffffff; margin-bottom: 0.5rem; font-size: 1.2rem;">Check Your Email</h3>
-                                <p style="color: #ffffff; font-weight: 400; line-height: 1.6;">You will receive an email with your <strong>username</strong> (which is your email address) and a <strong>temporary password</strong>.</p>
-                            </div>
-                        </div>
-
-                        <div style="background: rgba(255, 255, 255, 0.05); padding: 1.5rem 2rem; border-radius: 15px; border: 1px solid rgba(59, 130, 246, 0.2); display: flex; align-items: flex-start; gap: 1.5rem;">
-                            <div style="background: linear-gradient(135deg, #2563eb, #7c3aed); color: white; min-width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem;">3</div>
-                            <div>
-                                <h3 style="color: #ffffff; margin-bottom: 0.5rem; font-size: 1.2rem;">Log In at <a href="https://notes.chartaralabs.io" style="color: #93c5fd; text-decoration: underline;">notes.chartaralabs.io</a></h3>
-                                <p style="color: #ffffff; font-weight: 400; line-height: 1.6;">Go to <strong><a href="https://notes.chartaralabs.io" style="color: #93c5fd;">notes.chartaralabs.io</a></strong> and enter your email and temporary password. You will be prompted to <strong>create your own new password</strong> upon first login.</p>
-                            </div>
-                        </div>
-
-                        <div style="background: rgba(255, 255, 255, 0.05); padding: 1.5rem 2rem; border-radius: 15px; border: 1px solid rgba(59, 130, 246, 0.2); display: flex; align-items: flex-start; gap: 1.5rem;">
-                            <div style="background: linear-gradient(135deg, #2563eb, #7c3aed); color: white; min-width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem;">4</div>
-                            <div>
-                                <h3 style="color: #ffffff; margin-bottom: 0.5rem; font-size: 1.2rem;">Start Using Chartara Notes</h3>
-                                <p style="color: #ffffff; font-weight: 400; line-height: 1.6;">You're in. Start creating clinical notes with the AI Scribe, build custom templates, access your visual analytics dashboard, and download instant PDF reports — all included for free.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style="margin-top: 2.5rem;">
-                        <a href="https://buy.stripe.com/7sYdRag5wemidtR7B84Rq09" class="pricing-cta" style="display: inline-block; width: auto; padding: 1rem 3rem;">Get Started Free</a>
-                    </div>
+                <div style="text-align: center;">
+                    <a href="https://buy.stripe.com/7sYdRag5wemidtR7B84Rq09" class="btn-lg btn-lg-primary">Get Started Free</a>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- Founder Section -->
-            <section id="founder" class="content-section main-page">
-                <div class="founder-content">
+        <!-- FOUNDER -->
+        <section class="section" id="founder">
+            <div class="container">
+                <div class="founder-grid">
                     <div class="founder-text">
                         <h2>Meet the Founder: Milo&nbsp;LeGendre, LMHC</h2>
                         <p><strong>Milo LeGendre, LMHC is a thought leader and trailblazer in behavioral healthcare</strong>, pioneering the integration of artificial intelligence and visual analytics to transform clinical practice. As a Licensed Mental Health Counselor and current PhD student at National University studying Psychology, Social Policy, and Behavioral Health Administration, Milo combines hands-on clinical expertise with cutting-edge research to address one of healthcare's most pressing challenges: making data actionable for practicing clinicians.</p>
-                        
                         <h3>The Research Foundation</h3>
                         <p>During his doctoral studies, Milo immersed himself in the growing body of evidence highlighting critical gaps in behavioral health practice. His research revealed a troubling disconnect: while systematic reviews by Lloyd et al. (2019) demonstrated that routine outcome monitoring and feedback on client progress are associated with positive treatment outcomes, many therapists struggle to engage meaningfully with client data in ways that inform treatment decisions.</p>
-                        
-                        <p>The problem wasn't lack of data—it was accessibility and interpretation. Milo understands that therapists are often overwhelmed by well-intentioned data sets that are essentially numbers on a computer screen, siloed in different compartments of vast electronic medical records. Research by Azizian Kia et al. (2024) confirmed that therapists are more likely to engage with data presented in clinically meaningful, visually intuitive formats conducive to self-reflection.</p>
-                        
-                        <p>This convergence of evidence pointed to a clear solution need: data visualization that leverages human visual processing capabilities to decrease cognitive load and speed up decision making (Parikh et al., 2021). Inspired by how the scholarly literature was clicking for him, Milo wanted to find a way to combine his clinical expertise, technology, and data science to solve problems he experienced in the field, and learned more about through his doctoral studies.</p>
-                        
+                        <p>The problem wasn't lack of data — it was accessibility and interpretation. Milo understands that therapists are often overwhelmed by well-intentioned data sets that are essentially numbers on a computer screen, siloed in different compartments of vast electronic medical records. Research by Azizian Kia et al. (2024) confirmed that therapists are more likely to engage with data presented in clinically meaningful, visually intuitive formats conducive to self-reflection.</p>
+                        <p>This convergence of evidence pointed to a clear solution need: data visualization that leverages human visual processing capabilities to decrease cognitive load and speed up decision making (Parikh et al., 2021). Inspired by how the scholarly literature was clicking for him, Milo wanted to find a way to combine his clinical expertise, technology, and data science to solve problems he experienced in the field.</p>
                         <h3>The Clinical Innovation Journey</h3>
-                        <p>Drawing from his on-the-job clinical experience, Milo began experimenting with technology to bridge this research-practice gap. As he piloted visualization tools using de-identified client data from his caseload, he experienced what he describes as "a transformative form of routine outcome monitoring." Visualizing patterns in client PHQ-9 scores and attendance data allowed him to identify when interventions coincided with symptom improvements—and critically, when they did not.</p>
-                        
+                        <p>Drawing from his on-the-job clinical experience, Milo began experimenting with technology to bridge this research-practice gap. As he piloted visualization tools using de-identified client data from his caseload, he experienced what he describes as "a transformative form of routine outcome monitoring." Visualizing patterns in client PHQ-9 scores and attendance data allowed him to identify when interventions coincided with symptom improvements — and critically, when they did not.</p>
                         <h3>The "Internal Call to Action"</h3>
-                        <p>This process created what Milo calls an "internal call to action"—visualized data sparked deeper clinical inquiry about treatment adjustments, therapeutic alliance factors, and evidence-based practice fidelity. Rather than data collection being a procedural task, interacting with visualizations fostered deliberate clinical reflection and adaptation, directly addressing the implementation barriers identified in his research. Milo believes that data-visualization in behavioral health creates a "motivating experience" within clinicians. He feels that if therapists engage with visualized caseload data, it will increase the likelihood of them to make necessary adjustments to their treatment strategies, more effectively engage in routine outcome monitoring, and adhere to evidence based treatments.</p>
-                        
+                        <p>This process created what Milo calls an "internal call to action" — visualized data sparked deeper clinical inquiry about treatment adjustments, therapeutic alliance factors, and evidence-based practice fidelity. Rather than data collection being a procedural task, interacting with visualizations fostered deliberate clinical reflection and adaptation, directly addressing the implementation barriers identified in his research. Milo believes that data-visualization in behavioral health creates a "motivating experience" within clinicians.</p>
                         <h3>Innovation Through Research</h3>
-                        <p>Chartara Labs represents a novel approach to clinical decision support that synthesizes Milo's research findings into practical solutions. The platform addresses the core challenge identified by Lloyd et al. (2019): transforming routine outcome monitoring from overwhelming data dumps into accessible clinical insights. As Milo discovered in his research, the integration of clinical decision support with data visualization represents a methodological innovation that transforms complex information into intuitive formats that highlight otherwise hidden patterns (Parikh et al., 2021).</p>
-                        
+                        <p>Chartara Labs represents a novel approach to clinical decision support that synthesizes Milo's research findings into practical solutions. The platform addresses the core challenge identified by Lloyd et al. (2019): transforming routine outcome monitoring from overwhelming data dumps into accessible clinical insights.</p>
                         <h3>Mission: Democratizing Data-Driven Therapy</h3>
-                        <p>Recognizing the transformative impact these tools had on his own practice, Milo founded Chartara Labs to disseminate these innovations to clinicians nationwide. Chartara Labs emerged from Milo's recognition that the future of mental health care lies in minimizing friction and maximizing insight—turning raw data into centralized, easily interpreted visuals that empower therapists and clinical supervisors to make truly data-driven decisions.</p>
-                        
-                        <p style="font-size: 0.9rem; margin-top: 2rem;">
+                        <p>Recognizing the transformative impact these tools had on his own practice, Milo founded Chartara Labs to disseminate these innovations to clinicians nationwide. Chartara Labs emerged from Milo's recognition that the future of mental health care lies in minimizing friction and maximizing insight — turning raw data into centralized, easily interpreted visuals that empower therapists and clinical supervisors to make truly data-driven decisions.</p>
+                        <p class="references">
                             <strong>References:</strong><br>
-                            Azizian Kia, S., Wittkampf, L., van Lankeren, J., & Janse, P. (2024). Motives of therapists for using routine outcome monitoring (ROM) and how it is used by them in clinical practice: Two qualitative studies. Administration and Policy in Mental Health and Mental Health Services Research, 52(2), 159–170.<br><br>
-                            Lloyd, C. E. M., Duncan, C., & Cooper, M. (2019). Goal measures for psychotherapy: A systematic review of self‐report, idiographic instruments. Clinical Psychology: Science and Practice, 26(3), Article e12281.<br><br>
-                            Parikh, N., Daughton, A., Rosenberger, W., Aberle, D., Chitanvis, M., Altherr, F., Velappan, N., Fairchild, G., & Deshpande, A. (2021). Improving detection of disease re-emergence using a web-based tool (RED Alert): Design and case analysis study. JMIR Public Health and Surveillance, 7(1), e24132.
+                            Azizian Kia, S., Wittkampf, L., van Lankeren, J., &amp; Janse, P. (2024). Motives of therapists for using routine outcome monitoring (ROM) and how it is used by them in clinical practice: Two qualitative studies. Administration and Policy in Mental Health and Mental Health Services Research, 52(2), 159–170.<br><br>
+                            Lloyd, C. E. M., Duncan, C., &amp; Cooper, M. (2019). Goal measures for psychotherapy: A systematic review of self‐report, idiographic instruments. Clinical Psychology: Science and Practice, 26(3), Article e12281.<br><br>
+                            Parikh, N., Daughton, A., Rosenberger, W., Aberle, D., Chitanvis, M., Altherr, F., Velappan, N., Fairchild, G., &amp; Deshpande, A. (2021). Improving detection of disease re-emergence using a web-based tool (RED Alert): Design and case analysis study. JMIR Public Health and Surveillance, 7(1), e24132.
                         </p>
                     </div>
-                    <div class="founder-image">
-                        <img src="LinkedIn_Pic.jpeg" alt="Milo LeGendre, LMHC" style="max-width: 100%; height: auto; border-radius: 15px;">
+                    <div class="founder-img">
+                        <img src="LinkedIn_Pic.jpeg" alt="Milo LeGendre, LMHC">
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- Contact Section -->
-            <section id="contact" class="content-section contact-section main-page">
-                <h2>Get in Touch</h2>
-                <p>Have questions about Chartara Labs? Want to discuss custom solutions for your organization?</p>
-                <p>We're here to help you transform your practice with AI-powered analytics.</p>
-                <a href="mailto:support@chartaralabs.io" class="contact-email">support@chartaralabs.io</a>
-                <div style="margin-top: 2rem; color: #ffffff;">
+        <!-- CONTACT -->
+        <section class="section section-alt" id="contact">
+            <div class="container">
+                <div class="contact-inner">
+                    <h2>Get in Touch</h2>
+                    <p>Have questions about Chartara Labs? Want to discuss custom solutions for your organization?</p>
+                    <p>We're here to help you transform your practice with AI-powered analytics.</p>
+                    <a href="mailto:support@chartaralabs.io" class="contact-email">support@chartaralabs.io</a>
                     <p>Reach out to us with any questions about implementation, pricing, or custom development needs.</p>
                 </div>
-            </section>
+            </div>
+        </section>
 
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-inner">
+                    <span class="footer-brand">Chartara Labs</span>
+                    <span class="footer-copy">&copy; 2025 Chartara Labs. All rights reserved.</span>
+                    <div class="footer-links">
+                        <a href="https://www.linkedin.com/company/chartara-labs/" target="_blank">LinkedIn</a>
+                        <a href="https://instagram.com/chartaralabs" target="_blank">Instagram</a>
+                        <a href="https://www.youtube.com/@ChartaraLabs" target="_blank">YouTube</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div><!-- /#mainContent -->
+
+    <!-- AI SCRIBE DETAIL -->
+    <div class="detail-page" id="scribeDetail">
+        <div class="container">
+            <button class="back-btn" onclick="showMainPage()">&#8592; Back</button>
+            <div class="detail-header">
+                <h2>Speak. Generate. Done.</h2>
+                <p>Chartara Notes is a workflow efficiency hub that gets out of your way and lets you focus on what matters — your clients.</p>
+                <p>After your session, simply speak a summary in your own words. Chartara Notes transforms your natural speech into a complete, polished clinical document in under 60 seconds. No ambient recording. No AI in the therapy room. Just faster documentation that retains your own clinical voice.</p>
+                <p>Build custom templates once for any documentation you need — session notes, intakes, treatment plan reviews, discharge summaries, disability letters, group notes, or any format your workflow requires. Speak once. Copy and paste. Done.</p>
+                <p>Your clinical voice. Your workflow. Your autonomy. HIPAA compliant and built for simplicity — no browser extensions, no setup, just log in, speak, copy, paste, get out.</p>
+            </div>
+
+            <p class="detail-section-title">Select Note Format or Build a Custom Template</p>
+            <div class="media-single">
+                <img src="Chartara_Notes_AI_Scribe_Front_Page.png" alt="Select Note Format or Build a Custom Template">
+            </div>
+
+            <p class="detail-section-title">Build Custom Templates with Your Exact Sections</p>
+            <div class="media-single">
+                <img src="Chartara_Notes_Create_Template.png" alt="Create New Custom Template Interface">
+            </div>
+
+            <p class="detail-section-title">Choose from Your Saved Templates</p>
+            <div class="media-single">
+                <img src="Chartara_Notes_Choose_Template.png" alt="Template Dropdown Selector">
+            </div>
+
+            <p class="detail-section-title">Sample Custom Templates</p>
+            <div class="media-single">
+                <img src="Chartara_Notes_Individual_Session_Note.png" alt="Custom Template — Individual Session Note">
+            </div>
+            <div class="media-pair">
+                <img src="Note Template Termination Summary and Intake .png" alt="Custom Templates — Termination Summary and Intake">
+                <img src="Note Template Transfer Summary.png" alt="Custom Template — Transfer Summary">
+            </div>
+
+            <div class="detail-cta">
+                <div class="detail-cta-btns">
+                    <a href="https://buy.stripe.com/7sYdRag5wemidtR7B84Rq09" class="detail-cta-btn">Start Free</a>
+                    <button class="detail-cta-btn" onclick="showDetailPage('analytics')">See Visual Analytics</button>
+                    <button class="detail-cta-btn" onclick="showMainPage()">Back</button>
+                </div>
+            </div>
         </div>
-    </main>
+    </div>
+
+    <!-- VISUAL ANALYTICS DETAIL -->
+    <div class="detail-page" id="analyticsDetail">
+        <div class="container">
+            <button class="back-btn" onclick="showMainPage()">&#8592; Back</button>
+            <div class="detail-header">
+                <h2>Visual Analytics &amp; Clinical Decision Support</h2>
+                <p>Understanding your caseload shouldn't require clicking through rows of text and numbers in your EMR. Chartara Notes surfaces the patterns that matter through instant visual analytics — so you can see what's happening across your caseload at a glance rather than piecing it together manually.</p>
+                <p>Enter data through simple web forms and get instant charts, downloadable PDF reports, and machine learning powered insights unique to your practice. Track client outcomes, monitor treatment plan compliance, identify at-risk clients, and generate evidence-based supervision reports — all at the click of a button.</p>
+                <p>For supervisors, the data transforms how you lead. Instead of generic supervision, you get a clear picture of each clinician's caseload so you can target your guidance where it actually matters.</p>
+            </div>
+
+            <p class="detail-section-title">Visual Analytics Dashboard</p>
+            <div class="media-single">
+                <img src="Chartara_Notes_Visual_Analytics_Front Page.png" alt="Visual Analytics Dashboard — All Charts">
+            </div>
+
+            <p class="detail-section-title">Individual Client PHQ-9 Tracker — Visualize longitudinal depression tracking with AI-powered symptom forecasting.</p>
+            <div class="media-pair">
+                <img src="phq9 tracker client selector.png" alt="PHQ-9 Client Selector">
+                <img src="phq9 tracker data visualization.png" alt="PHQ-9 Data Visualization with AI Forecast">
+            </div>
+
+            <p class="detail-section-title">Caseload Diagnoses Tracker — Understand the diagnostic profile of your caseload. Target staff supervision accordingly.</p>
+            <div class="media-single">
+                <img src="Chartara_Notes_Caseload_Breakdown.png" alt="Caseload Diagnoses Tracker">
+            </div>
+
+            <p class="detail-section-title">Client Attendance Analysis — Visualize attendance consistency and automatically flag dropout likelihood.</p>
+            <div class="media-single">
+                <img src="chartara_notes_no_show.png" alt="Client Attendance Analysis">
+            </div>
+
+            <p class="detail-section-title">Treatment Plan Review Tracker — Leverage data visualization to improve billing consistency, stay compliant, never miss a deadline.</p>
+            <div class="media-pair">
+                <img src="Chartara_Notes_TPR_Tracker.png" alt="Treatment Plan Review Tracker">
+                <img src="Chartara_Notes_TPR_Analytics.png" alt="Treatment Plan Review Analytics">
+            </div>
+
+            <p class="detail-section-title">Individual Client GAD-7 Tracker — Visualize longitudinal anxiety tracking with AI-powered symptom forecasting.</p>
+            <div class="media-single">
+                <img src="Chartara_Notes_GAD7_Tracker.png" alt="Individual Client GAD-7 Tracker">
+            </div>
+
+            <p class="detail-section-title">Simple Data Entry &amp; Instant PDF Reports for Every Chart — PDF reports may include descriptive, predictive, and prescriptive analytics in line with Chartara Notes' Clinical Decision Support framework.</p>
+            <div class="media-pair">
+                <img src="Caseload Data Entry.png" alt="Simple Web Form Data Entry">
+                <img src="TPR PDF.png" alt="Instant Downloadable PDF Report">
+            </div>
+
+            <div class="detail-cta">
+                <div class="detail-cta-btns">
+                    <a href="https://buy.stripe.com/7sYdRag5wemidtR7B84Rq09" class="detail-cta-btn">Start Free</a>
+                    <button class="detail-cta-btn" onclick="showDetailPage('scribe')">See AI Scribe</button>
+                    <button class="detail-cta-btn" onclick="showMainPage()">Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHARTARA TRAIN DETAIL -->
+    <div class="detail-page" id="trainDetail">
+        <div class="container">
+            <button class="back-btn" onclick="showMainPage()">&#8592; Back</button>
+            <div class="detail-header">
+                <span class="badge badge-soon" style="display:inline-flex;margin-bottom:1.5rem;">Coming Soon</span>
+                <h2>Chartara Train</h2>
+                <p>AI-powered therapist training in evidence-based interventions. Master behavioral activation, cognitive restructuring, and cultural competence — with outcome tracking that strengthens funding opportunities and demonstrates program effectiveness.</p>
+            </div>
+
+            <div class="media-single">
+                <img src="Chartara_Train_Welcome_Page.png" alt="Chartara Train Interface">
+            </div>
+
+            <p class="detail-section-title">Three Specialized Training Modules</p>
+
+            <div style="display: grid; gap: 1.5rem; max-width: 900px; margin: 0 auto 3rem;">
+                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem;">
+                    <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--blue);">1. Behavioral Activation Tracker</h3>
+                    <p style="color: var(--text-muted); font-size: 0.93rem; line-height: 1.7;">Track behavioral activation interventions, monitor client engagement, and visualize outcomes across your caseload. Identify which activation strategies yield the best results for specific client profiles.</p>
+                </div>
+                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem;">
+                    <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--blue);">2. Automatic Thought Tracker</h3>
+                    <p style="color: var(--text-muted); font-size: 0.93rem; line-height: 1.7;">Evidence-based CBT intervention matching for cognitive distortion categories. Thought-emotion-behavior correlation tracking with progress monitoring showing distortion reduction over time.</p>
+                </div>
+                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem;">
+                    <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--blue);">3. Cultural Competence Tracker</h3>
+                    <p style="color: var(--text-muted); font-size: 0.93rem; line-height: 1.7;">Analytics for culturally adapted interventions with outcome tracking that supports grant applications and funding opportunities by demonstrating measurable program effectiveness across diverse populations.</p>
+                </div>
+            </div>
+
+            <div class="detail-cta">
+                <div class="detail-cta-btns">
+                    <a href="mailto:support@chartaralabs.io?subject=Access Request for Chartara Train&body=Hi, I'm interested in accessing Chartara Train for my clinic, university, healthcare system, or practice. Please provide information about getting started." class="detail-cta-btn" style="background: linear-gradient(135deg, #7c3aed, #6d28d9);">Request Access</a>
+                    <button class="detail-cta-btn" onclick="showMainPage()">Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
-        // Hamburger menu functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const hamburgerToggle = document.getElementById('hamburgerToggle');
-            const navDropdown = document.getElementById('navDropdown');
-            
-            // Toggle hamburger menu
-            hamburgerToggle.addEventListener('click', function() {
-                hamburgerToggle.classList.toggle('active');
-                navDropdown.classList.toggle('active');
-            });
-            
-            // Close menu when clicking on a link
-            const navLinks = navDropdown.querySelectorAll('a');
-            navLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    hamburgerToggle.classList.remove('active');
-                    navDropdown.classList.remove('active');
-                });
-            });
-            
-            // Close menu when clicking outside
-            document.addEventListener('click', function(event) {
-                if (!hamburgerToggle.contains(event.target) && !navDropdown.contains(event.target)) {
-                    hamburgerToggle.classList.remove('active');
-                    navDropdown.classList.remove('active');
-                }
-            });
+        // Hamburger
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        hamburgerBtn.addEventListener('click', e => { e.stopPropagation(); mobileNav.classList.toggle('open'); });
+        document.addEventListener('click', e => {
+            if (!mobileNav.contains(e.target) && !hamburgerBtn.contains(e.target)) mobileNav.classList.remove('open');
         });
+        mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileNav.classList.remove('open')));
 
-        // FAQ functionality
-        function toggleFAQ(element) {
-            const answer = element.nextElementSibling;
-            const toggle = element.querySelector('.faq-toggle');
-            
-            if (answer.classList.contains('active')) {
-                answer.classList.remove('active');
-                toggle.classList.remove('active');
-                toggle.textContent = '+';
-            } else {
-                // Close all other FAQs
-                document.querySelectorAll('.faq-answer').forEach(faq => {
-                    faq.classList.remove('active');
-                });
-                document.querySelectorAll('.faq-toggle').forEach(tog => {
-                    tog.classList.remove('active');
-                    tog.textContent = '+';
-                });
-                
-                // Open this FAQ
-                answer.classList.add('active');
-                toggle.classList.add('active');
-                toggle.textContent = '+';
-            }
-        }
-
-        // Service detail page functionality
-        function showServiceDetail(serviceId) {
-            // Hide main page sections
-            document.querySelectorAll('.main-page').forEach(section => {
-                section.style.display = 'none';
-            });
-            
-            // Hide all service details
-            document.querySelectorAll('.service-detail').forEach(detail => {
-                detail.classList.remove('active');
-            });
-            
-            // Show selected service detail
-            document.getElementById(serviceId + '-detail').classList.add('active');
-            
-            // Scroll to top
+        // Detail page switching
+        function showDetailPage(id) {
+            document.getElementById('mainContent').classList.add('hidden');
+            document.querySelectorAll('.detail-page').forEach(p => p.classList.remove('active'));
+            document.getElementById(id + 'Detail').classList.add('active');
             window.scrollTo(0, 0);
         }
 
         function showMainPage() {
-            // Show main page sections
-            document.querySelectorAll('.main-page').forEach(section => {
-                section.style.display = 'block';
-            });
-            
-            // Hide all service details
-            document.querySelectorAll('.service-detail').forEach(detail => {
-                detail.classList.remove('active');
-            });
-            
-            // Scroll to features section
-            document.getElementById('features').scrollIntoView();
+            document.getElementById('mainContent').classList.remove('hidden');
+            document.querySelectorAll('.detail-page').forEach(p => p.classList.remove('active'));
         }
 
-        // Handle navigation menu clicks
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add event listeners to navigation links
-            const featuresLink = document.querySelector('a[href="#features"]');
-            if (featuresLink) {
-                featuresLink.addEventListener('click', function(e) {
+        // FAQ
+        function toggleFAQ(btn) {
+            const answer = btn.nextElementSibling;
+            const icon = btn.querySelector('.faq-icon');
+            const isOpen = answer.classList.contains('open');
+            document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+            document.querySelectorAll('.faq-icon').forEach(i => { i.classList.remove('open'); i.textContent = '+'; });
+            if (!isOpen) { answer.classList.add('open'); icon.classList.add('open'); }
+        }
+
+        // Internal nav links — show main page then scroll
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                const target = document.querySelector(href);
+                if (target) {
                     e.preventDefault();
                     showMainPage();
-                    setTimeout(() => {
-                        document.getElementById('features').scrollIntoView();
-                    }, 100);
-                });
-            }
-
-            // Handle all navigation links that might be hidden
-            document.querySelectorAll('a[href^="#"]').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    const href = this.getAttribute('href');
-                    if (href === '#features') {
-                        e.preventDefault();
-                        showMainPage();
-                        setTimeout(() => {
-                            document.getElementById('features').scrollIntoView();
-                        }, 100);
-                    } else if (href.startsWith('#')) {
-                        // For other internal links, ensure main page is visible
-                        const target = document.querySelector(href);
-                        if (target && target.classList.contains('main-page')) {
-                            e.preventDefault();
-                            showMainPage();
-                            // Small delay to ensure page is shown before scrolling
-                            setTimeout(() => {
-                                target.scrollIntoView();
-                            }, 100);
-                        }
-                    }
-                });
+                    setTimeout(() => target.scrollIntoView({ behavior: 'smooth' }), 50);
+                }
             });
         });
     </script>
