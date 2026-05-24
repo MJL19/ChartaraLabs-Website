@@ -112,8 +112,8 @@
         .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 22px rgba(59,130,246,0.4); }
 
         .hamburger {
-            display: none; flex-direction: column; gap: 5px;
-            background: none; border: none; cursor: pointer; padding: 8px;
+            display: flex; flex-direction: column; gap: 5px;
+            background: none; border: none; cursor: pointer; padding: 8px; flex-shrink: 0;
         }
         .hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
 
@@ -402,7 +402,6 @@
         /* RESPONSIVE */
         @media (max-width: 900px) {
             .nav-links, .nav-actions .btn-ghost { display: none; }
-            .hamburger { display: flex; }
         }
 
         @media (max-width: 768px) {
@@ -427,6 +426,9 @@
         <div class="container">
             <nav class="nav">
                 <img src="brand_logo.jpg" alt="Chartara Labs" style="height: 44px; width: auto; display: block; cursor: pointer;" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+                <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
                 <ul class="nav-links">
                     <li class="nav-dropdown-wrap">
                         <a href="#products">Products</a>
@@ -445,24 +447,21 @@
                     <a href="https://notes.chartaralabs.io" class="btn-ghost">Login</a>
                     <a href="https://buy.stripe.com/7sYdRag5wemidtR7B84Rq09" class="btn-primary">Get Started Free</a>
                 </div>
-                <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
-                    <span></span><span></span><span></span>
-                </button>
             </nav>
             <nav class="mobile-nav" id="mobileNav">
                 <a href="#products">Products</a>
                 <a href="#features">Features</a>
-                <a href="#" onclick="showDetailPage('scribe'); return false;">AI Scribe</a>
-                <a href="#" onclick="showDetailPage('analytics'); return false;">Visual Analytics</a>
+                <a href="#problems">Problems We Solve</a>
+                <a href="#what">Differentiation</a>
                 <a href="#pricing">Pricing</a>
                 <a href="#getting-started">Getting Started</a>
                 <a href="#faq">FAQs</a>
                 <a href="#founder">Meet the Founder</a>
                 <a href="#contact">Contact</a>
                 <div class="mobile-nav-divider"></div>
+                <a href="https://www.youtube.com/@ChartaraLabs" target="_blank">YouTube</a>
                 <a href="https://www.linkedin.com/company/chartara-labs/" target="_blank">LinkedIn</a>
                 <a href="https://instagram.com/chartaralabs" target="_blank">Instagram</a>
-                <a href="https://www.youtube.com/@ChartaraLabs" target="_blank">YouTube</a>
                 <div class="mobile-nav-divider"></div>
                 <a href="https://notes.chartaralabs.io">Login</a>
                 <a href="https://buy.stripe.com/7sYdRag5wemidtR7B84Rq09">Get Started Free</a>
@@ -765,7 +764,7 @@
             <div class="container">
                 <div class="section-header">
                     <p class="eyebrow">Getting Started</p>
-                    <h2 class="section-title">What to Expect When You Sign Up</h2>
+                    <h2 class="section-title">Getting Started with Chartara Notes</h2>
                     <p class="section-desc">Getting started is free. No credit card or payment information required.</p>
                 </div>
                 <div class="steps-list">
