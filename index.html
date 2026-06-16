@@ -388,6 +388,8 @@
 
         .media-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
         .media-pair img { width: 100%; height: auto; border-radius: var(--radius); display: block; }
+        .media-pair-mobile { max-width: 760px; margin-left: auto; margin-right: auto; }
+        .media-pair-mobile img { width: auto; max-width: 100%; max-height: 620px; margin: 0 auto; }
 
         .detail-cta { text-align: center; margin-top: 3rem; }
         .detail-cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
@@ -434,7 +436,7 @@
                         <a href="#products">Products</a>
                         <div class="nav-dropdown">
                             <a href="#products">Chartara Notes</a>
-                            <a href="#products" class="nav-dropdown-muted">Chartara Train <span style="font-size:0.75rem;color:#a78bfa;">(Coming Soon)</span></a>
+                            <a href="#products">Chartara Train</a>
                         </div>
                     </li>
                     <li><a href="#features">Features</a></li>
@@ -504,17 +506,16 @@
                         </div>
                     </div>
                     <div class="product-card">
-                        <span class="badge badge-soon">Coming Soon</span>
                         <div class="product-image">
                             <img src="Chartara_Train_Welcome_Page.png" alt="Chartara Train">
                         </div>
                         <h2 class="product-name">Chartara Train</h2>
-                        <p class="product-desc">AI-powered therapist training in evidence-based interventions with outcome tracking that strengthens funding opportunities.</p>
+                        <p class="product-desc">A CBT system that trains your clinicians in evidence-based interventions and measures treatment efficacy by client, therapist, and organization — AI innovation without a chatbot.</p>
                         <ul class="product-features">
                             <li>Behavioral Activation Tracker</li>
                             <li>Cognitive Restructuring &amp; Thought Tracking</li>
-                            <li>Cultural Competence Analytics</li>
-                            <li>Outcome-based funding model support</li>
+                            <li>Therapist Coaching &amp; Clinical Decision Support</li>
+                            <li>Supervisor &amp; Organization-Level Outcomes</li>
                         </ul>
                         <div class="product-actions">
                             <a href="mailto:support@chartaralabs.io?subject=Access Request for Chartara Train&body=Hi, I'm interested in accessing Chartara Train." class="product-cta" style="background: linear-gradient(135deg, #7c3aed, #6d28d9);">Request Access</a>
@@ -976,30 +977,46 @@
         <div class="container">
             <button class="back-btn" onclick="showMainPage()">&#8592; Back</button>
             <div class="detail-header">
-                <span class="badge badge-soon" style="display:inline-flex;margin-bottom:1.5rem;">Coming Soon</span>
                 <h2>Chartara Train</h2>
-                <p>AI-powered therapist training in evidence-based interventions. Master behavioral activation, cognitive restructuring, and cultural competence — with outcome tracking that strengthens funding opportunities and demonstrates program effectiveness.</p>
+                <p>Chartara Train is a sophisticated CBT system that does two jobs at once: it helps your clinicians <strong>master evidence-based interventions</strong> — behavioral activation and cognitive restructuring — and it <strong>measures whether that treatment is actually working</strong>, at every level of your organization.</p>
+                <p>Monitor treatment efficacy <strong>by client, by therapist, and across your whole organization.</strong> Instead of generic oversight, supervisors get a clear, data-driven picture of each clinician's caseload — so supervision and training land exactly where they're needed.</p>
+                <p>It works in a genuinely different way: <strong>our AI classifies what clients log</strong> to surface patterns clinicians can act on — it never chats, never prescribes. <strong>AI innovation without a chatbot.</strong> And because every outcome is measured, the results strengthen grant applications and demonstrate program effectiveness to funders.</p>
             </div>
 
             <div class="media-single">
-                <img src="Chartara_Train_Welcome_Page.png" alt="Chartara Train Interface">
+                <img src="Chartara_Train_Welcome_Page.png" alt="Chartara Train Welcome Page">
             </div>
 
-            <p class="detail-section-title">Three Specialized Training Modules</p>
+            <p class="detail-section-title">It starts with the client. They log thoughts and activities in a simple mobile companion, building CBT into a daily habit. Our AI classifies thinking styles and activity patterns behind the scenes. AI innovation without a chatbot.</p>
+            <div class="media-pair media-pair-mobile">
+                <img src="train_client_activity.png" alt="Client logs a behavioral activation activity">
+                <img src="train_client_thought.png" alt="Client logs and reframes an automatic thought">
+            </div>
 
-            <div style="display: grid; gap: 1.5rem; max-width: 900px; margin: 0 auto 3rem;">
-                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem;">
-                    <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--blue);">1. Behavioral Activation Tracker</h3>
-                    <p style="color: var(--text-muted); font-size: 0.93rem; line-height: 1.7;">Track behavioral activation interventions, monitor client engagement, and visualize outcomes across your caseload. Identify which activation strategies yield the best results for specific client profiles.</p>
-                </div>
-                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem;">
-                    <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--blue);">2. Automatic Thought Tracker</h3>
-                    <p style="color: var(--text-muted); font-size: 0.93rem; line-height: 1.7;">Evidence-based CBT intervention matching for cognitive distortion categories. Thought-emotion-behavior correlation tracking with progress monitoring showing distortion reduction over time.</p>
-                </div>
-                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem;">
-                    <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--blue);">3. Cultural Competence Tracker</h3>
-                    <p style="color: var(--text-muted); font-size: 0.93rem; line-height: 1.7;">Analytics for culturally adapted interventions with outcome tracking that supports grant applications and funding opportunities by demonstrating measurable program effectiveness across diverse populations.</p>
-                </div>
+            <p class="detail-section-title">For the therapist, a command center for the entire caseload. See each client's activity, thought patterns, emotional reduction, satisfaction, and engagement at a glance, then drill into any client for deeper visual analytics. Built-in manualized CBT training and culturally responsive guidance support clinical training and client psychoeducation.</p>
+            <div class="media-single">
+                <img src="train_provider_portal.png" alt="Provider Portal — caseload overview with CBT training modules">
+            </div>
+
+            <p class="detail-section-title">Drill into any client to access activity and thought insights, plus behavior and thought visualizations. Machine learning surfaces patterns in the client's own data to inform the clinician's approach, delivered as transparent clinical decision support that keeps the licensed professional in control.</p>
+            <div class="media-single">
+                <img src="train_client_drilldown.png" alt="Therapist client drill-down with coaching insights and Clinical Decision Support">
+            </div>
+
+            <p class="detail-section-title">For the supervisor, treatment efficacy and fidelity across the entire organization. Track outcomes by therapist, drill from any therapist into their caseload and down to the individual client, and see thought patterns and activity types org-wide. Monitoring efficacy and maintaining fidelity at every level, built on real client participation and outcomes. Export the reports funders want to see.</p>
+            <div class="media-single">
+                <img src="train_supervisor_org.png" alt="Supervisor organization overview with org-wide analytics">
+            </div>
+
+            <p class="detail-section-title">AI-augmented supervision. Train analyzes client thoughts and activities to surface deep anxiety and depression insights that a spreadsheet never could, giving supervisors and therapists a precise and accurate conceptualization to target CBT and psychoeducation. Select any clinician, drill into any client visual analytics, and guide with data-driven insights and efficacy monitoring.</p>
+            <div class="media-single">
+                <img src="train_supervisor_caseload.png" alt="Supervisor view of an individual therapist's caseload">
+            </div>
+
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; max-width: 900px; margin: 3rem auto 0;">
+                <span class="badge badge-soon" style="display:inline-flex;margin-bottom:1rem;">Coming Soon</span>
+                <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--blue);">Cultural Competence Analytics</h3>
+                <p style="color: var(--text-muted); font-size: 0.93rem; line-height: 1.7;">Analytics for culturally adapted interventions with outcome tracking that supports grant applications and funding opportunities by demonstrating measurable program effectiveness across diverse populations. In active development.</p>
             </div>
 
             <div class="detail-cta">
