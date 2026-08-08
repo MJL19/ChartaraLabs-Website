@@ -194,7 +194,7 @@
         .product-cta-outline:hover { color: var(--text); border-color: var(--border-accent); }
 
         /* FEATURES */
-        .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 960px; margin: 0 auto; }
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1200px; margin: 0 auto; }
 
         .feature-card {
             background: rgba(255,255,255,0.95); border-radius: var(--radius-lg); padding: 1.75rem;
@@ -531,8 +531,8 @@
             <div class="container">
                 <div class="section-header">
                     <h2 class="section-title" style="color: var(--blue);">Chartara Notes</h2>
-                    <h2 class="section-title">AI Scribe &amp; Clinical Decision Support</h2>
-                    <p class="section-desc">Two integrated tools in one simple Web App that transform how you document and understand your caseload.</p>
+                    <h2 class="section-title">AI Scribe, Visual Analytics &amp; Supervisor Monitoring</h2>
+                    <p class="section-desc">Everything you need to document your sessions, understand your caseload, and oversee your whole practice — in one simple web app.</p>
                 </div>
                 <div class="features-grid">
                     <div class="feature-card" onclick="showDetailPage('scribe')">
@@ -555,6 +555,17 @@
                         <div class="feature-btns">
                             <a href="https://notes.chartaralabs.io" class="btn-feature-cta" onclick="event.stopPropagation()">Start Free</a>
                             <a href="#" class="btn-feature-outline" onclick="event.stopPropagation(); showDetailPage('analytics');">See More Info</a>
+                        </div>
+                    </div>
+                    <div class="feature-card" onclick="showDetailPage('supervisor')">
+                        <div class="feature-card-img">
+                            <img src="supervisor_dashboard.png" alt="Supervisor Dashboard — practice-wide view">
+                        </div>
+                        <h3>Supervisor Tier</h3>
+                        <p>Run your whole practice on Chartara Notes. <strong>Every seat is a full AI documentation account</strong> — scribe, templates, and analytics — and you get a practice-wide dashboard to monitor every clinician and drill into any clinician's outcomes. $15 per seat / month.</p>
+                        <div class="feature-btns">
+                            <a href="https://notes.chartaralabs.io/subscription/plans" class="btn-feature-cta" onclick="event.stopPropagation()">Start Supervisor Plan</a>
+                            <a href="#" class="btn-feature-outline" onclick="event.stopPropagation(); showDetailPage('supervisor');">See More Info</a>
                         </div>
                     </div>
                 </div>
@@ -739,22 +750,22 @@
                         </ul>
                         <a href="https://notes.chartaralabs.io" class="pricing-cta pricing-cta-primary">Get Started Free</a>
                     </div>
-                    <div class="pricing-card" style="opacity: 0.85;">
-                        <span class="pricing-badge pricing-badge-soon">Coming Soon</span>
+                    <div class="pricing-card">
+                        <span class="pricing-badge pricing-badge-popular">Now Available</span>
                         <h3 class="pricing-name">Supervisor Plan</h3>
-                        <div class="pricing-price" style="font-size: 2rem;">Coming Soon</div>
-                        <div class="pricing-period">for clinical supervisors &amp; team leads</div>
+                        <div class="pricing-price">$15<span style="font-size: 1.1rem; font-weight: 600; color: var(--text-muted);"> / seat / month</span></div>
+                        <div class="pricing-period">including your own seat — for practices &amp; clinical supervisors</div>
                         <ul class="pricing-features">
-                            <li>Everything in the Free Plan</li>
-                            <li>Supervisor Dashboards &amp; Views</li>
-                            <li>Multi-Clinician Monitoring From Your Account</li>
-                            <li>Staffing Pattern Analytics</li>
-                            <li>Caseload Trend Analytics</li>
-                            <li>Documentation Compliance Tracking</li>
-                            <li>Dedicated Support</li>
+                            <li>A full Chartara Notes account for every seat</li>
+                            <li>AI scribe, custom templates &amp; PDF reports per clinician</li>
+                            <li>Practice-wide supervisor dashboard</li>
+                            <li>Drill into any clinician's visual analytics</li>
+                            <li>Caseload, attendance &amp; treatment-plan monitoring</li>
+                            <li>PHQ-9 / GAD-7 outcome tracking across your team</li>
+                            <li>Invite clinicians &amp; manage seats anytime</li>
                         </ul>
-                        <span class="pricing-cta pricing-cta-muted">Coming Soon</span>
-                        <p class="pricing-note">Oversee your team from a single account. Supervisor-level views give you real-time insight into clinician documentation, caseload trends, staffing patterns, and more — purpose-built for clinical supervisors and program leaders in behavioral health.</p>
+                        <a href="https://notes.chartaralabs.io/subscription/plans" class="pricing-cta pricing-cta-primary">Start Supervisor Plan</a>
+                        <p class="pricing-note">Every seat is a full Chartara Notes account — AI scribe, templates, and analytics — plus the practice administrator's view to monitor and support your whole team. $15 per seat, per month, including your own.</p>
                     </div>
                 </div>
             </div>
@@ -959,6 +970,59 @@
                 <div class="detail-cta-btns">
                     <a href="https://notes.chartaralabs.io" class="detail-cta-btn">Start Free</a>
                     <button class="detail-cta-btn" onclick="showDetailPage('scribe')">See AI Scribe</button>
+                    <button class="detail-cta-btn" onclick="showMainPage()">Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUPERVISOR TIER DETAIL -->
+    <div class="detail-page" id="supervisorDetail">
+        <div class="container">
+            <button class="back-btn" onclick="showMainPage()">&#8592; Back</button>
+            <div class="detail-header">
+                <h2>Supervisor Tier</h2>
+                <p>A whole AI documentation and visual-analytics infrastructure for your entire practice. <strong>Every seat is a full Chartara Notes account</strong> — the AI voice-to-text scribe, custom templates, and instant PDF reports — so every clinician on your team gets the complete documentation toolkit, not a stripped-down login.</p>
+                <p>On top of that, you get the <strong>practice administrator's view</strong>: aggregate visual analytics across your whole team, plus the ability to <strong>drill into any clinician and see exactly what they see</strong> — caseload diagnoses, attendance, treatment-plan compliance, and PHQ-9/GAD-7 outcome trends with AI forecasting.</p>
+                <p><strong>$15 per seat, per month — including your own.</strong> Invite clinicians by email, add or cancel seats anytime.</p>
+            </div>
+
+            <div class="media-single">
+                <img src="supervisor_dashboard.png" alt="Supervisor Dashboard — practice-wide view">
+            </div>
+
+            <p class="detail-section-title">Your Whole Practice at a Glance — Aggregate visual analytics across every clinician on your team: caseload diagnoses, attendance, treatment-plan review, and outcome scores.</p>
+            <div class="media-pair">
+                <img src="supervisor_practicewide_1.png" alt="Practice-wide caseload diagnoses and attendance rate">
+                <img src="supervisor_practicewide_2.png" alt="Practice-wide TPR, PHQ-9, and GAD-7 scores">
+            </div>
+
+            <p class="detail-section-title">Drill Into Any Clinician — See everything your clinician sees. Their full caseload analytics and clinical decision support, right down to the analytics tab.</p>
+            <div class="media-pair">
+                <img src="supervisor_drilldown_caseload.png" alt="Clinician drill-down — caseload diagnosis">
+                <img src="supervisor_drilldown_tpr.png" alt="Clinician drill-down — treatment plan review analytics">
+            </div>
+
+            <p class="detail-section-title">Track Outcomes Client-by-Client — Longitudinal PHQ-9 and GAD-7 trends per client, with the same AI symptom forecasting your clinicians use.</p>
+            <div class="media-pair">
+                <img src="supervisor_drilldown_gad7_select.png" alt="Clinician drill-down — GAD-7 client selection">
+                <img src="supervisor_drilldown_gad7_trend.png" alt="Clinician drill-down — GAD-7 trend with AI forecast">
+            </div>
+
+            <p class="detail-section-title">Spot Attendance &amp; Compliance Risk — Per-clinician no-show analysis so you can target supervision exactly where it's needed.</p>
+            <div class="media-single">
+                <img src="supervisor_drilldown_attendance.png" alt="Clinician drill-down — client attendance analysis">
+            </div>
+
+            <p class="detail-section-title">Manage Your Team in Seconds — Invite clinicians by email (each gets a full AI account), see who's active, and add or cancel seats anytime.</p>
+            <div class="media-single">
+                <img src="supervisor_manage_seats.png" alt="Manage Seats — invite and remove clinicians">
+            </div>
+
+            <div class="detail-cta">
+                <div class="detail-cta-btns">
+                    <a href="https://notes.chartaralabs.io/subscription/plans" class="detail-cta-btn">Start the Supervisor Plan</a>
+                    <button class="detail-cta-btn" onclick="showDetailPage('analytics')">See Visual Analytics</button>
                     <button class="detail-cta-btn" onclick="showMainPage()">Back</button>
                 </div>
             </div>
